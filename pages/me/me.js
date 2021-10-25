@@ -9,7 +9,7 @@ Page({
   //获取用户信息
   getUserProfile() {
     wx.getUserProfile({
-      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      desc: '用于完善会员资料', // 声明获取用户个人sssss信息后的用途，后续会展示在弹窗中ssss，请谨慎填写
       success: (res) => {
         console.log("获取用户信息成功", res)
         let user = res.userInfo
