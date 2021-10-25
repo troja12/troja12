@@ -1,0 +1,137 @@
+/* index wxss */
+.list{
+  background-image:url(https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E4%B8%AA%E4%BA%BA/%E7%A7%AF%E5%88%86%E5%95%86%E5%9F%8E%20%E6%8B%B7%E8%B4%9D.png?sign=6d9b209c81aba349f279cb27422f6094&t=1633644694);
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  height: 500rpx;
+  width: 100%;
+
+}
+
+
+
+.time-component {
+  margin-top: 8rpx;
+  
+  margin-left: 35rpx;
+  margin-right: 50rpx;
+  display: flex;
+  background-color: transparent;
+  padding:18rpx 0rpx 0rpx 0rpx;
+}
+
+.time-component1 {
+  margin-bottom: 10rpx;
+  margin-left: 35rpx;
+  margin-right: 50rpx;
+  display: flex;
+  background-color: transparent;
+  
+}
+
+
+.placeholder {
+  font-size: 28rpx;
+  margin: 10rpx;
+  padding: 8rpx 20rpx 8rpx 0;
+  text-align: center;
+
+}
+
+.icon {
+  width: 40rpx;
+}
+
+.icon image {
+  vertical-align: middle;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.hd {
+  text-align: center;
+  width: 120rpx;
+  margin-left: 0rpx;
+  color:#EFDEB0;
+}
+
+.date {
+  position: absolute;
+  right: 120rpx;
+  width: 140px;
+}
+
+.line {
+  z-index: 10;
+  position: absolute;
+  right: 100rpx;
+  width: 10rpx;
+}
+
+.time {
+  position: absolute;
+  right: 0rpx;
+  
+}
+
+.section{
+  padding: 0 0 0 50rpx;
+}
+
+.shifou{
+  padding: 0 0 0 0;
+}
+
+.picker{
+  padding: 0 0 0 65rpx;
+  color:#EFDEB0;
+}
+
+.shulie{
+  padding: 0rpx 0rpx 20rpx 90rpx;
+}
+
+
+
+.shulie1{
+  padding: 0rpx 0rpx 20rpx 0rpx;
+}
+
+.hang{
+  display: flex;
+
+}
+
+
+.caipin_item {
+  display: flex;
+  align-items: center;
+  padding: 5rpx 0rpx;
+  border-style: solid;
+  border-width: thin;
+  border-color: gray;
+  border-radius: 20rpx;
+  
+  margin-top: 20rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+}
+
+
+.bottom{
+  background-image:url(https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E7%BB%84%2016.png?sign=696697a487469f4415cda7b1b6f557da&t=1633727285);
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  height: 170rpx;
+  width: 100%;
+  margin-top: 538rpx;
+
+}
+.bb{
+  font-size: 50rpx;
+  color: #BB3A29;
+  margin-left: 50rpx;
+  margin-top: 30rpx;
+  margin-right: 10rpx;
+  padding: 40rpx 10rpx 0rpx 30rpx;
+}

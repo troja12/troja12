@@ -1,0 +1,12 @@
+<view class="tabRoot">
+  <!-- 小桌区域 -->
+  <view class="tab">
+    <text class="tabTip">当前小桌已排到第<text class="tabTipNum">{{xiaozhuoAll}}</text>位，已叫号到小桌{{xiaozhuonum}}号</text>
+    <text class="tabNum" data-type="1" bindtap="jiaohao">请小桌{{xiaozhuonum+1}}号就餐</text>
+  </view>
+  <!-- 大桌区域 -->
+  <view class="tab">
+    <text class="tabTip">当前大桌已排到第<text class="tabTipNum">{{dazhuoAll}}</text>位，已叫号到大桌{{dazhuonum}}号</text>
+    <text class="tabNum" data-type="2" bindtap="jiaohao">请大桌{{dazhuonum+1}}号就餐</text>
+  </view>
+</view>

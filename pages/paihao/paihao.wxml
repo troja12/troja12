@@ -1,0 +1,28 @@
+<!-- 选择就餐人数 -->
+<view>
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="picker">
+      (点击选择)当前就餐人数：{{array[index]}}
+    </view>
+  </picker>
+</view>
+<view class="tabRoot">
+  <view class="tab">
+    <text class="tabTip" wx:if='{{xiaozhuonum>0}}'>小桌<text class="tabTipNum">{{xiaozhuonum}}</text>号请就餐</text>
+    <text class="tabNum paiguo" wx:if='{{index<5&&myxiaozhuonum>0}}'>我是小桌{{myxiaozhuonum}}号</text>
+    <text class="tabNum" wx:else data-type="1" bindtap="paihao">小桌排号(1-4人桌)</text>
+  </view>
+  <view class="tab">
+    <text class="tabTip" wx:if='{{dazhuonum>0}}'>大桌<text class="tabTipNum">{{dazhuonum}}</text>号请就餐</text>
+    <text class="tabNum paiguo" wx:if='{{index>=5&&mydazhuonum>0}}'>我是大桌{{mydazhuonum}}号</text>
+    <text class="tabNum" wx:else data-type="2" bindtap="paihao">大桌排号(5-10人桌)</text>
+  </view>
+
+
+  <view class="qujiucan">
+    <view wx:if='{{index<5&&myxiaozhuonum>0&&xiaozhuonum>=myxiaozhuonum}}'>您可以去就餐了,过号需重新排号,请及时联系服务员去小桌区就餐</view>
+    <view wx:if='{{index>=5&&mydazhuonum>0&&dazhuonum>=mydazhuonum}}'>您可以去就餐了,过号需重新排号,请及时联系服务员大桌区就餐</view>
+  </view>
+
+  <view wx:if='{{myxiaozhuonum>0||mydazhuonum>0}}' class="chongxinpaihao" bindtap="chongxinpaihao">重新排号</view>
+</view>

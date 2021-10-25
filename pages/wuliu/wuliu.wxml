@@ -1,0 +1,45 @@
+<!-- 菜单列表  -->
+<view class="caipin_item">
+  <image class="cai_img" src="https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E6%90%AC%E5%AE%B6/%E6%90%AC%E5%AE%B62/%E5%9B%BE%E5%B1%82%207.png?sign=9886ee80c65744d37a5b7378f269ad4d&t=1633730081" />
+  <view class="wenzi">
+    <view class="jieshao">小面包车    ¥30欧起</view>      
+    
+    <view class="jieshaosmall">适合单人，无大型家电家具人群</view>
+    <view class="zuoyou">
+      <view class="jieshaosmall1">车厢长宽高 1.8*1.2*1.1米</view>
+    </view>
+    <view class="shiyong" bindtap="godetails" >立即选用</view>
+  </view>
+
+</view>
+
+<!-- 菜单列表  -->
+<view class="caipin_item">
+  <image class="cai_img" src="https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E6%90%AC%E5%AE%B6/%E6%90%AC%E5%AE%B62/%E5%9B%BE%E5%B1%82%208.png?sign=1639031b5fbc177068c34a7cd65e21e2&t=1633730096" />
+  <view class="wenzi">
+    <view class="jieshao">中面包车    ¥70欧起</view>      
+    
+    <view class="jieshaosmall">适合多人，中型家电家具人群</view>
+    <view class="zuoyou">
+      <view class="jieshaosmall1">车厢长宽高 1.8*1.2*1.1米</view>
+    </view>
+    <view class="shiyong" bindtap="godetails" >立即选用</view>
+  </view>
+
+</view>
+
+<!-- 菜单列表  -->
+<view class="caipin_item">
+  <image class="cai_img" src="https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E6%90%AC%E5%AE%B6/%E6%90%AC%E5%AE%B62/%E5%9B%BE%E5%B1%82%206.png?sign=6fecc2920e1524ba17f8769a1a7cfdcc&t=1633730108" />
+  <view class="wenzi">
+     <view class="jieshao">大面包车    ¥300欧起</view>      
+    
+    <view class="jieshaosmall">适合多人，有大型家电家具人群</view>
+    <view class="zuoyou">
+      <view class="jieshaosmall1">车厢长宽高 1.8*1.2*1.1米</view>
+    </view>
+    <view class="shiyong" bindtap="godetails" >立即选用</view>
+  </view>
+
+</view>
+

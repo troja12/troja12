@@ -1,0 +1,12 @@
+<map style="width:100%; height:1000rpx;" longitude="{{longitude}}" latitude="{{latitude}}" scale="17"
+  markers="{{markers}}"  bindmarkertap="navRoad" data-marker="{{markers[0]}}"
+  show-location />
+<view class="phone" bindtap="Call">
+  地址：杭州市丁兰广场C座
+</view>
+<view class="phone" bindtap="Call">
+  电话：2501902696(可点击拨打)
+</view>
+<view class="phone" bindtap="Copy">
+  微信：2501902696(可点击复制)
+</view>

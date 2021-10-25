@@ -1,0 +1,19 @@
+page{
+  background:#fdf8e2;
+}
+.guide{
+  height: 4000rpx;
+  width: 100%;
+}
+.next{
+  text-align: center;
+  font-size: 35rpx;
+  padding: 15rpx 0 15rpx 0;
+  color: rgb(240, 248, 255);
+  background-color:#ff7b00;
+  border-radius: 25rpx;
+  margin-bottom: 30rpx;
+  margin-left:90rpx;
+  margin-right: 90rpx;
+  
+}

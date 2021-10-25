@@ -1,0 +1,108 @@
+{
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": 1,
+          "name": "我的订单",
+          "pathName": "pages/myOrder/myOrder",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/address/address",
+          "pathName": "pages/address/address",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 3,
+          "name": "我的评价",
+          "pathName": "pages/mycomment/mycomment",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/food/food",
+          "pathName": "pages/food/food",
+          "query": "tableNum=1",
+          "scene": null
+        },
+        {
+          "name": "pages/pay/pay",
+          "pathName": "pages/pay/pay",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 5,
+          "name": "pages/admin/admin",
+          "pathName": "pages/admin/admin",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/change/change",
+          "pathName": "pages/change/change",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/mycomment/mycomment",
+          "pathName": "pages/mycomment/mycomment",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/me/me",
+          "pathName": "pages/me/me",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/paihao/paihao",
+          "pathName": "pages/paihao/paihao",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/adminHouchu/adminHouchu",
+          "pathName": "pages/adminHouchu/adminHouchu",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/adminPaihao/adminPaihao",
+          "pathName": "pages/adminPaihao/adminPaihao",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/food2/food2",
+          "pathName": "pages/food2/food2",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/pay2/pay2",
+          "pathName": "pages/pay2/pay2",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,4 @@
+<view wx:for="{{list}}" class="item" bindtap="geDetail" data-item="{{item}}">
+<view>{{item.title}}</view>
+<view>浏览量：{{item.viewNum}}</view>
+</view>

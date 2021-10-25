@@ -1,0 +1,68 @@
+<!--pages/me/me.wxml-->
+<view class="header" wx:if="{{isShowUserName}}">
+	<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+	<text class="userinfo-nickname">{{userInfo.realname?userInfo.realname:userInfo.nickName}}
+		<text class="tuichu" catchtap="tuichu">退出登录</text>
+	</text>
+</view>
+<view wx:if="{{!isShowUserName}}" class="btn-login">
+	<image class="userinfo-avatar_0" src="https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E9%A6%96%E9%A1%B5/%E5%9B%BE%E5%B1%82%203%20%E6%8B%B7%E8%B4%9D.png?sign=a9b813ad61b3bfdd86b02d39449a9647&t=1633645682" ></image>
+		<text class="userinfo-nickname_0" bindtap="getUserProfile" >授权登陆</text>
+			
+</view>
+	<!-- 三个logo -->
+	<view class="menu">
+		<image class="menu_img" src="https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E4%B8%AA%E4%BA%BA/%E7%BB%84%2010.png?sign=aad08567f90ee2ade3d9eecf532a6b7c&t=1633640205" mode="aspectFit"></image>
+		<image class="menu_img" src="https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E4%B8%AA%E4%BA%BA/%E7%BB%84%208.png?sign=68d3bc7175bc2358870f3aa8c5dc36ba&t=1633640471" mode="aspectFit"></image>
+		<image class="menu_img" src="https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E4%B8%AA%E4%BA%BA/%E7%BB%84%209.png?sign=7f6e9e84e8b54f2d5319602b2e71c492&t=1633640495" mode="aspectFit"></image>
+	</view>
+
+<!--如果用户没有授权，显示登陆按钮  -->
+<view class="list">
+
+	<view class='line_5px' />
+	<view wx:if="{{isShowUserName}}">
+		<!-- <view class='my_item' bindtap="change">
+			<text>修改个人信息</text>
+			<view class='right_arrow' />
+		</view> -->
+
+
+
+
+
+
+		<!-- 我的订单 -->
+		<view class='my_item1' bindtap="goToMyOrder">
+			<text>我的订单</text>
+			<view class='right_arrow' />
+		</view>
+		<view class='my_item1' bindtap="goToPaiHao">
+			<text>我的排号</text>
+			<view class='right_arrow' />
+		</view>
+		<!-- 评价 -->
+		<view class='my_item1' bindtap="goCommentPage">
+			<text>评价列表</text>
+			<view class='right_arrow' />
+		</view>
+	</view>
+
+	<!-- 没有登录就可以显示的 -->
+
+	<!-- 反馈建议 -->
+	<view class='my_item1'>
+		<button class="button" open-type="feedback">反馈建议</button>
+		<view class='right_arrow' />
+	</view>
+	<!-- 在线客服 -->
+	<view class='my_item1'>
+		<button class="button" open-type="contact">在线客服</button>
+		<view class='right_arrow' />
+	</view>
+	<!-- 管理员管理订单 -->
+	<view class='my_item1' bindtap="goAdmin">
+		<text>管理员登录</text>
+		<view class='right_arrow' />
+	</view>
+</view>	

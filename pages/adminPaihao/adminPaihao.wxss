@@ -1,0 +1,33 @@
+.tabRoot {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20rpx;
+}
+
+.tab {
+  margin: 20rpx;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.tabTip {
+  font-size: 39rpx;
+  margin-bottom: 30rpx;
+  margin-top: 30rpx;
+}
+
+.tabTip .tabTipNum {
+  color: red;
+}
+
+.tabNum {
+  background: #f4c903;
+  color: white;
+  text-align: center;
+  width: 500rpx;
+  padding: 40rpx;
+  font-size: 1.4rem;
+  border-radius: 40rpx;
+}

@@ -1,0 +1,3 @@
+<image class="guide" src="/image/guide.PNG" />
+<text> </text>
+<view class="next" bindtap="gowuliu">我已确认，预约搬家</view>

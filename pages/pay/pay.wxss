@@ -1,0 +1,160 @@
+.base_color {
+  color: #f4c903;
+}
+
+.base_line_10rpx {
+  width: 100%;
+  height: 10rpx;
+  background: #d9d9d9;
+}
+
+/* 订单明细 */
+.mingxi_title {
+  padding: 14rpx 15rpx 10rpx;
+  font-size: 40rpx;
+  border-bottom: 2px solid gainsboro;
+}
+
+.mingxi_item {
+  margin-left: 30rpx;
+  padding: 20rpx;
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid gainsboro;
+  font-size: 36rpx;
+}
+
+/* 总价 */
+.zongjia {
+  color: #f4c903;
+  text-align: right;
+  font-size: 45rpx;
+  padding: 10rpx 30rpx;
+}
+
+/* 输入框样式 */
+input {
+  padding: 20rpx;
+  border-bottom: 1px solid gainsboro;
+}
+
+/*选用餐人数按钮盒子  */
+.xuanzekuang {
+  padding: 20rpx 40rpx;
+}
+
+.xuanzekuang1 {
+  display: flex
+}
+
+.xuanzekuang2 {
+  display: flex;
+  margin-top: 20rpx;
+}
+
+/*选用餐人数按钮  */
+.xuanzekuang_num_choose {
+  width: 80rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  margin: 0 auto;
+  background: #f4c903;
+  border-radius: 20rpx;
+  font-weight: bold;
+}
+
+
+/*弹窗遮罩层  */
+
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  background: #000;
+  z-index: 666;
+}
+
+/*选择支付方式弹窗  */
+.cart_popup {
+  width: 100%;
+  height: 285px;
+  background: #fff;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  bottom: -285px;
+  overflow: auto;
+}
+
+.shopcart_title {
+  width: 100%;
+  height: 75rpx;
+  line-height: 80rpx;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  background-color: #f4c903;
+  color: #fff;
+}
+
+/*返回按钮  */
+.shopcart_close {
+  position: absolute;
+  right: 30rpx;
+  font-size: 28rpx;
+}
+
+
+/*模拟支付  */
+
+.cart_cells {
+  width: 100%;
+  height: 98rpx;
+  position: relative;
+  border-bottom: 1px #dedede solid;
+}
+
+.cells_name {
+  padding-left: 20rpx;
+  width: 50%;
+  position: absolute;
+  left: 0;
+  top: 20rpx;
+}
+
+.price-box {
+  width: 40%;
+  font-size: 32rpx;
+  position: absolute;
+  left: 60%;
+  top: 20rpx;
+  color: #f4c903;
+}
+
+/*提交订单按钮 */
+.footer_box {
+  width: 100%;
+  height: 100rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0rpx;
+  z-index: 100;
+  background-color: #fff;
+}
+
+/*总计金额、件数  */
+.all_money {
+  width: 90%;
+  margin: 0 auto;
+  height: 84rpx;
+  line-height: 84rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 32rpx;
+  background-color: #09ba07;
+  border-radius: 20rpx;
+}

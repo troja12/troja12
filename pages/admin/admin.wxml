@@ -1,0 +1,25 @@
+<!-- 没有登录的状态 -->
+<view wx:if="{{!isAdmin}}" class="container">
+	<view class='line_1px' />
+	<view class='item_root'>
+		账号：
+		<input class="textarea25px" bindinput="getName" value="{{username}}" maxlength='10' />
+	</view>
+	<view class='line_1px' />
+	<view class='item_root'>
+		密码：
+		<input class="textarea25px" bindinput="getPassWord" value="{{phone}}" maxlength='11' />
+	</view>
+	<!-- 提交按钮 -->
+	<button class='btn_fabu' bindtap='formSubmit' type='primary'>管理员登陆</button>
+</view>
+
+<!--登录成功的状态-->
+<view wx:if="{{isAdmin}}">
+	<view class="tab">
+		<text class="tabNum" bindtap="goHouchu">后厨人员管理订单</text>
+	</view>
+	<view class="tab">
+		<text class="tabNum" bindtap="goPaihao">排位等号管理</text>
+	</view>
+</view>

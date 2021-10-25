@@ -1,0 +1,134 @@
+.header {
+  width: 100%rpx;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 15px;
+  padding-left: 50rpx;
+  background:url(https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E6%A4%AD%E5%9C%86-3.png?sign=9c936c099e81b7f316b0dfc64932a395&t=1633637602);
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  height: 455rpx;
+}
+
+.btn-login {
+  width: 100%rpx;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 15px;
+  padding-left: 50rpx;
+  background:url(https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E6%A4%AD%E5%9C%86-3.png?sign=9c936c099e81b7f316b0dfc64932a395&t=1633637602);
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  height: 455rpx;
+}
+
+.button {
+  background-color: aliceblue;
+  color: rgb(0, 0, 0);
+}
+
+.tuichu {
+  font-size: 35rpx;
+  color: rgb(255, 255, 255);
+}
+
+.userinfo-avatar {
+  
+  border-radius: 158rpx;
+  width: 120rpx;
+  height: 120rpx;
+  margin-block-start: 65px;
+
+}
+
+.userinfo-avatar_0 {
+  border-radius: 160rpx;
+  width: 120rpx;
+  height: 120rpx;
+  margin-block-start: 65px;
+  border-color:#efdeb0;
+  border-style: solid;
+}
+
+.userinfo-nickname {
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  margin-top: 122rpx;
+  margin-left: 25rpx;
+  font-size: 42rpx;
+}
+
+.userinfo-nickname_0 {
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  margin-top: 150rpx;
+  margin-left: 25rpx;
+  font-size: 42rpx;
+}
+
+.runner_desc {
+  font-size: 10pt;
+  color: red
+}
+
+.dizhizi {
+  color: white
+}
+
+.dizhi {
+  margin-top: 200px;
+}
+
+/*  下面是关键去除边框 */
+.button {
+  color: #efdeb0;
+  width: 100%;
+  background:transparent;
+  border: none;
+  text-align: left;
+  padding: 0px;
+  margin: 0px;
+  line-height: 1.5;
+  font-size: 16px
+}
+
+/*  下面是关键去除边框 */
+.button::after {
+  border: none;
+  border-radius: 0;
+}
+
+.menu{
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30rpx;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.menu_img{
+  width: 240rpx;
+}
+
+.list{
+  margin-bottom: 30rpx;
+  background-image: url(https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E4%B8%AA%E4%BA%BA/%E4%BC%9A%E5%91%98%E5%8D%A1%20%E6%8B%B7%E8%B4%9D.png?sign=813e4283dcc476d43d8e847616a0cd7f&t=1633643451);
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  height: 620rpx;
+}
+
+.my_item1 {
+  color: #efdeb0;
+  margin-left: 12rpx;
+  margin-right: 12rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 30rpx;
+  /* border-bottom: 1px solid gainsboro; */
+}
+

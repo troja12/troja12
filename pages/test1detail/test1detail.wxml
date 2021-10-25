@@ -1,0 +1,7 @@
+<!--pages/test1detail/test1detail.wxml-->
+<view>
+<view>{{new.title}}</view>
+<view>类型：{{new.type}}</view>
+<view>浏览量：{{new.viewNum}}</view>
+<view><image src="{{new.imgs}}"></image></view>
+</view>

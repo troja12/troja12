@@ -1,0 +1,52 @@
+<!-- 顶部轮播图 -->
+<view>
+	<swiper indicator-dots="{{true}}" indicator-color="#f4c903" autoplay="true" circular="true">
+		<block wx:for="{{banner}}" wx:key="banner">
+			<swiper-item bindtap="goFood">
+				<image src='{{item.picUrl}}' mode="widthFix" style="width:100%;height:100%;" />
+			</swiper-item>
+		</block>
+	</swiper>
+</view>
+
+<!-- 搜索框 -->
+<view class="searchRoot">
+	<input class="searchInput" bindconfirm='goSearch' confirm-type='search' bindinput="getSearchKey" placeholder="搜索菜品" />
+	<image class="searchImg" bindtap="goSearch" src="/image/sousuo.png"></image>
+</view>
+<!-- 九宫格 -->
+<view class="category_root">
+	<view bindtap='diancan' class="category_item">
+		<image class="category_item_image" src="/image/home1.png" />
+		<text>{{isNeedSaoMa?'扫码点餐':'去点餐'}}</text>
+	</view>
+	<view bindtap='goToFood' class="category_item">
+		<image class="category_item_image" src="/image/home2.png" />
+		<text>菜单浏览</text>
+	</view>
+	<view bindtap='paihao' class="category_item">
+		<image class="category_item_image" src="/image/home3.png" />
+		<text>排号等位</text>
+	</view>
+	<view bindtap='goToAddress' class="category_item">
+		<image class="category_item_image" src="/image/home4.png" />
+		<text>饭店信息</text>
+	</view>
+</view>
+<!-- 热销菜品 -->
+<view wx:if="{{goodList&&goodList.length>0}}">
+	<view class="hot_tip">
+		热门推荐
+		<text class="more" bindtap="goToFood">更多></text>
+	</view>
+	<block wx:for="{{goodList}}" wx:key="index">
+		<view class="good_item" bindtap="goToFood">
+			<image class="good_img" src="{{item.icon}}" />
+			<view class="good_right">
+				<view class="good_title" data-index="{{index}}">{{item.name}}</view>
+				<view class="good_sell">销量：{{item.sell}} </view>
+				<view class="good_price" data-index="{{index}}">{{item.price}}</view>
+			</view>
+		</view>
+	</block>
+</view>

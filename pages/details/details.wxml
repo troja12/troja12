@@ -1,0 +1,130 @@
+<!--index.wxml-->
+
+<view class="list" >
+  
+  <view class="time-component">
+    <!-- icon -->
+    <view class="placeholder icon">
+      <image src='https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E6%90%AC%E5%AE%B6/%E6%90%AC%E5%AE%B61/Clock.png?sign=3bd6b054642fb4a3f759757d59cf1cc3&t=1633730180' class='icon-img'></image>
+    </view>
+    <!-- 开始时间 -->
+    <view class="placeholder hd">搬家日期</view>
+
+    <!-- 日期选择 -->
+    <view class="placeholder date">
+      <picker mode="multiSelector" value="{{dateTime}}" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+        <view class="tui-picker-detail" style="color: #EFDEB0;">
+          {{dateTimeArray[0][dateTime[0]]}}-{{dateTimeArray[1][dateTime[1]]}}-{{day}}
+        </view>
+      </picker>
+    </view>
+
+    <view class='placeholder line' style="color: #EFDEB0;">|</view>
+
+    <!-- 时间选择 -->
+    <view class="placeholder time">
+      <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+        <view class="picker">{{time}}</view>
+      </picker>
+    </view>
+
+  </view>
+
+
+  <view class="time-component1">
+    <!-- icon -->
+    <view class="placeholder icon">
+      <image src='https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E6%90%AC%E5%AE%B6/%E6%90%AC%E5%AE%B61/Clock.png?sign=3bd6b054642fb4a3f759757d59cf1cc3&t=1633730180' class='icon-img'></image>
+    </view>
+    <!-- 开始时间 -->
+    <view class="placeholder hd">是否跟车</view>
+
+    <!-- 日期选择 -->
+    <view class="placeholder date">
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <view class="picker">
+        {{array[index]}}
+      </view>
+    </picker>
+    </view>
+  </view>
+
+  <view class="hang">
+    <view class="shulie">
+      <view class="weui-cells__title" style="color: #EFDEB0;margin-bottom: 2rpx;">出发城市</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input class="weui-input" style="color: #EFDEB0;" auto-focus placeholder="z.B. Dresden"/>
+        </view>
+      </view>
+
+      <view class="weui-cells__title" style="color: #EFDEB0;margin-top: 5rpx;">出发地详细街道地址</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input class="weui-input" style="color: #EFDEB0;" auto-focus placeholder="z.B. Leipziger str.58"/>
+        </view>
+      </view>
+
+      <view class="weui-cells__title" style="color: #EFDEB0;margin-top: 5rpx;">出发地街道邮编号</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input class="weui-input" auto-focus placeholder="z.B. 01127"/>
+        </view>
+      </view>
+    </view>
+
+    <view class="shulie1">
+      <view class="weui-cells__title" style="color: #EFDEB0;">到达城市</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input class="weui-input" auto-focus placeholder="z.B. Dresden"/>
+        </view>
+      </view>
+
+      <view class="weui-cells__title" style="color: #EFDEB0;margin-top: 5rpx;">到达地详细街道地址</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input class="weui-input" auto-focus placeholder="z.B. Leipziger str.58"/>
+        </view>
+      </view>
+
+      <view class="weui-cells__title" style="color: #EFDEB0;margin-top: 5rpx;">到达地街道邮编号</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input class="weui-input" auto-focus placeholder="z.B. 01127"/>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+</view>
+
+<view class="caipin_item">
+  <view class="weui-cells__title" style="color: #CC543A;margin-left: 8rpx;font-size: 40rpx;">联系电话</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input class="weui-input" style="color: #CC543A;margin-left: 100rpx;font-size: 40rpx;" auto-focus placeholder="z.B. 015236046648"/>
+        </view>
+      </view>
+</view>
+
+<view class="caipin_item">
+  <view class="weui-cells__title" style="color: #CC543A;margin-left: 8rpx;font-size: 40rpx;">额外服务</view>
+
+</view>
+
+<view class="caipin_item">
+  <!-- camera.wxml -->
+  <camera device-position="back" flash="off" binderror="error" style="width: 100%; height: 300px;"></camera>
+  <button type="primary" bindtap="takePhoto">拍照</button>
+  <view>预览</view>
+  <image mode="widthFix" src="{{src}}"></image>
+  <view class="weui-cells__title" style="color: #CC543A;margin-left: 8rpx;font-size: 40rpx;">照片及备注</view>
+
+</view>
+
+<view class="bottom">
+  <view class="bb">价格</view>
+</view>
+

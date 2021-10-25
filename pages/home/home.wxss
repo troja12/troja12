@@ -1,0 +1,103 @@
+
+/* 顶部轮播图 */
+swiper {
+  height: 380rpx;
+}
+
+/* 搜索框 */
+.searchRoot {
+  background: rgb(255, 255, 255);
+  padding: 25rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.searchInput {
+  flex: 1;
+  height: 70rpx;
+  padding-left: 30rpx;
+  border: 1px solid #f4c903;
+  border-radius: 30rpx;
+}
+
+.searchImg {
+  width: 70rpx;
+  height: 70rpx;
+  margin: 0 15rpx;
+}
+
+/* 九宫格区域 */
+.category_root {
+  height: 90px;
+  width: 100%;
+  display: flex;
+  color: rgb(211, 26, 26);
+  flex-direction: row;
+  font-size: 11px;
+  justify-content: space-around;
+}
+
+.category_item {
+  display: flex;
+  width: 60px;
+  text-align: center;
+  flex-direction: column;
+}
+
+.category_item_image {
+  width: 50px;
+  height: 50px;
+  padding: 15px 12px 0 6px;
+}
+
+/* 热门推荐商品 */
+.hot_tip {
+  font-size: 45rpx;
+  color: #f4c903;
+  display: flex;
+  justify-content: space-between;
+  margin: 35rpx 5rpx 15rpx 30rpx;
+}
+
+.more {
+  font-size: 36rpx;
+  padding: 10rpx 30rpx;
+}
+
+.good_item {
+  /*列表  */
+  display: flex;
+  margin: 5rpx 40rpx;
+  border-bottom: 1px gainsboro solid;
+}
+.good_img {
+  width: 120rpx;
+  height: 120rpx;
+  min-width: 120rpx;
+  margin-left: 10rpx;
+  margin-right: 30rpx;
+}
+.good_title {
+  font-size: 38rpx;
+  width: 500rpx;/*这里必须设置文字宽度*/
+  white-space:nowrap; /*文本不换行*/
+	text-overflow:ellipsis;/*设置超出部分显示...*/
+	overflow: hidden;
+}
+.good_sell {
+  font-size: 30rpx;
+  color: gray;
+}
+.good_price {
+  /*价格*/
+  font-weight: bold;
+  font-size: 32rpx;
+  color: #ff9600;
+}
+
+.good_price:before {
+  /*人民币符号*/
+  content: "￥";
+  font-size: 14px;
+}
