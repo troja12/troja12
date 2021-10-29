@@ -1,6 +1,6 @@
 
 const app = getApp()
-let searchKey = '' //搜索词
+let searchKey = '' //搜索词  ok
 Page({
   data: {
     isNeedSaoMa: app.globalData.isNeedSaoMa,
