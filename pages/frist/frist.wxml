@@ -1,6 +1,6 @@
 <!-- 顶部轮播图 -->
 <view>
-	<swiper indicator-dots="{{true}}" indicator-color="#f4c903" autoplay="true" circular="true">
+	<swiper indicator-dots="{{false}}" indicator-color="#f4c903" autoplay="true" circular="true">
 		<block wx:for="{{banner}}" wx:key="banner">
 			<swiper-item bindtap="goFood">
 				<image src='{{item.picUrl}}' mode="widthFix" style="width:100%;height:100%;" />

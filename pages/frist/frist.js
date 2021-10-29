@@ -74,8 +74,8 @@ Page({
 
   },
   goFood() {
-    wx.navigateTo({
-      url: this.checkFoodPage()
+    wx.switchTab({
+      url: "/pages/food2/food2"
     })
   },
   gotest() {
@@ -85,13 +85,13 @@ Page({
     })
   },
 
-  checkFoodPage() {
-    if (app.globalData.isNeedFenLei) {
-      return '/pages/food2/food2'
-    } else {
-      return '/pages/food/food'
-    }
-  },
+  // checkFoodPage() {
+  //   if (app.globalData.isNeedFenLei) {
+  //     return '/pages/food2/food2'
+  //   } else {
+  //     return '/pages/food/food'
+  //   }
+  // },
   
   getTopBanner() {
     wx.cloud.database().collection("lunbotu")

@@ -1,5 +1,5 @@
 .base_color {
-  color: #f4c903;
+  color: #f43303;
 }
 
 .base_line_10rpx {
@@ -26,7 +26,7 @@
 
 /* 总价 */
 .zongjia {
-  color: #f4c903;
+  color: #f45b03;
   text-align: right;
   font-size: 45rpx;
   padding: 10rpx 30rpx;
@@ -97,7 +97,7 @@ input {
   text-align: center;
   position: fixed;
   left: 0;
-  background-color: #f4c903;
+  background-color: #f45b03;
   color: #fff;
 }
 

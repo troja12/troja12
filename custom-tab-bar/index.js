@@ -18,7 +18,7 @@ Component({
         "text": "物流"
       },
       {
-        "pagePath": "/pages/food/food",
+        "pagePath": "/pages/food2/food2",
         "iconPath": "/image/目前全部页面png 1/首页/点餐2.png",
         "selectedIconPath": "/image/目前全部页面png 1/首页/点餐.png",
         "text": "点餐"

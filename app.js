@@ -15,7 +15,7 @@ App({
   onLaunch: function () {
     //云开发初始化
     wx.cloud.init({
-      env: 'cloud1-7gjxramvde980c0c', //2-src替换成你自己的云开发环境id
+      env: 'yangguang-6g36d3ftdb1346d4', //2-src替换成你自己的云开发环境id
       traceUser: true,
     })
     this.getOpenid();

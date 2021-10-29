@@ -159,7 +159,7 @@ page {
   height: 80rpx;
   position: fixed;
   left: 0;
-  bottom: 0px;
+  bottom: 120rpx;
   z-index: 100;
   background-color: #fef4d1;
 }
