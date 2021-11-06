@@ -9,7 +9,7 @@
 
     "pages/guide/guide",
  
-    
+    "pages/me/personInfo/personInfo",
     "pages/wuliu/wuliu",
     "pages/home/home",
     "pages/food2/food2",

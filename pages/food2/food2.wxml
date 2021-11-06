@@ -16,28 +16,30 @@
         英文冒号和英文句点，所以我们这里以top开头-->
     <view wx:for="{{menuArr}}" wx:key="index" id="top{{item.id}}" class="scroll-view-item rightblock">
       <view class="title">{{item.title}}</view>
-      <block wx:for="{{item.list}}" wx:key="index">
-        <view class="caipin_item">
-          <image class="cai_img" src="{{item.icon}}" />
-          <view class="cai_root2">
-            <view class="cai_title" data-index="{{index}}">{{item.name}}</view>
-            <view class="cai_sell">销量：{{item.sell}} </view>
-            <view class="price-stepper">
-              <view class="cai_price" data-index="{{index}}">{{item.price}}</view>
-              <view class="stepper">
-                <view bindtap="minusCount" data-item="{{item}}">
-                  <image class="jiajian" src="/image/jian.png" />
-                </view>
-                <view class="value" data-id="{{item._id}}">
-                  {{item.quantity}}</view>
-                <view bindtap="addCount" data-item="{{item}}">
-                  <image class="jiajian" src="/image/jia.png" />
+        <view class="flexcaipin">
+          <view wx:for="{{item.list}}" wx:key="index" >
+            <view class="caipin_item">
+              <image class="cai_img" src="{{item.icon}}" />
+              <view class="cai_root2">
+                <view class="cai_title" data-index="{{index}}">{{item.name}}</view>
+                <view class="cai_sell">销量：{{item.sell}} </view>
+                <view class="price-stepper">
+                  <view class="cai_price" data-index="{{index}}">{{item.price}}</view>
+                  <view class="stepper">
+                    <view bindtap="minusCount" data-item="{{item}}">
+                      <image class="jiajian" src="/image/jian.png" />
+                    </view>
+                    <view class="value" data-id="{{item._id}}">
+                      {{item.quantity}}</view>
+                    <view bindtap="addCount" data-item="{{item}}">
+                      <image class="jiajian" src="/image/jia.png" />
+                    </view>
+                  </view>
                 </view>
               </view>
             </view>
           </view>
         </view>
-      </block>
     </view>
   </scroll-view>
 </view>

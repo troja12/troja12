@@ -1,0 +1,89 @@
+<view class="ad_popError" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
+<form catchsubmit="formSubmit">
+<view class="item">
+  <view class="head">
+    <image class="image"  size="140rpx"
+    style="background-image:url({{member.avatarUrl}})"></image>
+  
+  </view>
+  <!-- <view class="line">
+    <view class="t1">昵称</view>
+    <view class="t2">{{member.nickname}}</view>
+  </view> -->
+
+  <view class="line">
+    <view class="t1">姓名</view>
+    <view class="right">
+          <input type="text" data-id='1'
+          name="username" value="{{memberList.nickname}}"
+          placeholder="请输入姓名"
+          bindfocus="_focus" bindblur="_blur" />
+    </view>
+    <!-- <view class="t2">{{member.nickname}}</view> -->
+  </view>
+
+  <!-- <view class="line">
+    <view class="t1">性别</view>
+    <view wx:if="{{member.sex==1}}" class="t2">男</view>
+    <view wx:if="{{member.sex==0}}" class="t2">女</view>
+  </view> -->
+  
+  <view class="line">
+    <view class="t1">性别</view>
+    <view class="right">
+            <radio-group bindchange="radioChange" name="sex">
+              <radio style="zoom:60%" value="1" checked="{{checked1}}" />先生
+              <radio style="zoom:60%; margin-left:40rpx" value="0" checked="{{checked0}}" />女士
+            </radio-group>
+          </view>
+
+    <!-- <view wx:if="{{member.sex==1}}" class="t2">男</view>
+    <view wx:if="{{member.sex==0}}" class="t2">女</view> -->
+  </view>
+
+  <!-- <view class="line">
+    <view class="t1">手机号</view>
+    <view class="t2">{{phone}}</view>
+    <button style="padding: 0px 0px;background-color:#ffffff;min-height:0px" 
+    open-type="getPhoneNumber"   class="t3">更新手机号</button>
+  </view> -->
+
+  <view class="line">
+    <view class="t1">生日</view>
+    <view class="right">
+      <picker  mode="date" value="{{birthday}}" start="1900-09-01" end="2002-09-01"
+        bindchange="bindDateChange">
+       <!-- <view class="tv_eee">日期</view> -->
+        <view class="picker" >
+          {{birthday}}
+        </view>
+      </picker>
+    </view>
+  </view>
+
+
+
+  <view class="line">
+    <view class="t1">手机号</view>
+    <view class="right">
+            <input bindfocus="_focus" bindblur="_blur" data-id='2' 
+            placeholder="请输入电话号码"
+            type="number" name="telephone" value="{{memberList.tel}}"/>
+    </view>
+  </view>
+
+
+
+
+
+</view>
+
+
+<view class="page__bd">
+    <view  class="button-sp-area">
+      <button style="width:90%;margin-top:50rpx;height:100rpx;line-height:100rpx"  
+      class="weui-btn weui-btn_primary" form-type="submit" >保存
+      </button>
+    </view>
+  </view>
+</form>

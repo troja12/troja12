@@ -57,10 +57,16 @@ page {
   background-color: white;
 }
 
+.flexcaipin{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
 
 /*菜品列表  */
 .caipin_item {
-  display: flex;
+  width: 80%;
+  /* display: flex; */
   align-items: center;
   padding: 10rpx 0rpx;
   background-color: #ffffff

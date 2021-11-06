@@ -1,0 +1,100 @@
+/* miniprogram/pages/person/personInfo/personInfo.wxss */
+page{
+  background-color: #121212;
+}
+
+.item{
+  width: 100%;
+  align-self: center;
+  background-color: #1e262c;
+}
+
+.item .head{
+  display: flex;
+  height: 240rpx;
+  align-content: center;
+  justify-content: center;
+}
+
+.item .head .image{
+  align-self: center;
+  width: 140rpx;
+  height: 140rpx;
+  background-color: greenyellow;
+  border-radius: 50%;
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  -moz-background-size:100% 100%;
+}
+
+.item .line{
+  display: flex;
+  position: relative;
+  z-index: 10;
+  /* border-bottom: 1rpx solid #eee; */
+}
+
+.item .line .t1{
+  line-height: 100rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #f8f7f7;
+  margin-left: 20rpx;
+  width: 170rpx;
+}
+
+.item .line .t2{
+  margin-left: 10rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.right{
+  margin-top: 28rpx;
+  position: absolute;
+  margin-left: 220rpx;
+  font-size: 30rpx;
+  display: flex;
+  font-weight: bold;
+  color: #f8f7f7;
+}
+
+.tv_eee {
+  color: rgb(245, 245, 245);
+  font-size: 30rpx;
+  width: 100%;
+  text-align: center
+}
+
+.item .line .t3{
+  position: absolute;
+  right: 20rpx;
+  width: 170rpx;
+  border: 1rpx solid goldenrod;
+  border-radius: 35rpx;
+  height: 70rpx;
+  align-self: center;
+  text-align: center;
+  line-height: 70rpx;
+  font-size: 28rpx;
+  color: goldenrod;
+  font-weight: bold;
+}
+
+.ad_popError{ 
+  background: #de352d; 
+  color: #fff; 
+  height: 58rpx; 
+  line-height: 58rpx; 
+  font-size: 24rpx; 
+  text-align: center;  
+  position: absolute; 
+  left: 0; 
+  top: 0; 
+  width: 100%; 
+  z-index:3;
+}
+button{
+  background-color: #f92055 !important;
+  color: #fff !important;
+}
