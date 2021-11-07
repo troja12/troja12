@@ -242,12 +242,10 @@ Page({
             title: '信息修改成功',
           })
           console.log("信息修改成功")
-          wx.switchTab({
-            url: '/pages/person/person'
-          })
-          //  wx.navigateBack({
-          //    delta: 1,
-          //  })
+    
+           wx.navigateBack({
+             delta: 1,
+           })
         },
         fail: err => {
           wx.showToast({
