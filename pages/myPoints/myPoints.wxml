@@ -1,0 +1,22 @@
+<!--miniprogram/pages/member/myPoints/myPoints.wxml-->
+<view class="my-points">
+  
+  <view class="item">
+    <view class="points">{{consum_points}}</view>
+    <view class="describle">此积分为会员消费所得积分</view>
+    <!-- <navigator class="to-mall" url="../pointsMall/pointsMall">
+        积分商城
+    </navigator> -->
+  </view>
+  <view class="describle2">积分规则如下:</view>
+  <view class="describle2">当会员在店内完成订单，将获得的实际支付金额的10%做为积分奖励  积分可以用来抵扣消费金额（0门槛优惠券）</view>
+  <view class="describle2">最终解释权归本店所有</view>
+  <view class="points-log" wx:if="{{havePoints}}">
+    <view class="title">积分记录</view>
+    <view>
+      <pointsLog></pointsLog>
+    </view>
+  
+  </view>
+  
+</view>

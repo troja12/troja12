@@ -1,0 +1,2 @@
+<!--components/countDown/countDown.wxml-->
+<view>{{time}}</view>

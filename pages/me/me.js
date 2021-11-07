@@ -20,73 +20,75 @@ Page({
   },
 
   //查询该用户是否授权，
-  queryAuthByOpenid1:function(sb){
-    var that = this
-    //获取用户的详情
-    wx.cloud.callFunction({
-      name:'getMember',
-      complete:res=>{
-        if(res.result.data.length !== 0){  
-          if(sb !== 1){
-            //跳转到个人信息页面
-            wx.navigateTo({
-              url: '../me/personInfo/personInfo',
-            })
-          }
-        }
-        else{
-          // this.getUserProfile()
-          // 获取用户信息
-          wx.showModal({
-            title: '温馨提示',
-            content: '正在请求您的个人信息',
-            success(res) {
-              if (res.confirm) {
-                wx.getUserProfile({
-                desc: "获取你的昵称、头像",
-                success: res => {
-                  wx.showLoading({
-                    title: '加载中...',
-                  })
-                  let userInfo = res.userInfo;
-                  that.setData({
-                    userInfo:userInfo
-                  })
-                  //调用创建用户信息的方法
-                  that.creatMember()
-                },
-                fail: res => {
-                  //拒绝授权
-                  wx.showToast({
-                    title: '请求失败，请稍后重试',
-                    icon:'none',
-                    duration: 2000
-                  })
-                  return;
-                }
-              })} else if (res.cancel) {
-                //拒绝授权 showErrorModal是自定义的提示
-                wx.showToast({
-                  title: '您已拒绝授权',
-                  icon:'none',
-                  duration: 2000
-                })
-                return;
-              }
-            }
-          })
-        }
-      }
-    })
-  },
-
-  //查询该用户是否授权，
-  queryAuthByOpenid:function(){
+  // queryAuthByOpenid1:function(sb){
+  //   var that = this
+  //   //获取用户的详情
+  //   wx.cloud.callFunction({
+  //     name:'getMember',
+  //     complete:res=>{
+  //       console.log(res)
+  //       if(res.result.data.length !== 0){  
+  //         if(sb !== 1){
+  //           //跳转到个人信息页面
+  //           wx.navigateTo({
+  //             url: '../me/personInfo/personInfo',
+  //           })
+  //         }
+  //       }
+  //       else{
+  //         // this.getUserProfile()
+  //         // 获取用户信息
+  //         wx.showModal({
+  //           title: '温馨提示',
+  //           content: '正在请求您的个人信息',
+  //           success(res) {
+  //             if (res.confirm) {
+  //               wx.getUserProfile({
+  //               desc: "获取你的昵称、头像",
+  //               success: res => {
+  //                 wx.showLoading({
+  //                   title: '加载中...',
+  //                 })
+  //                 let userInfo = res.userInfo;
+  //                 that.setData({
+  //                   userInfo:userInfo
+  //                 })
+  //                 //调用创建用户信息的方法
+  //                 that.creatMember()
+  //               },
+  //               fail: res => {
+  //                 //拒绝授权
+  //                 wx.showToast({
+  //                   title: '请求失败，请稍后重试',
+  //                   icon:'none',
+  //                   duration: 2000
+  //                 })
+  //                 return;
+  //               }
+  //             })} else if (res.cancel) {
+  //               //拒绝授权 showErrorModal是自定义的提示
+  //               wx.showToast({
+  //                 title: '您已拒绝授权',
+  //                 icon:'none',
+  //                 duration: 2000
+  //               })
+  //               return;
+  //             }
+  //           }
+  //         })
+  //       }
+  //     }
+  //   })
+  // },
+  queryAuthByOpenid1:function(){
     this.setData({
       buttonClicked: true
     }) 
       
     if(this.data.newuser == 1){ 
+      
+      
+      // 用户为新用户
            
             //跳转到个人信息页面
             wx.navigateTo({
@@ -97,18 +99,70 @@ Page({
             }) 
             
         }
+  },
+      
+  //查询该用户是否授权，
+  queryAuthByOpenid:function(){
+    this.setData({
+      buttonClicked: true
+    }) 
+      
+    if(this.data.newuser == 1){ 
+      wx.getUserProfile({
+        desc: "获取你的昵称、头像",
+        success: res => {
+          // console.log("result结果为",res)
+          let userInfo = res.userInfo;
+          that.setData({
+            logged:true,
+            userInfo:userInfo,               
+            newuser:1
+          })
+          //调用创建用户信息的方法
+        
+        },
+        fail: res => {
+          // console.log("result结果为",res)
+          //拒绝授权
+          this.setData({
+            buttonClicked: false 
+          })
+          wx.showToast({
+            title: '请求失败，请稍后重试',
+            icon:'none',
+            duration: 2000
+          })
+          return;
+        }
+      })
+
+      // // 用户为新用户
+           
+      //       //跳转到个人信息页面
+      //       wx.navigateTo({
+      //         url: '../me/personInfo/personInfo',
+      //       })
+      //       this.setData({
+      //         buttonClicked: false
+      //       }) 
+            
+        }
       
     var that = this
+    // 用户已注册过
+    
     if(this.data.newuser == ''){ 
 
           wx.getUserProfile({
             desc: "获取你的昵称、头像",
             success: res => {
+              // console.log("result结果为",res)
               wx.showLoading({
                 title: '加载中...',
               })
               let userInfo = res.userInfo;
               that.setData({
+                logged:true,
                 userInfo:userInfo,               
                 newuser:1
               })
@@ -116,6 +170,7 @@ Page({
               that.creatMember()
             },
             fail: res => {
+              // console.log("result结果为",res)
               //拒绝授权
               this.setData({
                 buttonClicked: false 
@@ -301,9 +356,9 @@ Page({
     var arr = [];
     arr.push(0);
     wx.cloud.callFunction({
-      name:'login',
+      name:'getOpenid',
       success:function(res){
-        console.log(res)
+        console.log("jieguowei",res)
         appid=res.result.appid
         env=res.result.env
         const db = wx.cloud.database()
@@ -377,7 +432,7 @@ Page({
     //跳转到积分页面
         wx.navigateTo({
           // url:'../vip/valueCard/valueCard',
-           url:'../member/myPoints/myPoints?point=' + this.data.memberInfo.consum_points,
+           url:'../myPoints/myPoints?point=' + this.data.memberInfo.consum_points,
     })
     
       },
@@ -416,26 +471,28 @@ Page({
    */
   onLoad: function (options) {
 
-    if (!wx.cloud) {
-      wx.redirectTo({
-        url: '../chooseLib/chooseLib',
-      })
-      return
-    }
+    // if (!wx.cloud) {
+    //   wx.redirectTo({
+    //     url: '../chooseLib/chooseLib',
+    //   })
+    //   return
+    // }
     
     // let sb = 1
     // //调用
     // this.queryAuthByOpenid(sb)
+    console.log("查看结果",app.globalData.openid)
     if(app.globalData.openid == ''){
       wx.cloud.callFunction({
         name: 'login',
         success: res => {
           app.globalData.openid = res.result.openid
+          // console.log("res为",res)
         }
       })
     }
         //调用遍历用户信息的方法
-    this.selectbalance()
+    // this.selectbalance()
      
   },
 
@@ -477,6 +534,7 @@ Page({
             })
           }else{
             that.setData({
+
               'memberInfo.balance':0,
               'memberInfo.consum_points':0,
               'memberInfo.tel': ''
@@ -515,6 +573,21 @@ Page({
 
   },
 
+  tuichu:function(){
+    console.log("推出成功")
+    wx.setStorageSync('user', null)
+    this.setData({
+      userInfo: {},
+      logged: false,
+      // newuser: ''
+    })
+  },
+
+  // goPoint:function(){
+  //   wx.navigateTo({
+  //     url: '../myPoints/myPoints',
+  //   })
+  // },
   /**
    * 用户点击右上角分享
    */

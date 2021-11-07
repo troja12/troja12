@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "pointsLog":"../../../components/pointsLog/pointsLog"
+  },
+  "navigationBarTitleText": "我的积分"
+}

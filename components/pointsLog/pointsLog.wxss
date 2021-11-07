@@ -1,0 +1,66 @@
+
+.log{
+  background-color: #1e262c;
+  width: 100%;
+  display: flex;
+  align-self: center;
+  margin-top: 20rpx;
+  border-radius: 10rpx;
+  /* box-shadow:2rpx 2rpx 8rpx 8rpx #1e262c; */
+  flex-direction: column;
+}
+.log .head{
+  display: flex;
+  border-bottom: 1rpx solid #1e262c;
+  height: 80rpx;
+}
+.log .head .icon{
+  height: 30rpx;
+  width: 6rpx;
+  background-color: #f92055;
+  border-radius: 0 3rpx 3rpx 0 ;
+  align-self: center;
+  margin-left: 20rpx;
+}
+.log .head .time{
+  font-size: 28rpx;
+  align-self: center;
+  margin-left: 10rpx;
+  color: #f8f6f6;
+}
+.log .yearItem{
+  display: flex;
+  flex-direction: column;
+}
+.log .yearItem .item{
+  width: 94%;
+  align-self: center;
+  /* border-bottom: 1rpx solid #eee; */
+  display: flex;
+  height: 160rpx;
+  position: relative;
+  z-index: 2;
+}
+.log .yearItem .item .left{
+  height: 120rpx;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.log .yearItem .item .left .type{
+  font-size: 30rpx;
+  color: aliceblue;
+}
+.log .yearItem .item .left .creat-time{
+  font-size: 24rpx;
+  color: #f8f6f6;
+}
+.log .yearItem .item .change-points{
+  align-self: center;
+  right: 0;
+  position: absolute;
+  color: red;
+}
+
+

@@ -1,0 +1,232 @@
+/* components/order/order.wxss */
+.foodItem{
+  width: 100%;
+  background-color:#1e262c;
+  display: flex;
+  flex-direction: column;
+  margin-top: 15rpx;
+}
+.foodItem .top{
+  display: flex;
+  height: 80rpx;
+  width: 92%;
+  align-self: center;
+  position: relative;
+  z-index: 10;
+}
+.foodItem .top .left{
+  display: flex;
+  height: 100%;
+}
+.foodItem .top .left .eat_type{
+  height: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  background-color: #f92055;
+  line-height: 40rpx;
+  color: #fff;
+  font-size: 26rpx;
+  border: 1rpx solid goldenrod;
+  border-radius: 4rpx;
+  padding:0 10rpx 0 10rpx;
+}
+.foodItem .top .left .name{
+  margin-left: 20rpx;
+  font-size: 28rpx;
+  align-self: center;
+}
+.foodItem .top .right{
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-self: center;
+} 
+.foodItem .top .right .state{
+  font-size: 26rpx;
+  color: rgb(247, 243, 243);
+}
+.foodItem .top .right .img{
+  align-self: center;
+  width: 30rpx;
+  height: 30rpx;
+}
+.foodItem .main{
+  display: flex;
+  height: 180rpx;
+  width: 92%;
+  align-self: center;
+  position: relative;
+  z-index: 10;
+}
+.foodItem .main .left{
+  display: flex;
+  align-content: center;
+  flex:1;
+  width: 260rpx;
+  overflow: hidden;
+}
+.foodItem .main .left .box{
+  margin-top: 20rpx;
+  text-overflow: ellipsis;
+  margin-right: 80rpx;
+  display: flex;
+}
+.foodItem .main .left .box .content{
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.foodItem .main .left .box .content .title{
+  font-size:30rpx;
+  font-weight: bold;
+  display: flex;
+  color: rgb(247, 243, 243);
+}
+.eat_type1{
+  height: 36rpx;
+  display: flex;
+  margin-left: 20rpx;
+  justify-content: center;
+  align-self: center;
+  background-color: #f92055;
+  line-height: 36rpx;
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: 300;
+  /* border: 1rpx solid goldenrod; */
+  border-radius: 4rpx;
+  padding:0 10rpx 0 10rpx;
+}
+.foodItem .main .left .box .content .describle{
+  font-size:24rpx;
+  width: 300rpx;
+  color: #fff;
+}
+.foodItem .main .left .ellipse{
+  width: 130rpx;
+  height: 130rpx;
+  display: flex;
+  justify-content: center;
+  line-height: 110rpx;
+  margin-left: 10rpx;
+  letter-spacing: 10rpx;
+  font-size: 40rpx;
+  color: #888;
+}
+.foodItem .main .left .img{
+  display: block;
+  margin-left: 0rpx;
+  align-self: center;
+  width: 156rpx;
+  height: 156rpx;
+}
+.foodItem .main .right{
+  align-self: center;
+  margin-left: 25rpx;
+  display: flex;
+  flex-direction: column;
+  height: 130rpx;
+  position: relative;
+  z-index: 20;
+}
+.foodItem .main .right .name{
+  letter-spacing: 1rpx;
+  text-indent: 0rpx;
+  font-size: 32rpx;
+  height: 60%;
+  line-height: 39rpx;
+}
+.foodItem .main .right .kind{
+  /* letter-spacing: 1rpx; */
+  margin-top: 50rpx;
+  margin-right: 10rpx;
+  position: flex;
+  /* left: 10rpx;
+  width: 40rpx; */
+  font-size: 36rpx;
+  color:red;
+  
+}
+.foodItem .bottom{
+  display: flex;
+  height: 80rpx;
+  width: 95%;
+  align-self: center;
+  position: relative;
+  z-index: 10;
+}
+.foodItem .bottom .data{
+  align-self: center;
+  font-size: 20rpx;
+  color:  #f7f7f7;
+
+}
+
+.foodItem .bottom .datas{
+  height: 100rpx;
+  flex-direction: column;
+  
+}
+
+.foodItem .bottom .operate{
+  position: absolute;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+.foodItem .bottom .operate .item{
+  margin-left: 15rpx;
+  height: 66rpx;
+  width: 128rpx;
+  font-size: 28rpx;
+  line-height: 66rpx;
+  background-color: #f92055;
+  /* border:1rpx solid goldenrod; */
+  color: rgb(253, 253, 253);
+  align-self: center;
+  display: flex;
+  justify-content: center;
+}
+
+.bottom1{
+  /* display: flex;
+  height: 80rpx; */
+  margin-left: 30rpx;
+  width: 95%;
+  align-self: center;
+  position: relative;
+  /* z-index: 10; */
+}
+
+
+.coupon{
+  width: 95%;
+  height: 100rpx;
+  align-self: center;
+  display: flex;
+  position: relative;
+  z-index: 1;
+  /* border-bottom: 1rpx solid #eee; */
+}
+
+.coupon .icon{
+  width: 60rpx;
+  height: 60rpx;
+  align-self: center;
+}
+
+.coupon .name{
+  font-size: 26rpx;
+  margin-left: 10rpx;
+  align-self: center;
+  color: #fff;
+}
+.coupon .remind{
+  font-size: 26rpx;
+  align-self: center;
+  position: absolute;
+  color: #faf9f9;
+  right: 0;
+}

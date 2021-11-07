@@ -1,0 +1,33 @@
+/* components/categoryList/categoryList.wxss */
+.scroll-view{
+  background: #1e262c;
+}
+/*点击后的样式*/
+.demo-text{
+  width: 158rpx;
+  height: 150rpx;
+  display: flex;
+  flex-direction: column;
+  font-size: 24rpx;
+  align-items: center;
+  background-color:#5e6163;
+  border-left:10rpx solid red;
+  justify-content: center;
+}
+.scroll-view-item{
+  width: 158rpx;
+  height: 150rpx;
+  display: flex;
+  flex-direction: column;
+  font-size: 24rpx;
+  align-items: center;
+  background: #1e262c;
+  justify-content: center;
+}
+.ss{
+  width: 60rpx;
+  height: 60rpx;
+}
+.sstext{
+  color: #ecece6;
+}

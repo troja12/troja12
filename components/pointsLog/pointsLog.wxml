@@ -1,0 +1,19 @@
+
+<!-- wx:for="{{}}" wx:key="index" wx:key-index="idx" -->
+<view class="log">
+  <view class="yearItem" wx:for="{{newRecord}}" wx:key="index" wx:for-item="yearItem">
+    <view class="head">
+      <view class="icon"></view>
+      <view class="time">{{yearItem.year}}年{{yearItem.month}}月</view>
+    </view>
+    <view class="item" wx:for="{{yearItem.subList}}" wx:key="index" >
+      <view class="left">
+        <view class="type">{{item.name}}</view>
+        <view class="creat-time">{{item.create_time}}</view>
+      </view>
+      <view class="change-points">
+        +{{item.value}}
+      </view>
+    </view>
+  </view>
+</view>

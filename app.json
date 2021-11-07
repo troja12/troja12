@@ -3,7 +3,6 @@
     
     "pages/frist/frist",
     "pages/test/test",
-
   
     "pages/details/details",
 
@@ -15,7 +14,7 @@
     "pages/food2/food2",
     "pages/test1/test1",
     "pages/test1detail/test1detail",
-
+    "pages/myPoints/myPoints",
     "pages/food/food",
     
     "pages/address/address",

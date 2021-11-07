@@ -1,0 +1,58 @@
+/* components/shoppingCart/shoppingCart.wxss */
+
+/*插件食物列表样式*/
+.foodItem{
+  width: 100%;
+  height: 120rpx;
+  background-color:#182530;
+  /* border-bottom: 1px solid #eee; */
+  display: flex;
+  align-items: center;
+}
+.foodItem .left{
+  display: flex;
+  flex-direction: column;
+  height: 120rpx;
+  width: 320rpx;
+  justify-content: center;
+  text-indent: 25rpx;
+}
+.foodItem .left .name{
+  font-size: 30rpx;
+  color: azure;
+}
+.foodItem .left .kind{
+  font-size: 22rpx;
+  color: rgb(247, 244, 244);
+}
+.foodItem .price{
+  width: 260rpx;
+  color: #fcfaf9;
+  text-indent: 42rpx;
+}
+.foodItem .foodNum{
+  width: 140rpx;
+  display: flex;
+  align-content: center;
+  position: relative;
+  z-index: 20;
+  height: 40rpx;
+  
+}
+.foodNum .sub-image{
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  left: 0;
+}
+.foodItem .foodNum .num{
+  font-size: 26rpx;
+  align-self: center;
+  color: aliceblue;
+}
+.foodNum .add-image{
+  position: absolute;
+  right: 0;
+  width: 40rpx;
+  height: 40rpx;
+}

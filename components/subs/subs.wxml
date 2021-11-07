@@ -1,0 +1,118 @@
+<!--components/order/order.wxml-->
+<wxs src="/util/filter.wxs" module="filters"></wxs>
+<view class="foodItem" wx:for="{{orders}}" wx:key="index">
+  <view class="top">
+    <view class="left">
+      <view class="eat_type">{{item.nickname}}</view>
+      <view class="eat_type1" style="background-color:red;margin-left:20rpx"
+        wx:if="{{item.setmeal.appointment_time == 1}}">
+        <span>特</span>
+      </view>
+      
+      <view wx:if="{{item.setmeal.room_type}}" class="eat_type1">
+        <span wx:if="{{item.setmeal.room_type == 1}}">小包</span>
+        <span wx:if="{{item.setmeal.room_type == 2}}">中包</span>
+        <span wx:if="{{item.setmeal.room_type == 3}}">VIP</span>
+      </view>
+      <view wx:if="{{item.setmeal.duration_type}}" class="eat_type1">
+        <span wx:if="{{item.setmeal.duration_type == 1}}">2小时</span>
+        <span wx:if="{{item.setmeal.duration_type == 2}}">3小时</span>
+        <span wx:if="{{item.setmeal.duration_type == 3}}">4小时</span>
+      </view>
+    </view>
+
+    <view class="right">
+      <!-- <view wx:if="{{item.status == 0 || item.status == 1}}" class="state">
+       {{filters.formatDate(item.begin_time)}}
+      </view> -->
+        <!-- <countDown 
+        target="{{item.end_time}}"
+        id="{{item._id}}"
+        bindcallback="countDownCallbackFn"
+        clear-timer="{{clearTimer}}"></countDown> -->
+      <view wx:if="{{item.status == 0}}" class="state">未接单</view>
+      <view wx:if="{{item.status == 1}}" class="state">已接单</view>
+      <view wx:if="{{item.status == 2}}" class="state">待支付</view>
+      <view wx:if="{{item.status == 3}}" class="state">已完成</view>
+      <view wx:if="{{item.status == 4}}" class="state">用户取消</view>
+      <view wx:if="{{item.status == 5}}" class="state">商家取消</view>
+      <image wx:if="{{item.status != 0 && item.status != 1}}" class="img"
+        src="cloud://cloud1-1ggq2djlc96d5e23.636c-cloud1-1ggq2djlc96d5e23-1307798933/system-icon/right.png"></image>
+    </view>
+  </view>
+  <view class="main" bindtap="toDetail" data-id="{{item._id}}">
+    <view class="left">
+      <view class="box">
+        <image class="img" src="{{item.setmeal.img_url}}" mode="aspectFill"> </image>
+        <view class="content">
+          <view class="title">
+            {{item.setmeal.title}}
+          </view>
+          <view class="describle">
+            {{item.setmeal.content}}
+          </view>
+          <!-- <view class="describle">
+            {{item.begin_time}}
+          </view> -->
+        </view>
+      </view>
+
+
+
+    </view>
+    <view class="right">
+      <view class="kind">€{{item.pay_price}}</view>
+    </view>
+ 
+  </view>
+
+  <view class="bottom1">
+      <view class="coupon">
+        <image class="icon"
+          src="../../images/yutime.png"></image>
+        <view class="name">预约时间</view>
+        <view class="remind">{{filters.formatDate(item.begin_time)}}</view>
+      </view>
+      <view class="coupon">
+        <image class="icon"
+          src="cloud://cloud1-1ggq2djlc96d5e23.636c-cloud1-1ggq2djlc96d5e23-1307798933/system-icon/exchange-points.png">
+        </image>
+        <view class="name">积分抵扣</view>
+        <view class="remind">{{item.use_points}} €</view>
+      </view>
+      <view class="coupon">
+        <image class="icon"
+          src="cloud://cloud1-1ggq2djlc96d5e23.636c-cloud1-1ggq2djlc96d5e23-1307798933/system-icon/member-card.png">
+        </image>
+        <view class="name">储值卡抵扣</view>
+        <view class="remind">{{item.use_card}} €</view>
+      </view>
+
+      <view class="coupon">
+        <!-- <image class="icon"
+          src="cloud://cloud1-1ggq2djlc96d5e23.636c-cloud1-1ggq2djlc96d5e23-1307798933/system-icon/member-card.png">
+        </image> -->
+        <view class="name">备注</view>
+        <view class="remind">{{item.phone}} </view>
+      </view>
+  </view>
+
+  <view class="bottom">
+    <view class="datas">
+    <view class="data">下单时间: {{item._createTime}}</view>
+    <view class="data">订单号: {{item.outTradeNo}}</view>
+    </view>
+    <view class="operate">
+      <view wx:if="{{item.status == 0 && isManage}}" bindtap="goPay" data-id="{{item._id}}" class="item">接单</view>
+      <view wx:if="{{item.status == 1 && isManage}}" data-id="{{item._id}}" class="item" bindtap="confirmCome">确认到店
+      </view>
+      <view wx:if="{{item.status == 2 && isManage}}" data-id="{{item._id}}" class="item" bindtap="confirmPay">确认支付
+      </view>
+      <view wx:if="{{(item.status == 0 || item.status == 1 || item.status == 2) && isManage}}" data-id="{{item._id}}" class="item" bindtap="modifyAppointment">修改
+      </view>
+      <view wx:if="{{item.status == 1 || item.status == 0}}" bindtap="cancel" data-id="{{item._id}}" class="item">取消
+      </view>
+
+    </view>
+  </view>
+</view>

@@ -1,0 +1,95 @@
+<!--components/foodList/foodList.wxml-->
+<view class="page-section-spacing"  style="background: #121212;">
+  <scroll-view scroll-y="true" 
+  bindscroll="_handlescroll" id="scroll-id"
+  scroll-into-view="demo{{categoryId}}" scroll-with-animation="true"
+  scroll-top="{{scrollTop}}"
+  style='height:calc(100vh - {{navH}}rpx)'>
+    <!--二级数组遍历-->
+    <view id="demo{{index}}" class="scroll-view-item" 
+    wx:for="{{garotoryList}}" wx:key="id">
+      <text class="title">{{item.name}}</text>
+      <view class="foodItem" wx:for="{{item.footList}}" wx:for-item="foodItem" 
+        wx:for-key="foodIndex" wx:key="index">
+        <image bindtap="_showInfo" 
+        data-options="{{foodItem.options}}"
+        data-totalnum="{{foodItem.totalNum}}"
+        data-sid="{{foodItem._id}}"  data-description="{{foodItem.description}}"
+        data-consumpoints="{{foodItem.consumPoints}}"
+        data-id="{{foodItem.id}}" data-name="{{foodItem.name}}"
+        data-imageurl="{{foodItem.imageUrl}}" data-categoryid="{{item.id}}"
+        data-imgurl="{{foodItem.imgUrl}}" data-price="{{foodItem.price}}"
+        data-addnum="{{foodItem.addNum}}" data-isand="{{foodItem.isAnd}}"
+        lazy-load="{{true}}" class="image" src="{{foodItem.imgUrl}}"></image>
+        
+        <view class="manage-icon" wx:if="{{manageid==openid}}">
+          <image bindtap="pushtop" data-id="{{foodItem._id}}" src="/images/top.png" class="top"></image>
+          <image bindtap="putawayfood" data-id="{{foodItem._id}}"
+          wx:if="{{foodItem.status==2}}"
+          src="cloud://cloud1-1ggq2djlc96d5e23.636c-cloud1-1ggq2djlc96d5e23-1307798933/system-icon/soldout.png" class="putaway"></image>
+          <image bindtap="downawayfood" data-id="{{foodItem._id}}"
+          wx:if="{{foodItem.status==1}}"
+          src="cloud://cloud1-1ggq2djlc96d5e23.636c-cloud1-1ggq2djlc96d5e23-1307798933/system-icon/putaway.png" class="putaway"></image>
+          <image bindtap="updateshop" data-id="{{foodItem._id}}"
+          wx:if="{{foodItem.status==2}}"
+          src="cloud://cloud1-1ggq2djlc96d5e23.636c-cloud1-1ggq2djlc96d5e23-1307798933/system-icon/update-shop.png" class="edit"></image>
+          <image bindtap="updateshop" data-id="{{foodItem._id}}"
+          wx:if="{{foodItem.status==1}}"
+          src="cloud://cloud1-1ggq2djlc96d5e23.636c-cloud1-1ggq2djlc96d5e23-1307798933/system-icon/update-shop-HL.png" class="edit"></image>
+        </view>
+        <view class="itemInfo">
+          <view class="baseInfo" bindtap="_showInfo" 
+          data-totalnum="{{foodItem.totalNum}}"
+          data-options="{{foodItem.options}}"
+          data-sid="{{foodItem._id}}"  data-description="{{foodItem.description}}"
+          data-consumpoints="{{foodItem.consumPoints}}"
+          data-id="{{foodItem.id}}" data-name="{{foodItem.name}}"
+          data-imageurl="{{foodItem.imageUrl}}"  data-categoryid="{{item.id}}"
+          data-imgurl="{{foodItem.imgUrl}}" data-price="{{foodItem.price}}"
+          data-addnum="{{foodItem.addNum}}" data-isand="{{foodItem.isAnd}}">
+          <view class="title-1">
+            <view class="name">{{foodItem.name}}</view>
+          </view>
+          <view class="description">{{foodItem.description}}</view>
+          </view> 
+          <!--加减数量组件-->
+          <view class="foodNum">
+            <view class="price">
+              € {{foodItem.price}}
+            </view>
+            <view class="icon">
+              <!--遍历购物车中的已添加数据，显示-号到页面-->
+              <!-- <view class="hide" wx:for="{{shoppingList}}" wx:key="name" wx:for-item="shopItem" 
+              wx:if="{{shopItem.id == foodItem.id}}">
+                <image class="sub-image" data-id="{{foodItem.id}}"
+                bindtap="_subFood"
+                src="cloud://cloud1-1ggq2djlc96d5e23.636c-cloud1-1ggq2djlc96d5e23-1307798933/system-icon/sub.png"/>
+                <view class="num">{{shopItem.addnum}}</view>
+              </view> -->
+              <view class="add-image" 
+              id="{{foodItem.id}}" 
+              data-totalnum="{{foodItem.totalNum}}"
+              data-options="{{foodItem.options}}"
+              data-sid="{{foodItem._id}}" 
+              data-description="{{foodItem.description}}"
+              data-consumpoints="{{foodItem.consumPoints}}"
+              data-id="{{foodItem.id}}" data-name="{{foodItem.name}}"
+              data-imageurl="{{foodItem.imageUrl}}" data-categoryid="{{item.id}}"
+              data-imgurl="{{foodItem.imgUrl}}" data-price="{{foodItem.price}}"
+              data-addnum="{{foodItem.addNum}}" data-isand="{{foodItem.isAnd}}"
+               bindtap = "_showInfo">选口味</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="manage-add" wx:if="{{manageid==openid}}">
+      <image class="icon" bindtap="toAdd"
+      src="cloud://cloud1-1ggq2djlc96d5e23.636c-cloud1-1ggq2djlc96d5e23-1307798933/system-icon/add.png"></image>
+    </view>
+    <view style="background: #121212;;height:100rpx">
+    
+    </view>
+  </scroll-view>
+ 
+</view>

@@ -1,0 +1,154 @@
+/* components/foodList/foodList.wxss */
+page{
+  background: #121212;
+}
+
+.scroll-view-item{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  background: #121212;
+  border-bottom: 1px solid #121212;
+}
+.scroll-view-item .title{
+  font-size: 24rpx;
+  margin-left: 10rpx;
+  color: #f92055;
+  line-height: 40px;
+}
+/*插件食物列表样式*/
+.foodItem{
+  width: 90%;
+  align-self: center;
+  height: 140px;
+  border-bottom: 1px solid #121212;
+  display: flex;
+}
+.foodItem .image{
+  align-self: center;
+  border-radius: 10rpx;
+  width: 32%;
+  height: 65%;
+  background-color: #121212;
+}
+.foodItem .itemInfo{
+  margin-left: 20rpx;
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: 65%;
+}
+
+.foodItem .manage-icon .top{
+  height: 40rpx;
+  width: 40rpx;
+  position: absolute;
+  right: 195rpx;
+}
+
+.foodItem .manage-icon .putaway{
+  height: 40rpx;
+  width: 40rpx;
+  position: absolute;
+  right: 125rpx;
+}
+.foodItem .manage-icon .edit{
+  height: 40rpx;
+  width: 40rpx;
+  position: absolute;
+  right: 55rpx;
+}
+.foodItem .manage-icon{
+  background-color: darkcyan;
+}
+.foodItem .itemInfo .baseInfo{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 20px;
+}
+.foodItem .itemInfo .baseInfo .title-1{
+  color: #eeedea;
+  display: flex;
+}
+.foodItem .itemInfo .baseInfo .title-1 .name{
+  color: #eeedea;
+  font-size: 30rpx;
+  line-height: 40rpx;
+}
+.foodItem .itemInfo .baseInfo .description{
+  color: #eeedea;
+  font-size: 22rpx;
+}
+.foodItem .itemInfo .foodNum{
+  height: 40%;
+  width: 100%;
+  display: flex;
+  margin-right: 20rpx;
+  align-items: center;
+}
+.foodNum .price{
+  color: #ffc002;
+  font-size: 35rpx;
+  width: 40%;
+}
+.foodNum .icon{
+  height: 40rpx;
+  width: 60%;
+  display: flex;
+  align-content: center;
+  padding-left: 70rpx;
+  position: relative;
+  z-index: 15;
+}
+.foodNum .icon .add-image{
+  position: absolute;
+  right: 25rpx;
+  width: 100rpx;
+  height: 40rpx;
+  font-size: 22rpx;
+  line-height: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  color: #f8f6f6;
+  background-color: #f92055;
+  border-radius: 20rpx;  
+}
+.foodNum .icon .hide{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 40rpx;
+  position: absolute;
+  right: 85rpx;
+}
+.foodNum .icon .hide .num{
+  align-self: center;
+  margin-left: 20rpx;
+}
+.foodNum .icon .hide .sub-image{
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.manage-add{
+  margin-top: 40rpx;
+  border: 4rpx goldenrod dashed;
+  height: 200rpx;
+  width: 98%;
+  display: flex;
+  justify-content: center;
+  background: #121212;
+}
+
+.manage-add .icon{
+  height: 80rpx;
+  width: 80rpx;
+  align-self:center;
+}
+

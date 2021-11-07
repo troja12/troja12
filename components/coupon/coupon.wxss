@@ -1,0 +1,137 @@
+/* components/coupon/coupon.wxss */
+page{
+  background-color: #121212;
+}
+.points-coupon{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.points-coupon .item {
+  display: flex;
+  margin-top: 30rpx;
+  width: 666rpx;
+  height: 274rpx;
+  position: relative;
+  background: radial-gradient(circle at right top, transparent 16rpx, #f92055 0) top left / 200rpx 51% no-repeat,
+    radial-gradient(circle at right bottom, transparent 16rpx, #f92055 0) bottom left /200rpx 51% no-repeat,
+    radial-gradient(circle at left top, transparent 16rpx, #182530 0) 200rpx 0/450rpx 51% no-repeat,
+    radial-gradient(circle at left bottom, transparent 16rpx, #182530 0) 200rpx 135rpx /450rpx 51% no-repeat,
+    radial-gradient(circle at 16rpx 135rpx, transparent 16rpx, #182530 0) 650rpx 0/8px 274rpx no-repeat;
+   filter: drop-shadow(4rpx 4rpx 4rpx rgba(0,0,0,.2));
+}
+
+.points-coupon .item::after {
+  content: '';
+  height: 242rpx;
+  /* border: 2rpx dashed #fff; */
+  position: absolute;
+  left: 200rpx;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.points-coupon .item .left{
+  width: 180rpx;
+  height: 274rpx;
+  background-color: #182530;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+.points-coupon .item .left .face-value{
+  color: #f92055;
+  display: flex;
+  font-weight: bold;
+  align-self: center;
+}
+
+.points-coupon .item .left .face-value .a{
+  font-size: 36rpx;
+  margin-top: 35rpx;
+}
+
+.points-coupon .item .left .face-value .b{
+  font-size: 66rpx;
+}
+.points-coupon .item .left .condition{
+   font-size: 26rpx;
+   color: rgb(247, 243, 243);
+   align-self: center;
+   font-weight: bold;
+}
+
+.points-coupon .item .middle{
+  width: 280rpx;
+  height: 194rpx;
+  margin-left: 38rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: center;
+}
+.points-coupon .item .middle .condition{
+  font-size: 32rpx;
+  color: rgb(250, 248, 248);
+  font-weight: bold;
+}
+.points-coupon .item .middle .describle{
+  font-size: 26rpx;
+  color: rgb(250, 248, 248);
+}
+.points-coupon .item .middle .exclude{
+  width: 100rpx;
+  height: 40rpx;
+  font-size: 26rpx;
+  background-color: #182530;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  border-radius: 5rpx;
+  color:#f92055;
+}
+
+.points-coupon .item .right{
+  height: 130rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 105rpx;
+  align-content: center;
+  /* background-color: #182530; */
+}
+.points-coupon .item .right .point{
+  font-size: 26rpx;
+  color: red;
+  align-self: center;
+}
+
+.points-coupon .item .right .exchange{
+  
+  width: 150rpx;
+  height: 60rpx;
+  font-size: 26rpx;
+  background-color: goldenrod;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  line-height: 60rpx;
+  border-radius: 30rpx;
+  color: #fff;
+
+}
+.points-coupon .item .right .to-use{
+  width: 120rpx;
+  height: 60rpx;
+  font-size: 26rpx;
+  margin-left: 20rpx;
+  background-color: #f92055;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  line-height: 60rpx;
+  border-radius: 30rpx;
+  color: #fff;
+}

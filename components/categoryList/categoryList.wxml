@@ -1,0 +1,19 @@
+<!--components/categoryList/categoryList.wxml-->
+<view>
+  <scroll-view class="scroll-view" scroll-y="true" 
+  scroll-into-view="category{{currentId}}" scroll-with-animation="true"
+   scroll-top="{{scrollTop}}" style='height:calc(100vh - {{navH}}rpx)'>
+    <!--一层循环取类目-->
+    <block id="category{{index}}" wx:for="{{garotoryList}}" wx:key="id">
+      <view id="{{index}}" class="{{currentId==index?'demo-text':'scroll-view-item'}}" 
+      bindtap="_handleTap" data-_id="{{item._id}}" data-id="{{item.id}}" bind:longpress="delete">
+        <image class="ss" src="{{item.image}}"/>
+        <view class="sstext">{{item.name}}</view>
+      </view>
+    </block>
+    <navigator url="../../pages/list/addCategory/addCategory" class="scroll-view-item" wx:if="{{manageid==openid}}">
+      <image class="ss" src="cloud://cloud1-1ggq2djlc96d5e23.636c-cloud1-1ggq2djlc96d5e23-1307798933/system-icon/addAddress.png"></image>
+      <view class="sstext">添加类别</view>
+    </navigator>
+  </scroll-view>
+</view>

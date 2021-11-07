@@ -1,0 +1,65 @@
+/* miniprogram/pages/member/myPoints/myPoints.wxss */
+.my-points{
+  margin-top: 20rpx;
+  width: 90%;
+  align-self: center;
+}
+page{
+  background-color: #121212;
+}
+
+.item{
+  background-color: #1e262c;
+  width: 100%;
+  height: 280rpx;
+  display: flex;
+  align-self: center;
+  margin-top: 20rpx;
+  border-radius: 10rpx;
+  box-shadow:2rpx 2rpx 8rpx 8rpx #1e262c;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.item  .points{
+  color: rgb(245, 242, 242);
+  font-size: 80rpx;
+  letter-spacing: 3rpx;
+}
+
+.item  .describle{
+  font-size: 22rpx;
+  color: rgb(245, 242, 242);
+  font-weight: bold;
+  letter-spacing: 2rpx;
+  margin-top: 10rpx;
+}
+.item .to-mall{
+  margin-top: 20rpx;
+  width: 600rpx;
+  background-color: #f92055;
+  display: flex;
+  justify-content: center;
+  line-height: 68rpx;
+  border-radius: 34rpx;
+  font-size: 26rpx;
+  color: #fff;
+  letter-spacing: 1rpx;
+}
+.my-points .points-log{
+  margin-top: 40rpx;
+}
+
+.my-points .points-log .title{
+  font-size: 28rpx;
+  margin-left: 15rpx;
+}
+
+.describle2{
+  font-size: 25rpx;
+  color: #f92055;
+  font-weight: bold;
+  letter-spacing: 2rpx;
+  margin-top: 100rpx;
+}

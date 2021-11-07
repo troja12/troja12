@@ -1,0 +1,19 @@
+
+.tabs_title{
+  display: flex;
+}
+
+.title_item{
+  justify-content: center;
+  flex:1;
+  display: flex;
+  align-items: center;
+  height: 60rpx;
+  width: 180rpx;
+  font-size: 30rpx;
+  color: aliceblue;
+}
+.active{
+  color: #f92055;
+  border-bottom: 6rpx solid currentColor;
+}

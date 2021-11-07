@@ -1,0 +1,41 @@
+<!--components/coupon/coupon.wxml-->
+<view class="points-coupon">
+  <view class="item">
+    <view class="left">
+      <view class="face-value">
+        <view class="a">
+          €
+        </view>
+        <view class="b">
+          2
+        </view>
+      </view>
+      <view class="condition">
+        满10元可用
+      </view>
+    </view>
+    <view class="middle">
+      <view class="condition">满10元减2元</view>
+      <view class="describle">领取后当天生效，生效期10天</view>
+      <view class="exclude">互斥券</view>
+    </view>
+
+    <view class="right" wx:if="{{flase}}">
+      <view class="point">20积分</view>
+      <view class="exchange">立即兑换</view>
+    </view>
+
+    <view class="right" wx:if="{{true}}">
+      <view class="to-use">去使用</view>
+    </view>
+
+    
+  </view>
+</view>
+
+
+<!-- <view class="right" wx:if="{{getcoupon}}">
+  <image class="img"
+        src="cloud://cloud1-1ggq2djlc96d5e23.636c-cloud1-1ggq2djlc96d5e23-1307798933/system-icon/vcoupon.png"></image>
+</view> -->
+
