@@ -334,6 +334,8 @@ Page({
     }
 
     let userInfo = app.globalData.userInfo;
+    console.log("userInfo植为",userInfo)
+    console.log("userInfo.nickName植为",userInfo.nickName)
     if (!userInfo || !userInfo.nickName) {
       wx.showModal({
         title: '请登录',

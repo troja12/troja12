@@ -23,7 +23,8 @@ Page({
     // 默认选中菜单
     currentTab: 0,
     isShowComment: false, //是否显示评论框
-    list: []
+    list: [],
+    user_id:[]
   },
   //顶部tab切换
   navbarTap: function (e) {
@@ -116,15 +117,56 @@ Page({
   },
   //制作完成
   zhizuowancheng(e) {
+    console.log("data：",e.currentTarget)
     console.log(e.currentTarget.dataset.id)
+    console.log("oppenid为",app.globalData.openid)
+
+    wx.cloud.callFunction({
+      name: 'getMember',
+      data: {
+       }
+    })
+    .then(res => {
+      let user_id = res.result.data[0]._id
+      wx.cloud.callFunction({
+        name: 'changepoint',
+        data: {
+          userid: user_id
+         }
+      })
+      .then(ress => {
+        console.log("积分成功",ress)
+      }).catch(ress => {
+         console.log("积分失败", ress)
+      })
+      
+      console.log("res为", res.result.data[0]._id)
+
+    }).catch(res => {
+       console.log("userid获取失败", res)
+    })
+    
+    // wx.cloud.callFunction({
+    //   name: 'changepoint',
+    //   data: {
+    //     userid: res.result.data[0]._id
+    //    }
+    // })
+    // .then(ress => {
+    //   console.log("积分成功",ress)
+    // }).catch(ress => {
+    //    console.log("积分失败", ress)
+    // })
+
     wx.cloud.callFunction({
       name: 'houchu',
       data: {
-        id: e.currentTarget.dataset.id
+        id: e.currentTarget.dataset.id,
+        
       }
-    }).then(res => {
-      console.log('制作完成ok', res)
-      if (res.result && res.result.stats && res.result.stats.updated > 0) {
+    }).then(resl => {
+      console.log('制作完成ok', resl)
+      if (resl.result && resl.result.stats && resl.result.stats.updated > 0) {
         wx.showToast({
           title: '修改成功',
         })
@@ -135,13 +177,14 @@ Page({
           title: '提交失败',
         })
       }
-    }).catch(res => {
-      console.log('制作完成no', res)
+    }).catch(resl => {
+      console.log('制作完成no', resl)
       wx.showToast({
         icon: 'none',
         title: '提交失败',
       })
     })
+ 
   },
 
   //退出页面

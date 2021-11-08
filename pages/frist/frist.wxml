@@ -20,7 +20,7 @@
 </view>
 
 <view class="act">
-  <image class="act_img" src="https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E9%A6%96%E9%A1%B5/%E4%BC%9A%E5%91%98%E5%8D%A1.png?sign=e88636caa699610d117c9054fa152692&t=1633730476" />
+  <image class="act_img" bindtap="getMemberid" src="https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E9%A6%96%E9%A1%B5/%E4%BC%9A%E5%91%98%E5%8D%A1.png?sign=e88636caa699610d117c9054fa152692&t=1633730476" />
   <image class="act_img" src="https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E9%A6%96%E9%A1%B5/%E7%A7%AF%E5%88%86%E5%95%86%E5%9F%8E.png?sign=b08e9d89bad7033b1f08759ed0d9fe8e&t=1633730488" />
   <image class="act_img" src="https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E9%A6%96%E9%A1%B5/%E6%88%91%E7%9A%84%E5%8D%A1%E5%88%B8.png?sign=448a80648e6a0c72292240494b033016&t=1633730501" />
   <!-- <image class="act_img" src="https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E9%A6%96%E9%A1%B5/%E5%85%85%E5%80%BC%E4%B8%AD%E5%BF%83.png?sign=e5162867c3ecc032c2d61afe7c451eb7&t=1633730516" /> -->

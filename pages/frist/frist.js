@@ -93,6 +93,20 @@ Page({
   //   }
   // },
   
+  // getMemberid:function(){
+  //   wx.cloud.callFunction({
+  //     name: 'getMember',
+  //     data: {
+        
+  //     }
+  //   })
+  //   .then(res => {
+  //     console.log("res为", res.result.data[0]._id)
+  //   }).catch(res => {
+  //     console.log("用户订单列表失败", res)
+  //   })
+  // },
+
   getTopBanner() {
     wx.cloud.database().collection("lunbotu")
       .get()

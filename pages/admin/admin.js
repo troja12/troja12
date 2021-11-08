@@ -50,14 +50,16 @@ Page({
     }
     this.login(name, password)
   },
+
   //登录
   login(name, password) {
     db.collection('admin').where({
         name: name,
-        password: password
+        password: password,
       }).get()
       .then(res => {
         console.log("登陆成功", res)
+        console.log("结果为",res.data)
         if (res.data && res.data.length > 0) {
           this.setData({
             isAdmin: true

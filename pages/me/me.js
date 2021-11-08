@@ -113,6 +113,7 @@ Page({
         success: res => {
           // console.log("result结果为",res)
           let userInfo = res.userInfo;
+          app._saveUserInfo(userInfo);
           that.setData({
             logged:true,
             userInfo:userInfo,               
@@ -161,6 +162,7 @@ Page({
                 title: '加载中...',
               })
               let userInfo = res.userInfo;
+              app._saveUserInfo(userInfo);
               that.setData({
                 logged:true,
                 userInfo:userInfo,               
@@ -492,7 +494,7 @@ Page({
       })
     }
         //调用遍历用户信息的方法
-    // this.selectbalance()
+    this.selectbalance()
      
   },
 
@@ -574,12 +576,25 @@ Page({
   },
 
   tuichu:function(){
-    console.log("推出成功")
     wx.setStorageSync('user', null)
     this.setData({
       userInfo: {},
       logged: false,
       // newuser: ''
+    })
+    let userInfo = {};
+    app._saveUserInfo(userInfo);
+    console.log("退出成功")
+  },
+
+  goAdmin() {
+    wx.navigateTo({
+      url: '../admin/admin',
+    })
+  },
+  gomyorder:function(){
+    wx.navigateTo({
+      url: '../myOrder/myOrder',
     })
   },
 

@@ -46,24 +46,24 @@ Page({
   },
 
 
-    //获取当前超级管理员
-    getUserid:function(){
-      wx.cloud.callFunction({
-        name:'getManage',
-        data:{
-          type:1
-        },
-        success:(res)=>{
-          var user_id = res.result.data[0].user_id
-          this.setData({
-            manageid:user_id
-          })
-        },
-        fail:(err)=>{
-          console.log('发生错误',err)
-        }
-      })
-    },
+    // //获取当前超级管理员
+    // getUserid:function(){
+    //   wx.cloud.callFunction({
+    //     name:'getManage',
+    //     data:{
+    //       type:1
+    //     },
+    //     success:(res)=>{
+    //       var user_id = res.result.data[0].user_id
+    //       this.setData({
+    //         manageid:user_id
+    //       })
+    //     },
+    //     fail:(err)=>{
+    //       console.log('发生错误',err)
+    //     }
+    //   })
+    // },
 
   /**
    * 生命周期函数--监听页面加载
@@ -71,10 +71,10 @@ Page({
   onLoad: function (options) {
     console.log('跳转数据获取', options)
 
-    //获取当前超级管理员
-    this.getUserid()
-    //检查是否登录
-    this.selectMember()
+    // //获取当前超级管理员
+    // this.getUserid()
+    // //检查是否登录
+    // this.selectMember()
     let point     =  options.point
 
     console.log('积分', point)
