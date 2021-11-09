@@ -11,7 +11,7 @@
 <!-- 分割线 -->
 <view class="base_line_10rpx"></view>
 <!--地址 -->
-<view class="mingxi_title">配送地址：{{address}}</view>
+<view class="mingxi_title">配送地址选择：{{address}}</view>
 
 <!--输入用餐人数  -->
 <input focus placeholder="请输入用餐人数" type="number" bindinput="getInputNum" value="{{diner_num}}" />
