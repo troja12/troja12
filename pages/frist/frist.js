@@ -86,7 +86,11 @@ Page({
       url: "/pages/test/test"
     })
   },
-
+  gowaimaifood2(){
+    wx.navigateTo({
+      url: "/pages/waimaifood2/waimaifood2",
+    })
+  },
   // checkFoodPage() {
   //   if (app.globalData.isNeedFenLei) {
   //     return '/pages/food2/food2'

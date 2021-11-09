@@ -6,7 +6,8 @@
     "pages/details/details",
 
     "pages/guide/guide",
- 
+    "pages/waimaifood2/waimaifood2",
+    "pages/waimaipay/gwaimaipay",
     "pages/me/personInfo/personInfo",
     "pages/wuliu/wuliu",
     "pages/home/home",
