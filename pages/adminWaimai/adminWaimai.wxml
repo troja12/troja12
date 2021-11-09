@@ -1,2 +1,41 @@
-<!--pages/adminWaimai/adminWaimai.wxml-->
-<text>pages/adminWaimai/adminWaimai.wxml</text>
+<!--导入时间格式化工具filter.wxs-->
+<wxs src="../../utils/filter.wxs" module="filters" />
+<!--导航条-->
+<view class="navbar">
+	<lable wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique"
+		bindtap="navbarTap">
+		<text>{{item}}</text>
+	</lable>
+</view>
+<view wx:if="{{list.length>0}}">
+	<!-- 外层 -->
+	<view class='cont_count' wx:for="{{list}}" wx:key="key">
+		<!-- 编号 -->
+		<view class='dingdanbianhao'>订单编号:{{item._id}} </view>
+
+		<view class="content">
+			<!-- 列表 -->
+			<view class='mingxi'>
+				<block wx:for="{{item.orderList}}" wx:for-item="arr_item" wx:key="key">
+					<view class="mingxi_item">
+						<text>{{arr_item.name}}</text>
+						<text class="mingxi_price">{{arr_item.quantity}}份</text>
+            <text class="mingxi_price"> ￥{{arr_item.price}}</text>
+					</view>
+				</block>
+        <view class='dibuttxt'>总价:{{item.totalPrice}}元</view>
+			</view>
+			<!-- //-1订单取消,0新下单待上餐,1待用户评价,2订单已完成 -->
+			<view wx:if="{{item.status!=-1}}" class='coent_list'>
+				<label wx:if="{{item.status==0}}" class='dingdanbtn' data-id='{{item._id}}' data-price='{{item.totalPrice}}'
+					bindtap='zhizuowancheng'>配送完成</label>
+			</view>
+		</view>
+		<view class='dibuttxt'>地址:{{item.address}}</view>
+		<view class='dibuttxt'>下单时间:{{item._createTime?filters.formatDate(item._createTime):''}}</view>
+	</view>
+</view>
+<!-- 否则 -->
+<view wx:else style="margin-top:16rpx;text-align: center;">
+	<label class='none_tab'>数据为空哦~~</label>
+</view>

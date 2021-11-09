@@ -19,7 +19,7 @@ let isPlaying = false //是否在播放中
 Page({
   data: {
     // 顶部菜单切换
-    navbar: ["待制作菜品", "已上餐待用户评价", "已完成"],
+    navbar: ["待配送菜品", "已完成配送菜品"],
     // 默认选中菜单
     currentTab: 0,
     isShowComment: false, //是否显示评论框
@@ -37,8 +37,6 @@ Page({
       orderStatus = 0;
     } else if (index == 1) {
       orderStatus = 1;
-    } else if (index == 2) {
-      orderStatus = 2;
     } else {
       orderStatus = 0;
     }
@@ -123,33 +121,33 @@ Page({
     console.log(e.currentTarget.dataset.price)
     console.log("oppenid为",app.globalData.openid)
     
-    wx.cloud.callFunction({
-      name: 'getMember',
-      data: {
+    // wx.cloud.callFunction({
+    //   name: 'getMember',
+    //   data: {
         
-      }
-    })
-    .then(res => {
-                console.log("res为", res.result.data[0]._id)
+    //   }
+    // })
+    // .then(res => {
+    //             console.log("res为", res.result.data[0]._id)
                 
-                db.collection('member').where({
-                  _id:res.result.data[0]._id
-                }).get({
-                  success:(ress)=>{
-                    console.log("ress是sss",ress.data[0].consum_points)
-                    console.log("当前菜品价格为",e.currentTarget.dataset.price)
-                    db.collection('member').doc(ress.data[0]._id)
-                    .update({
-                      data: {
-                        consum_points: ress.data[0].consum_points + e.currentTarget.dataset.price * 0.1  , //制作完成
-                      }
-                    })
-                  },fail:err=>{
-                  }                 
-                })
-    }).catch(res => {
-      console.log("用户订单列表失败", res)
-    })
+    //             db.collection('member').where({
+    //               _id:res.result.data[0]._id
+    //             }).get({
+    //               success:(ress)=>{
+    //                 console.log("ress是sss",ress.data[0].consum_points)
+    //                 console.log("当前菜品价格为",e.currentTarget.dataset.price)
+    //                 db.collection('member').doc(ress.data[0]._id)
+    //                 .update({
+    //                   data: {
+    //                     consum_points: ress.data[0].consum_points + e.currentTarget.dataset.price * 0.1  , //制作完成
+    //                   }
+    //                 })
+    //               },fail:err=>{
+    //               }                 
+    //             })
+    // }).catch(res => {
+    //   console.log("用户订单列表失败", res)
+    // })
     // wx.cloud.callFunction({
     //   name: 'getMember',
     //   data: {
@@ -195,7 +193,7 @@ Page({
         id: e.currentTarget.dataset.id,
       }
     }).then(resl => {
-      console.log('制作完成ok', resl)
+      console.log('配送完成ok', resl)
       if (resl.result && resl.result.stats && resl.result.stats.updated > 0) {
         wx.showToast({
           title: '修改成功',
