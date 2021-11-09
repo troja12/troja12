@@ -18,6 +18,13 @@ Page({
       url: '/pages/adminPaihao/adminPaihao',
     })
   },
+
+  goWaimai(){
+    wx.navigateTo({
+      url: '/pages/adminWaimai/adminWaimai',
+    })
+  },
+
   onLoad() {
     let admin = wx.getStorageSync('admin')
     if (admin && admin.name && admin.password) {

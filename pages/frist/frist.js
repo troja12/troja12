@@ -1,11 +1,13 @@
 // pages/frist/frist.js
 const app = getApp()
+let db = wx.cloud.database();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    cm_point:[],
     isNeedSaoMa: app.globalData.isNeedSaoMa,
     banner: [{
         picUrl: 'https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E8%BD%AE%E6%92%AD%E5%9B%BE/%E7%85%8E%E9%A5%BA.jpeg?sign=0815a4fa7e0da5ad6f8284c85f1159c5&t=1633731154'
@@ -93,19 +95,38 @@ Page({
   //   }
   // },
   
-  // getMemberid:function(){
-  //   wx.cloud.callFunction({
-  //     name: 'getMember',
-  //     data: {
+
+
+  getMemberid:function(){
+    wx.cloud.callFunction({
+      name: 'getMember',
+      data: {
         
-  //     }
-  //   })
-  //   .then(res => {
-  //     console.log("res为", res.result.data[0]._id)
-  //   }).catch(res => {
-  //     console.log("用户订单列表失败", res)
-  //   })
-  // },
+      }
+    })
+    .then(res => {
+                console.log("res为", res.result.data[0]._id)
+                
+                db.collection('member').where({
+                  _id:res.result.data[0]._id
+                }).get({
+                  success:(ress)=>{
+                    console.log("ress是sss",ress.data[0].consum_points)
+                    db.collection('member').doc(ress.data[0]._id)
+                    .update({
+                      data: {
+                        consum_points: ress.data[0].consum_points + 20  , //制作完成
+                      }
+                    })
+                  },fail:err=>{
+                  }                 
+                })
+    }).catch(res => {
+      console.log("用户订单列表失败", res)
+    })
+  },
+
+
 
   getTopBanner() {
     wx.cloud.database().collection("lunbotu")
@@ -138,3 +159,10 @@ Page({
 //     }
 //   }
 // })
+
+
+
+
+
+
+

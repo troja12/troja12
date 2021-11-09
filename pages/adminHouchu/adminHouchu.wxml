@@ -25,7 +25,7 @@
 			</view>
 			<!-- //-1订单取消,0新下单待上餐,1待用户评价,2订单已完成 -->
 			<view wx:if="{{item.status!=-1}}" class='coent_list'>
-				<label wx:if="{{item.status==0}}" class='dingdanbtn' data-id='{{item._id}}'
+				<label wx:if="{{item.status==0}}" class='dingdanbtn' data-id='{{item._id}}' data-price='{{item.totalPrice}}'
 					bindtap='zhizuowancheng'>制作完成</label>
 			</view>
 		</view>
