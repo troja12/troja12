@@ -40,7 +40,7 @@ page {
 /* 右侧栏目 */
 .right {
   height: 100vh;
-  width: 75%;
+  width: 100%;
   float: right;
   /* padding: 0 2%; */
   overflow: auto;
@@ -60,16 +60,19 @@ page {
 .flexcaipin{
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  margin-bottom: 150rpx;
 }
 
 /*菜品列表  */
 .caipin_item {
-  width: 80%;
+  width: 375rpx;
+  border-radius: 10%;
   /* display: flex; */
   align-items: center;
-  padding: 10rpx 0rpx;
+  padding: 10rpx 10rpx rpx 0rpx;
   background-color: #ffffff
+  
 }
 
 .cai_img {

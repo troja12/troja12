@@ -1,11 +1,13 @@
 //JS
 var app = getApp()
 let orderStatus = 0; //-1订单取消,0新下单待上餐,1待用户评价,2订单已完成
+let isWaimai = 0;
+let status_2 = 0;
 let db = wx.cloud.database();
 Page({
   data: {
     // 顶部菜单切换
-    navbar: ["待上餐", "待评价", "已完成", "已取消"],
+    navbar: ["待上餐", "待配送", "已完成"],
     // 默认选中菜单
     currentTab: 0,
     isShowComment: false, //是否显示评论框
@@ -19,10 +21,16 @@ Page({
     })
     if (index == 0) {
       orderStatus = 0;
+      isWaimai = 0;
+      status_2 = 0; 
     } else if (index == 1) {
       orderStatus = 1;
+      isWaimai = 1;
+      status_2 = 1; 
     } else if (index == 2) {
-      orderStatus = 2;
+      orderStatus = 1;
+      isWaimai = 0;
+      status_2 = 1; 
     } else if (index == 3) {
       orderStatus = -1;
     } else {
@@ -44,7 +52,9 @@ Page({
         name: 'getOrderList',
         data: {
           action: 'user',
-          orderStatus: orderStatus
+          orderStatus: orderStatus,
+          isWaimai:isWaimai,
+          status_2:status_2
         }
       })
       .then(res => {

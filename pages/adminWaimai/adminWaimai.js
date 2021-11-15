@@ -1,6 +1,8 @@
 
 var app = getApp()
-let orderStatus = 0; //0新下单待制作,1待用户评价,2订单已完成
+let orderStatus = 1; //0新下单待制作,1待用户评价,2订单已完成
+let isWaimai = 1;
+let status_2 = 1;
 let db = wx.cloud.database();
 
 //监听用户新下单的watch
@@ -34,9 +36,13 @@ Page({
       currentTab: index
     })
     if (index == 0) {
-      orderStatus = 0;
+      orderStatus = 1;
+      isWaimai = 1;
+      status_2 = 1; 
     } else if (index == 1) {
       orderStatus = 1;
+      isWaimai = 0;
+      status_2 = 1; 
     } else {
       orderStatus = 0;
     }
@@ -44,7 +50,7 @@ Page({
   },
 
   onShow: function () {
-    orderStatus = 0
+    orderStatus = 1
     this.getMyOrderList();
     this.initWatcher()
     //防止问题，再做一次音频资源初始化
@@ -102,7 +108,9 @@ Page({
         name: 'getOrderList',
         data: {
           action:'admin',
-          orderStatus: orderStatus
+          orderStatus: orderStatus,
+          isWaimai:isWaimai,
+          status_2:status_2
         }
       })
       .then(res => {
@@ -188,7 +196,7 @@ Page({
     // })
     console.log("curent的数据是", e.currentTarget.dataset)
     wx.cloud.callFunction({
-      name: 'houchu',
+      name: 'waimai',
       data: {
         id: e.currentTarget.dataset.id,
       }

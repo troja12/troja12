@@ -2,12 +2,10 @@
   "pages": [
     "pages/frist/frist",
     "pages/test/test",
-  
     "pages/details/details",
-
     "pages/guide/guide",
     "pages/waimaifood2/waimaifood2",
-    "pages/waimaipay/gwaimaipay",
+    "pages/waimaipay/waimaipay",
     "pages/me/personInfo/personInfo",
     "pages/wuliu/wuliu",
     "pages/home/home",
@@ -17,7 +15,8 @@
     "pages/myPoints/myPoints",
     "pages/food/food",
     "pages/adminWaimai/adminWaimai",
-    "pages/address/address",
+    "pages/address/add/add",
+    "pages/address/index/address",
     "pages/pay/pay",
     "pages/mycomment/mycomment",
     "pages/myOrder/myOrder",

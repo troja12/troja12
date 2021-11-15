@@ -1,0 +1,78 @@
+<view   class="add-btn">
+	<view class="btn"  bindtap="_toAdd">
+			<image class="icon" 
+			src="cloud://cloud1-1ggq2djlc96d5e23.636c-cloud1-1ggq2djlc96d5e23-1307798933/system-icon/addAddress.png">
+			</image>
+			<view class="name">添加地址</view>
+	</view>
+</view>
+
+<scroll-view scroll-y="true" style="height:calc(100vh - 120rpx)">
+	<view style="margin-top:16rpx">
+	<view class="item" wx:for="{{addressList}}" wx:key="index" >	
+		<movable-area class = "area" >
+			<movable-view class = "cell" 
+			direction="horizontal" x="{{item.isOpen?'-200rpx':0}}"
+			bindtouchstart="_touchstart" bindtouchend="_touchend" id="{{index}}">
+				<view class="address" >
+					<view class="left" bindtap="_selectAddress"  data-id="{{item._id}} " data-address="{{item.address}} ">
+						<view class="left-1">
+							<view class="nickname">{{item.username}}</view>
+							<view class="telephone">{{item.telephone}}</view>
+						</view>
+						<view class="left-2">
+						<view class="address-info">{{item.address}}</view>
+						</view>
+						
+					</view>
+
+					
+					
+					<view class="right" bindtap="_toEdit" id="{{item._id}}">
+						<image 
+						src="cloud://cloud1-1ggq2djlc96d5e23.636c-cloud1-1ggq2djlc96d5e23-1307798933/system-icon/edit.png"></image>
+					</view>
+				</view>
+				
+			</movable-view>
+		</movable-area>
+		<view  class="del-btn"  bindtap="_del" id="{{item._id}}">
+			删除
+		</view>
+	</view>
+
+
+	<view class="nickname">自提点</view>
+
+
+	<view class="item" wx:for="{{initaddressList}}" wx:key="index" >	
+		<movable-area class = "area" >
+			<movable-view class = "cell" 
+			direction="horizontal" x="{{item.isOpen?'-200rpx':0}}"
+			 id="{{index}}">
+				<view class="address" >
+					<view class="left" bindtap="_selectAddress1"  data-id="{{item._id}} " data-address="{{item.address}} ">
+						<view class="left-1">
+							<view class="nickname">{{item.username}}</view>
+							<!-- <view class="telephone">{{item.telephone}}</view> -->
+						</view>
+						<view class="left-2">
+						<view class="address-info">{{item.address}}</view>
+						</view>
+						
+					</view>
+
+				</view>
+				
+			</movable-view>
+		</movable-area>
+
+	</view>
+
+
+
+
+
+
+	</view>
+</scroll-view>

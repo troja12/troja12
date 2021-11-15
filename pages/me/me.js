@@ -310,6 +310,13 @@ Page({
       }
     })
   },
+
+  goaddress:function(){
+    wx.navigateTo({
+      url: '/pages/address/index/address',
+    })
+  },
+
   _updateMember:function(id){
     var myDate = new Date()
     var currentTime = time.formatTime(myDate,'Y/M/D h:m:s')

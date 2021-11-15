@@ -19,7 +19,8 @@ let isPlaying = false //是否在播放中
 Page({
   data: {
     // 顶部菜单切换
-    navbar: ["待制作菜品", "已上餐待用户评价", "已完成"],
+    // navbar: ["待制作菜品", "已上餐待用户评价", "已完成"],
+    navbar: ["待制作菜品", "已完成"],
     // 默认选中菜单
     currentTab: 0,
     isShowComment: false, //是否显示评论框

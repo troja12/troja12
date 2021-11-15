@@ -19,6 +19,8 @@ Page({
     totalPrice: 0, //总价
     totalNum: 0, //总数量
     maskFlag: true, // 遮罩
+    status_2:0,
+    isWaimai:0,
   },
   onLoad() {
     console.log('app地址', app.globalData.address)
@@ -118,7 +120,10 @@ Page({
         address: app.globalData.address,
         totalPrice: this.data.totalPrice, //总价钱
         orderList: arrNew, //存json字符串
-        status: 0, //-1订单取消,0新下单待上餐,1待用户评价,2订单已完成
+        status: 0, 
+        status_2:0,
+        isWaimai:0,
+        //-1订单取消,0新下单待上餐,1待用户评价,2订单已完成
         // _createTime: db.serverDate() //创建的时间
         _createTime: new Date().getTime() //创建的时间
       }

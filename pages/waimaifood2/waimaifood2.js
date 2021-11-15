@@ -369,7 +369,7 @@ Page({
 
 
     wx.navigateTo({
-      url: '/pages/pay/pay'
+      url: '/pages/waimaipay/waimaipay'
     })
 
 

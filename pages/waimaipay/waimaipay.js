@@ -2,12 +2,12 @@ let app = getApp();
 const db = wx.cloud.database()
 Page({
   data: { //页面的初始数据   
-    address: app.globalData.address,
+    address:"店内订单",
     diner_num: '', // 输入框中的用餐人数 
     beizhu: "", // 备注信息
     payWayList: [{ //模拟支付方式列表
       "id": 1,
-      "package": "会员卡支付"
+      "package": "会员卡支付" 
     }, {
       "id": 2,
       "package": "微信支付"
@@ -19,11 +19,14 @@ Page({
     totalPrice: 0, //总价
     totalNum: 0, //总数量
     maskFlag: true, // 遮罩
+    status_2:0,
+    isWaimai:0,
   },
-  onLoad() {
+  onLoad(opt) {
     console.log('app地址', app.globalData.address)
+    console.log("页面携带数据",opt.address)
     this.setData({
-      address: app.globalData.address
+      address: opt.address
     })
     //购物车的数据
     var arr = wx.getStorageSync('cart') || [];
@@ -88,7 +91,12 @@ Page({
     });
   },
 
-
+  // 地址选择
+  addselect:function(){
+    wx.navigateTo({
+      url: '/pages/address/index/address',
+    })
+  },
   //提交订单
   submitOrder: function (e) {
     let arr = wx.getStorageSync('cart') || [];
@@ -110,15 +118,21 @@ Page({
     //   })
     //   return
     // }
+
+
+
     db.collection("order").add({
       data: {
         name: app.globalData.userInfo.nickName,
         renshu: parseInt(this.data.diner_num), //用餐人数,
         beizhu: this.data.beizhu,
-        address: app.globalData.address,
+        address: this.data.address,
         totalPrice: this.data.totalPrice, //总价钱
         orderList: arrNew, //存json字符串
-        status: 0, //-1订单取消,0新下单待上餐,1待用户评价,2订单已完成
+        status: 0, 
+        status_2:1,
+        isWaimai:1,
+        //-1订单取消,0新下单待上餐,1待用户评价,2订单已完成
         // _createTime: db.serverDate() //创建的时间
         _createTime: new Date().getTime() //创建的时间
       }

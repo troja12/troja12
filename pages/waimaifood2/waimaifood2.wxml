@@ -1,10 +1,10 @@
 <!-- 菜单区域  -->
 <view class="main">
-  <scroll-view scroll-y="true" scroll-with-animation="true" bindscroll="rightScrollFn" class="left">
+  <!-- <scroll-view scroll-y="true" scroll-with-animation="true" bindscroll="rightScrollFn" class="left">
     <view wx:for="{{menuArr}}" data-myid="{{item.id}}" wx:key="index"
       class="scroll-view-item left-tab {{leftActiveNum==item.id ? 'active' : ''}}" bindtap="leftClickFn">{{item.title}}
     </view>
-  </scroll-view>
+  </scroll-view> -->
 
   <scroll-view scroll-y="true" scroll-with-animation="true" bindscroll="rightScrollFn" class="right"
     scroll-into-view="top{{Tab}}">
@@ -50,7 +50,7 @@
     <image class="shopCart_img" src="/image/shopCart.png"></image>
   </view>
   <view class="all_money">总计:{{totalPrice}}元，{{totalNum}}件</view>
-  <view class="choose_ok" bindtap="gowaimaipay">选好了</view>
+  <view class="choose_ok" bindtap="gotoOrder">选好了</view>
 </view>
 
 

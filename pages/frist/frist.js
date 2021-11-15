@@ -10,7 +10,7 @@ Page({
     cm_point:[],
     isNeedSaoMa: app.globalData.isNeedSaoMa,
     banner: [{
-        picUrl: 'https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E8%BD%AE%E6%92%AD%E5%9B%BE/%E7%85%8E%E9%A5%BA.jpeg?sign=0815a4fa7e0da5ad6f8284c85f1159c5&t=1633731154'
+        picUrl: 'cloud://yangguang-6g36d3ftdb1346d4.7961-yangguang-6g36d3ftdb1346d4-1307798933/头图长版 拷贝.png'
       },
       {
         picUrl: 'https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E8%BD%AE%E6%92%AD%E5%9B%BE/%E5%8C%85%E5%AD%90.jpeg?sign=14c5d7d192d13ac5a29f7c31752ea2b8&t=1633731200'

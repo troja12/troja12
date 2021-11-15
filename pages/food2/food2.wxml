@@ -1,10 +1,10 @@
 <!-- 菜单区域  -->
 <view class="main">
-  <scroll-view scroll-y="true" scroll-with-animation="true" bindscroll="rightScrollFn" class="left">
+  <!-- <scroll-view scroll-y="true" scroll-with-animation="true" bindscroll="rightScrollFn" class="left">
     <view wx:for="{{menuArr}}" data-myid="{{item.id}}" wx:key="index"
       class="scroll-view-item left-tab {{leftActiveNum==item.id ? 'active' : ''}}" bindtap="leftClickFn">{{item.title}}
     </view>
-  </scroll-view>
+  </scroll-view> -->
 
   <scroll-view scroll-y="true" scroll-with-animation="true" bindscroll="rightScrollFn" class="right"
     scroll-into-view="top{{Tab}}">
