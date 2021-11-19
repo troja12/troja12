@@ -450,8 +450,9 @@ Page({
           // var detail = this.data.detail
           var address = res.data[num].address
           var ps = res.data[num].totalPrice    //  备注
-          var tempcode = res.code
-          var msg = `{'info_art': 5 ,'dish':'${dish}','pay':'${pay}','detail':'${detail}',
+          var tempcode = ress.code
+          console.log("temp为",tempcode)
+          var msg = `{'info_art': 3 ,'dish':'${dish}','pay':'${pay}','detail':'${detail}',
                      'address':'${address}','ps':'${ps}','tempcode':'${tempcode}',
                      'order_number':'${order_number}' , 'time':'${time}', 'order_time':'${order_time}',
                                                                                  }`
