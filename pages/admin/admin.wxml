@@ -22,4 +22,9 @@
 	<view class="tab">
 		<text class="tabNum" bindtap="goWaimai">外卖配送订单管理</text>
 	</view>
+
+	<view class="tab">
+		<text class="tabNum" bindtap="goWaimai_test">外卖配送订单管理</text>
+	</view>
+
 </view>

@@ -9,30 +9,36 @@ Page({
    */
   data: {
     addressList:[],
-    initaddressList:[]
+    initaddressList:[],
+    pages:[]
   },
 
   _selectAddress:function(evt){
     console.log("当前地址为",evt.currentTarget.dataset.address)
     let _id = evt.currentTarget.dataset.id
     const db = wx.cloud.database()
-    db.collection('address').doc(_id).update({
-      data:{
-        isSelect:true
-      },
-      success:res=>{
-        wx.navigateTo({
-          url: '/pages/waimaipay/waimaipay?address='+evt.currentTarget.dataset.address,
-        })
-      },
-      fail:err =>{
-        wx.showToast({
-          icon:'none',
-          title: '操作失败，请稍后再试',
-          duration:2000
-        })
-      }
-    })
+    if(getCurrentPages().length == 4){
+      db.collection('address').doc(_id).update({
+        data:{
+          isSelect:true
+        },
+        success:res=>{
+          wx.navigateTo({
+            url: '/pages/waimaipay/waimaipay?address='+evt.currentTarget.dataset.address,
+          })
+        },
+        fail:err =>{
+          wx.showToast({
+            icon:'none',
+            title: '操作失败，请稍后再试',
+            duration:2000
+          })
+        }
+      })
+    }
+  else{
+    console.log("当前页面无法跳转")
+  }
 
   },
 
@@ -40,24 +46,29 @@ Page({
     console.log("当前地址为",evt.currentTarget.dataset.address)
     let _id = evt.currentTarget.dataset.id
     const db = wx.cloud.database()
-    db.collection('address').doc(_id).update({
-      data:{
-        isSelect:true
-      },
-      success:res=>{
-        wx.navigateTo({
-          url: '/pages/waimaipay/waimaipay?address='+evt.currentTarget.dataset.address,
-        })
-      },
-      fail:err =>{
-        wx.showToast({
-          icon:'none',
-          title: '操作失败，请稍后再试',
-          duration:2000
-        })
-      }
-    })
 
+    if(getCurrentPages().length == 4){
+            db.collection('init-address').doc(_id).update({
+              data:{
+                isSelect:true
+              },
+              success:res=>{
+                wx.navigateTo({
+                  url: '/pages/waimaipay/waimaipay?address='+evt.currentTarget.dataset.address,
+                })
+              },
+              fail:err =>{
+                wx.showToast({
+                  icon:'none',
+                  title: '操作失败，请稍后再试',
+                  duration:2000
+                })
+              }
+            })
+          }
+          else{
+            console.log("当前页面无法跳转")
+          }
   },
 
   _toAdd:function(evt){
@@ -116,7 +127,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    console.log("当前页面信息",getCurrentPages().length)
     //遍历数据库渲染数据
     var that = this
      //获取数据库引用
@@ -125,11 +136,12 @@ Page({
      db.collection('address').get({
       success(res){
         that.setData({
-          addressList:res.data
+          addressList:res.data,
+          pages:getCurrentPages().length
         })
       }
      })
-
+    //  console.log("page信息",this.pages)
      db.collection('init-address').get({
       success(res){
         that.setData({

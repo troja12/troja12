@@ -5,6 +5,7 @@ let isWaimai = 1;
 let status_2 = 1;
 let db = wx.cloud.database();
 
+
 //监听用户新下单的watch
 let watcher = null
 
@@ -27,7 +28,10 @@ Page({
     isShowComment: false, //是否显示评论框
     list: [],
     user_id:[],
-    _price:[]
+    _price:[],
+    // 当前订单所有地址汇总
+    addtype:[],
+  
   },
   //顶部tab切换
   navbarTap: function (e) {
@@ -39,10 +43,12 @@ Page({
       orderStatus = 1;
       isWaimai = 1;
       status_2 = 1; 
+
     } else if (index == 1) {
       orderStatus = 1;
       isWaimai = 0;
       status_2 = 1; 
+
     } else {
       orderStatus = 0;
     }
@@ -114,14 +120,44 @@ Page({
         }
       })
       .then(res => {
-        console.log("用户订单列表", res)
+        console.log("用户订单列表", res.result.data.length)
+        console.log("用户订单列表", res.result.data[0].address)
+        // test
+
+        var arrs = [];
+        for(var num = 0 ; num < res.result.data.length ; num++){
+          console.log(res.result.data[num].address);//1,2,3,4,5,6,7,8,9
+          // if(res.result.data[i].address in  ){
+          // }
+          var option = {address:res.result.data[num].address,number:1}
+          if (arrs.findIndex(function(item) { return item.address === res.result.data[num].address; }) == -1) {
+            arrs.push(option)
+          }
+          else{
+            // arrs[0]['number'] += 1
+            var index = arrs.findIndex(function(item) { return item.address === res.result.data[num].address; })
+            arrs[index]['number'] += 1
+          }
+        }
+        // option = {address: "江苏省启东 ", number: 1}
+        // console.log("新增结果", arrs.findIndex(option))
+        console.log("新增结果", arrs)
+        // arrs.indexOf(option)
+
+        // test
         this.setData({
-          list: res.result.data
+          list: res.result.data,
+          addtype: arrs
         })
       }).catch(res => {
         console.log("用户订单列表失败", res)
       })
   },
+
+  // 定义一个数组
+
+
+
   //制作完成
   zhizuowancheng(e) {
     console.log("data：",e.currentTarget)

@@ -25,6 +25,12 @@ Page({
     })
   },
 
+  goWaimai_test(){
+    wx.navigateTo({
+      url: '/pages/adminWaimai_test/adminWaimai_test',
+    })
+  },
+
   onLoad() {
     let admin = wx.getStorageSync('admin')
     if (admin && admin.name && admin.password) {
