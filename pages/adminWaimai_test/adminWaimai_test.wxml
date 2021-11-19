@@ -57,9 +57,9 @@
 
                     <label  class='dingdanbtn' data-address='{{item.address}}' 
                       >预计剩余到达时间
-                      <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+                      <!-- <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
                           <view class="picker">{{time}}分钟</view>
-                        </picker>
+                        </picker> -->
                         <view>发送通知</view>
                     </label>
 
