@@ -19,9 +19,9 @@
 	<view class="tab">
 		<text class="tabNum" bindtap="goHouchu">后厨人员管理订单</text>
 	</view>
-	<view class="tab">
+	<!-- <view class="tab">
 		<text class="tabNum" bindtap="goWaimai">外卖配送订单管理</text>
-	</view>
+	</view> -->
 
 	<view class="tab">
 		<text class="tabNum" bindtap="goWaimai_test">外卖配送订单管理</text>

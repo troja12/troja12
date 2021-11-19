@@ -27,8 +27,8 @@
 			</view>
 			<!-- //-1订单取消,0新下单待上餐,1待用户评价,2订单已完成 -->
 			<view wx:if="{{item.status!=-1}}" class='coent_list'>
-				<label wx:if="{{item.isWaimai==1}}" class='dingdanbtn' data-id='{{item._id}}' data-price='{{item.totalPrice}}'
-					bindtap='zhizuowancheng'>配送完成</label>
+				<!-- <label wx:if="{{item.isWaimai==1}}" class='dingdanbtn' data-id='{{item._id}}' data-price='{{item.totalPrice}}'
+					bindtap='zhizuowancheng'>配送完成</label> -->
 			</view>
 		</view>
 		<view class='dibuttxt'>地址:{{item.address}}</view>

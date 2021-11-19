@@ -102,16 +102,16 @@ page {
 
 
 .dingdanbtn {
-  flex: 2;
+  flex-direction: column;
   color: darkgoldenrod;
-  margin: 30rpx;
-  width: 180rpx;
-  height: 56rpx;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  width: 100%;
   text-align: center;
   border: 1rpx solid darkgoldenrod;
   font-size: 30rpx;
-  display: inline-block;
-  line-height: 56rpx;
+  display: flex;
+  /* line-height: 56rpx; */
 }
 
 /* 评论弹窗 */
@@ -199,4 +199,9 @@ page {
   color: black;
   border-radius: 0px;
   border-bottom-right-radius: 16rpx;
+}
+
+.anniu{
+width:100%;
+padding:0rpx 20rpx 0 20rpx;
 }

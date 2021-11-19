@@ -7,7 +7,7 @@ let db = wx.cloud.database();
 Page({
   data: {
     // 顶部菜单切换
-    navbar: ["待上餐", "待配送", "已完成"],
+    navbar: ["未接单", "待配送", "已完成"],
     // 默认选中菜单
     currentTab: 0,
     isShowComment: false, //是否显示评论框

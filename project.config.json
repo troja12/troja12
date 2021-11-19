@@ -5,7 +5,7 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": false,
     "enhance": true,
     "postcss": true,
@@ -37,10 +37,7 @@
     "packNpmManually": false,
     "packNpmRelationList": [],
     "minifyWXSS": true,
-    "disableUseStrict": false,
-    "showES6CompileOption": false,
-    "useCompilerPlugins": false,
-    "minifyWXML": true
+    "showES6CompileOption": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.20.1",

@@ -11,8 +11,8 @@
 
 
 <view class="menu">
-  <image class="menu_img" bindtap="goFood" src="https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E9%A6%96%E9%A1%B5/%E6%89%93%E5%8C%85%E5%A4%96%E5%B8%A6.png?sign=a078543571df511b7ee88155139ff6e7&t=1633730418" mode="aspectFit" />
-  <image class="menu_img" bindtap="gowaimaifood2" src="https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E9%A6%96%E9%A1%B5/%E9%A2%84%E7%BA%A6%E6%90%AC%E5%AE%B6.png?sign=dbbdc16a206cb59892e6dbcde77dae63&t=1633730432" />
+  <image class="menu_img" bindtap="goFood" src="cloud://yangguang-6g36d3ftdb1346d4.7961-yangguang-6g36d3ftdb1346d4-1307798933/酒店堂食.png" mode="aspectFit" />
+  <image class="menu_img" bindtap="gowaimaifood2" src="cloud://yangguang-6g36d3ftdb1346d4.7961-yangguang-6g36d3ftdb1346d4-1307798933/打包外带 11.png" />
 </view>
 
 <view class="line">

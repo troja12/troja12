@@ -21,13 +21,14 @@ let isPlaying = false //是否在播放中
 Page({
   data: {
     // 顶部菜单切换
-    navbar: ["待配送菜品", "已完成配送菜品"],
+    navbar: ["当前配送地点订单详情"],
     // 默认选中菜单
     currentTab: 0,
     isShowComment: false, //是否显示评论框
     list: [],
     user_id:[],
-    _price:[]
+    _price:[],
+    address:[]
   },
   //顶部tab切换
   navbarTap: function (e) {
@@ -49,54 +50,73 @@ Page({
     this.getMyOrderList();
   },
 
-  onShow: function () {
-    orderStatus = 1
-    this.getMyOrderList();
-    this.initWatcher()
-    //防止问题，再做一次音频资源初始化
-    innerAudioContext.src = app.globalData.mp3Src
-  },
-  //初始化watcher
-  initWatcher() {
-    let that = this
-    watcher = db.collection('order')
-      .watch({
-        onChange: function (res) {
-          console.log('更新监听到的数据', res)
-          if (!res.type && res.docChanges && res.docChanges.length > 0) {
-            let obj = res.docChanges[0].doc
-            if (obj && obj.status == 0 && !isPlaying) {
-              console.log('有用户新下单了')
-              //用户如果下单，会播放音频
-              innerAudioContext.play() //播放订单提示音频
-              innerAudioContext.onPlay(() => {
-                console.log('开始播放')
-                isPlaying = true
-              })
-              wx.showModal({
-                title: '有新订单！',
-                content: '新订单来啦，请及时制作',
-                showCancel: false,
-                success(res) {
-                  //停止音乐
-                  innerAudioContext.stop()
-                  isPlaying = false
-                  // 请求新下单数据
-                  that.setData({
-                    currentTab: 0
-                  })
-                  orderStatus = 0
-                  that.getMyOrderList()
-                }
-              })
-            }
-          }
-        },
-        onError: function (err) {
-          console.error('the watch closed because of error', err)
-        }
-      })
-  },
+  // onShow: function () {
+  //   console.log('传入地址为',this.address)
+  //   orderStatus = 1;
+  //   isWaimai = 1;
+  //   status_2 = 1; 
+  //   wx.cloud.database().collection("order")
+  //     .orderBy('_createTime', 'desc')
+  //     .where({
+  //       status: orderStatus,
+  //       isWaimai:isWaimai,
+  //       status_2:status_2,
+  //       address:this.address
+  //     }).get().then(res => {
+  //       console.log("读取成功",res.data)
+  //       this.setData({
+  //         list: res.data
+  //       })
+  //     }).catch(res => {
+  //       console.log("失败")
+  //     })
+    
+  //   // this.getMyOrderList();
+  //   // this.initWatcher()
+  //   //防止问题，再做一次音频资源初始化
+  //   innerAudioContext.src = app.globalData.mp3Src
+  // },
+  // // //初始化watcher
+  // // initWatcher() {
+  // //   let that = this
+  // //   watcher = db.collection('order')
+  // //     .watch({
+  // //       onChange: function (res) {
+  // //         console.log('更新监听到的数据', res)
+  // //         if (!res.type && res.docChanges && res.docChanges.length > 0) {
+  // //           let obj = res.docChanges[0].doc
+  // //           if (obj && obj.status == 0 && !isPlaying) {
+  // //             console.log('有用户新下单了')
+  // //             //用户如果下单，会播放音频
+  // //             innerAudioContext.play() //播放订单提示音频
+  // //             innerAudioContext.onPlay(() => {
+  // //               console.log('开始播放')
+  // //               isPlaying = true
+  // //             })
+  // //             wx.showModal({
+  // //               title: '有新订单！',
+  // //               content: '新订单来啦，请及时制作',
+  // //               showCancel: false,
+  // //               success(res) {
+  // //                 //停止音乐
+  // //                 innerAudioContext.stop()
+  // //                 isPlaying = false
+  // //                 // 请求新下单数据
+  // //                 that.setData({
+  // //                   currentTab: 0
+  // //                 })
+  // //                 orderStatus = 0
+  // //                 that.getMyOrderList()
+  // //               }
+  // //             })
+  // //           }
+  // //         }
+  // //       },
+  // //       onError: function (err) {
+  // //         console.error('the watch closed because of error', err)
+  // //       }
+  // //     })
+  // // },
 
   getMyOrderList() {
     let openid = app._checkOpenid();
@@ -110,11 +130,13 @@ Page({
           action:'admin',
           orderStatus: orderStatus,
           isWaimai:isWaimai,
-          status_2:status_2
+          status_2:status_2,
+          
         }
       })
       .then(res => {
         console.log("用户订单列表", res)
+        console.log("用户订单列表具体信息", res.result.data)
         this.setData({
           list: res.result.data
         })
@@ -156,6 +178,34 @@ Page({
       })
     })
  
+  },
+
+
+  onLoad(opt) {
+    console.log("页面携带数据",opt.address)
+    this.setData({
+      address: opt.address
+    })
+    
+    console.log('传入地址为',opt.address)
+    orderStatus = 1;
+    isWaimai = 1;
+    status_2 = 1; 
+    wx.cloud.database().collection("order")
+      .orderBy('_createTime', 'desc')
+      .where({
+        status: orderStatus,
+        isWaimai:isWaimai,
+        status_2:status_2,
+        address:opt.address
+      }).get().then(res => {
+        console.log("读取成功",res.data)
+        this.setData({
+          list: res.data
+        })
+      }).catch(res => {
+        console.log("失败")
+      })
   },
 
   //退出页面
