@@ -87,7 +87,7 @@ Page({
       
     if(this.data.newuser == 1){ 
       
-      
+      // ccaa
       // 用户为新用户
            
             //跳转到个人信息页面
@@ -597,6 +597,13 @@ Page({
   goAdmin() {
     wx.navigateTo({
       url: '../admin/admin',
+    })
+  },
+
+  goumzug() {
+    wx.switchTab({
+      url: '../test/test',
+   
     })
   },
   gomyorder:function(){

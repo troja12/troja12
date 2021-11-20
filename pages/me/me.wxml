@@ -65,4 +65,8 @@
 		<text>管理员登录</text>
 		<view class='right_arrow' />
 	</view>
+	<view class='my_item1' bindtap="goumzug">
+		<text>预约搬家</text>
+		<view class='right_arrow' />
+	</view>
 </view>	

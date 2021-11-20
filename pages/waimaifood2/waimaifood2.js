@@ -17,6 +17,7 @@ Page({
     leftActiveNum: 0,
     Tab: 0,
     heightArr: [] //用来存储右侧每个条目的高度
+    
   },
 
   onLoad(e) {

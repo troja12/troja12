@@ -77,9 +77,9 @@ Page({
     // this.selectMember()
     let point     =  options.point
 
-    console.log('积分', point)
+    console.log('积分', Math.trunc(point))
     this.setData({
-      consum_points:point,
+      consum_points:Math.trunc(point),
       // balance: options.balance,
       
     })

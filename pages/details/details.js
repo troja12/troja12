@@ -1,105 +1,259 @@
-//index.js
-var dateTimePicker = require('../../utils/dateTimePicker.js');
+// miniprogram/pages/address/add/add.js
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    array: ['请选择跟车人数', '不跟车', '1人跟车', '2人跟车'],
-    objectArray: [
-      {
-        id: 0,
-        name: '选择跟车人数'
+    addressList:{},
+    popErrorMsg:''
+  },
+  _toAuth:function(){
+    //获取用户授权
+    wx.authorize({
+      scope: 'scope.userLocation',
+    })
+    var that = this
+    //打开地图选择位置
+    wx.chooseLocation({
+      complete: (res) => {
+        let address = res.address
+        let add = "addressList.address"
+        that.setData({
+          [add]:address
+        })
       },
-      {
-        id: 1,
-        name: '不跟车'
-      },
-      {
-        id: 2,
-        name: '1人跟车'
-      },
-      {
-        id: 3,
-        name: '2人跟车'
+    })
+  },
+  _focus:function(evt){
+    if(evt.currentTarget.dataset.id == 1){
+      this.setData({
+        'addressList.username': ''
+      })
+    }else if(evt.currentTarget.dataset.id == 2){
+      this.setData({
+        'addressList.telephone':''
+      })
+    }else if(evt.currentTarget.dataset.id == 3){
+      this.setData({
+        'addressList.address':''
+      })
+    }else if(evt.currentTarget.dataset.id == 4){
+      this.setData({
+        'addressList.arrive':''
+      })
+    }else if(evt.currentTarget.dataset.id == 5){
+      this.setData({
+        'addressList.date':''
+      })
+    }
+  },
+  _blur:function(evt){
+    let value = evt.detail.value
+    if(evt.currentTarget.dataset.id == 1 ){
+      this.setData({
+        'addressList.username':value
+      })
+    }else if(evt.currentTarget.dataset.id == 2){
+      this.setData({
+        'addressList.telephone':value
+      })
+      console.log(this.data.addressList.telephone)
+      //正则验证电话是否合格
+      var mobile = /^[1][0-9][0-9]{9}$/
+      var isMobile = mobile.exec(this.data.addressList.telephone)
+
+      setTimeout(()=>{
+        
+        if(!isMobile){
+          this.setData(
+            { popErrorMsg: "请输入正确格式的电话号码" }
+          ); 
+          this.ohShitfadeOut(); 
+          return;  
+        }
+
+      },100)
+
+    }else if(evt.currentTarget.dataset.id == 3){
+      this.setData({
+        'addressList.address':value
+      })
+    }
+  },
+  //定时器提示框3秒消失
+  ohShitfadeOut() {
+    var fadeOutTimeout = setTimeout(() => {
+      this.setData({ popErrorMsg: '' });
+      clearTimeout(fadeOutTimeout);
+    }, 3000);
+  },
+
+  formSubmit(e) {
+    let username = e.detail.value.username
+    let telephone = e.detail.value.telephone
+    let address = e.detail.value.address
+    let arrive = e.detail.value.arrive
+    let date = e.detail.value.date
+    console.log(e.detail.value)
+    setTimeout(()=>{
+      if(username==''||telephone==''||address==''){
+        this.setData(
+          { popErrorMsg: "请将信息填写完整再提交" }
+        ); 
+        this.ohShitfadeOut(); 
+        return;  
       }
-    ],
-    index: 0,
-
-    date: '2018-10-01',
-    time: '12:00',
-    dateTime: null,
-    dateTimeArray: null,
-    startYear: 2000,
-    endYear: 2050,
-    day: '',
-  },
-  onLoad() {
-
-    // --- 
-    var obj = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
-    var time = dateTimePicker.getHourMinu();
-    obj.dateTime[2] = parseInt((obj.defaultDay).substring(0, 2)) - 1; //day 字符串 'xx日' 转 'int'
-    this.setData({
-      dateTime: obj.dateTime,
-      dateTimeArray: obj.dateTimeArray,
-      day: obj.defaultDay,
-      time: time
-    });
-  },
-
-
-  bindKeyInput: function (e) {
-    this.setData({
-      inputValue: e.detail.value
-    })
-  },
-  //---- 改变时间
-  // changedateTime(e) {
-  //   console.log(e);
-  //   this.setData({
-  //     dateTime: e.detail.value
-
-  //   });
-  //   console.log(dateTime);
-  // },
-
-  bindPickerChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      index: e.detail.value
-    })
-  },
-
-  bindTimeChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      time: e.detail.value
-    })
-  },
-  changeDateTimeColumn(e) {
-    var arr = this.data.dateTime, dateArr = this.data.dateTimeArray;
-
-    arr[e.detail.column] = e.detail.value;
-    dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]]);
-    //console.log(arr);
-    this.setData({
-      dateTimeArray: dateArr,
-      dateTime: arr,
-      day: dateArr[2][arr[2]].substring(0, 3),
-    });
-  },
-
-
-  takePhoto() {
-    const ctx = wx.createCameraContext()
-    ctx.takePhoto({
-      quality: 'high',
-      success: (res) => {
-        this.setData({
-          src: res.tempImagePath
+      let addresses = e.detail.value
+      //获取数据库引用
+      const db = wx.cloud.database()
+      let id = e.detail.value.id
+      //数据库新增操作
+      if(id == ''){
+       db.collection('umzugorder').add({
+         data:{
+           username:addresses.username,
+           sex:addresses.sex,
+           telephone:addresses.telephone,
+           tag:'',
+           address:addresses.address,
+           arrive:addresses.arrive,
+           date:addresses.date,
+           isDefault:false,
+           isOpen:false,
+           isSelect:false
+         },
+         success:res => {
+           wx.showToast({
+             title: '新增成功',
+           })
+           console.log("3")
+           wx.navigateBack({
+             delta: 1,
+           })
+         },
+         fail: err => {
+           wx.showToast({
+             icon: 'none',
+             title: '新增失败'
+           })
+         }
+       })
+      }else{
+        //数据库修改操作
+        const _ = db.command
+        db.collection('umzugorder').doc(id).set({
+          data:{
+           username:addresses.username,
+           sex:addresses.sex,
+           telephone:addresses.telephone,
+           tag:'',
+           address:addresses.address,
+           arrive:addresses.arrive,
+           date:addresses.date,
+           isDefault:false,
+           isOpen:false,
+           isSelect:false
+          },
+           success:res => {
+             wx.showToast({
+               title: '修改成功',
+             })
+             console.log("1")
+             wx.navigateBack({
+               delta: 1,
+             })
+           },
+           fail: err => {
+             wx.showToast({
+               icon: 'none',
+               title: '修改失败'
+             })
+           }
         })
       }
-    })
+
+    },100)
+
+   
   },
-  error(e) {
-    console.log(e.detail)
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    let id = options.id
+    //遍历数据库渲染数据
+    var that = this
+    //获取数据库引用
+    const db = wx.cloud.database()
+    console.log(id)
+    if(id != undefined){
+      //数据库条件ID查询操作
+      db.collection('address').doc(id)
+      .get({
+        success(res){
+           that.setData({
+            addressList:res.data
+          })
+          console.log("2")
+        }
+      })
+    }else{
+      that.setData({
+        addressList:[]
+      })
+      console.log("4")
+    }
+
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   }
 })

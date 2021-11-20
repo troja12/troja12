@@ -15,7 +15,7 @@
         应以字母开头，且只能包含字母、数字、中划线、下划线、
         英文冒号和英文句点，所以我们这里以top开头-->
     <view wx:for="{{menuArr}}" wx:key="index" id="top{{item.id}}" class="scroll-view-item rightblock">
-      <view class="title">{{item.title}}</view>
+      <view class="title" >{{item.title}}</view>
         <view class="flexcaipin">
           <view wx:for="{{item.list}}" wx:key="index" >
             <view class="caipin_item">

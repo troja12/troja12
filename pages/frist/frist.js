@@ -8,9 +8,11 @@ Page({
    */
   data: {
     cm_point:[],
+    consum_points:'',
     isNeedSaoMa: app.globalData.isNeedSaoMa,
     banner: [
       // {
+    
       //   picUrl: 'cloud://yangguang-6g36d3ftdb1346d4.7961-yangguang-6g36d3ftdb1346d4-1307798933/头图长版 拷贝.png'
       // },
       {
@@ -25,7 +27,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log("查看结果",app.globalData.openid)
+    if(app.globalData.openid == ''){
+      wx.cloud.callFunction({
+        name: 'login',
+        success: res => {
+          app.globalData.openid = res.result.openid
+          // console.log("res为",res)
+        }
+      })
+    }
+        //调用遍历用户信息的方法
+    this.selectbalance()
+     
   },
 
   /**
@@ -40,6 +54,42 @@ Page({
    */
   onShow: function () {
     this.getTopBanner() //请求顶部轮播图
+    if(this.data.openid=''){
+      this.setData({
+        openid:app.globalData.openid
+      })
+    }
+    // //获取当前管理员
+    // this.getUserid()
+    // //获取当前超级管理员
+    // this.getManageId()
+    var that = this
+    //获取用户的详情
+    wx.cloud.callFunction({
+      name:'getMember',
+      complete:res=>{
+        if(res.result !== undefined){
+          let data =  res.result.data
+          if(data.length != 0){
+            //该用户已经注册并授权，直接获取它的头像和昵称
+            let nickname=data[0].nickName
+            let avatarUrl = data[0].avatarUrl
+            that.setData({
+              memberInfo:data[0],
+              nickName:nickname,
+              avatarUrl:avatarUrl
+            })
+          }else{
+            that.setData({
+
+              'memberInfo.balance':0,
+              'memberInfo.consum_points':0,
+              'memberInfo.tel': ''
+            })
+          }
+        }
+      }
+    })
   },
 
   /**
@@ -81,6 +131,15 @@ Page({
       url: "/pages/food2/food2"
     })
   },
+  getpoint(){
+    //跳转到积分页面
+        wx.navigateTo({
+          // url:'../vip/valueCard/valueCard',
+           url:'../myPoints/myPoints?point=' + this.data.memberInfo.consum_points,
+    })
+    
+      },
+
   gotest() {
     wx.switchTab({
     
