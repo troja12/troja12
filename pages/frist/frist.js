@@ -38,7 +38,7 @@ Page({
       })
     }
         //调用遍历用户信息的方法
-    this.selectbalance()
+    // this.selectbalance()
      
   },
 
@@ -193,10 +193,10 @@ Page({
 
 
   getTopBanner() {
-    wx.cloud.database().collection("lunbotu")
+    wx.cloud.database().collection("banner")
       .get()
       .then(res => {
-        console.log("首页banner成功", res.data)
+        console.log("首页banner成功", res)
         if (res.data && res.data.length > 0) {
           //如果后台配置轮播图就用后台的，没有的话就用默认的
           this.setData({
