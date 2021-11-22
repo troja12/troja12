@@ -16,79 +16,17 @@ Page({
     manageid:'',
     isSupermanage:false,
     openid:'',
-    isManage:false
+    isManage:false,
+    initflag: false,
   },
 
-  //查询该用户是否授权，
-  // queryAuthByOpenid1:function(sb){
-  //   var that = this
-  //   //获取用户的详情
-  //   wx.cloud.callFunction({
-  //     name:'getMember',
-  //     complete:res=>{
-  //       console.log(res)
-  //       if(res.result.data.length !== 0){  
-  //         if(sb !== 1){
-  //           //跳转到个人信息页面
-  //           wx.navigateTo({
-  //             url: '../me/personInfo/personInfo',
-  //           })
-  //         }
-  //       }
-  //       else{
-  //         // this.getUserProfile()
-  //         // 获取用户信息
-  //         wx.showModal({
-  //           title: '温馨提示',
-  //           content: '正在请求您的个人信息',
-  //           success(res) {
-  //             if (res.confirm) {
-  //               wx.getUserProfile({
-  //               desc: "获取你的昵称、头像",
-  //               success: res => {
-  //                 wx.showLoading({
-  //                   title: '加载中...',
-  //                 })
-  //                 let userInfo = res.userInfo;
-  //                 that.setData({
-  //                   userInfo:userInfo
-  //                 })
-  //                 //调用创建用户信息的方法
-  //                 that.creatMember()
-  //               },
-  //               fail: res => {
-  //                 //拒绝授权
-  //                 wx.showToast({
-  //                   title: '请求失败，请稍后重试',
-  //                   icon:'none',
-  //                   duration: 2000
-  //                 })
-  //                 return;
-  //               }
-  //             })} else if (res.cancel) {
-  //               //拒绝授权 showErrorModal是自定义的提示
-  //               wx.showToast({
-  //                 title: '您已拒绝授权',
-  //                 icon:'none',
-  //                 duration: 2000
-  //               })
-  //               return;
-  //             }
-  //           }
-  //         })
-  //       }
-  //     }
-  //   })
-  // },
-  queryAuthByOpenid1:function(){
+   //查询该用户是否授权，
+   queryAuthByOpenid:function(){
     this.setData({
       buttonClicked: true
     }) 
       
     if(this.data.newuser == 1){ 
-      
-      // ccaa
-      // 用户为新用户
            
             //跳转到个人信息页面
             wx.navigateTo({
@@ -99,72 +37,18 @@ Page({
             }) 
             
         }
-  },
-      
-  //查询该用户是否授权，
-  queryAuthByOpenid:function(){
-    this.setData({
-      buttonClicked: true
-    }) 
-      
-    if(this.data.newuser == 1){ 
-      wx.getUserProfile({
-        desc: "获取你的昵称、头像",
-        success: res => {
-          // console.log("result结果为",res)
-          let userInfo = res.userInfo;
-          app._saveUserInfo(userInfo);
-          that.setData({
-            logged:true,
-            userInfo:userInfo,               
-            newuser:1
-          })
-          //调用创建用户信息的方法
-        
-        },
-        fail: res => {
-          // console.log("result结果为",res)
-          //拒绝授权
-          this.setData({
-            buttonClicked: false 
-          })
-          wx.showToast({
-            title: '请求失败，请稍后重试',
-            icon:'none',
-            duration: 2000
-          })
-          return;
-        }
-      })
-
-      // // 用户为新用户
-           
-      //       //跳转到个人信息页面
-      //       wx.navigateTo({
-      //         url: '../me/personInfo/personInfo',
-      //       })
-      //       this.setData({
-      //         buttonClicked: false
-      //       }) 
-            
-        }
       
     var that = this
-    // 用户已注册过
-    
     if(this.data.newuser == ''){ 
 
           wx.getUserProfile({
             desc: "获取你的昵称、头像",
             success: res => {
-              // console.log("result结果为",res)
               wx.showLoading({
-                title: '加载中...',
+                title: '登陆中...',
               })
               let userInfo = res.userInfo;
-              app._saveUserInfo(userInfo);
               that.setData({
-                logged:true,
                 userInfo:userInfo,               
                 newuser:1
               })
@@ -172,7 +56,6 @@ Page({
               that.creatMember()
             },
             fail: res => {
-              // console.log("result结果为",res)
               //拒绝授权
               this.setData({
                 buttonClicked: false 
@@ -184,100 +67,41 @@ Page({
               })
               return;
             }
-          })
-         
+          }) 
         }
     
   },
+  checklogin:function(){
+    const db = wx.cloud.database()
+    var that = this
+    //表权限为默认权限，只有创建者openid可以读写
+    db.collection('member').get({
+      success:(res)=>{
+        var member = res.data       
+        console.log("信息是否录入",member)
+        if(res.data.length !== 0){ 
+          that.setData({
+            newuser:1, 
+            initflag: false,      
+          })
+        }
+        that.setData({
+          memberInfo:member[0],
+        })
+        console.log("信息渲染",that.data.memberInfo)
+      },fail:err=>{
+        wx.showToast({
+          icon:'none',
+          title: '登录失败，请稍后再试',
+          duration:2000
+        })
+      }
+      })
 
-  //  //获取管理员列表中是否存在当前用户openid
-  //  getUserid:function(){
-  //   wx.cloud.callFunction({
-  //     name:'getManage',
-  //     data:{
-  //       type:2
-  //     },
-  //     success: res=>{
-  //       if(!app.globalData.openid){
-  //         wx.cloud.callFunction({
-  //           name: 'login',
-  //           success: res1 => {
-  //             console.log('login',res1)
-  //             let openid = res1.result.openid
-  //             app.globalData.openid = openid
-  //             this.setData({
-  //               openid:app.globalData = openid
-  //             })
-  //             let manages = res.result.data
-  //             manages.forEach(item => {
-  //               if(item.user_id == openid){
-  //                 this.setData({
-  //                   isManage:true
-  //                 })
-  //               }
-  //             })             
-  //           }
-  //         })
-  //       }else{
-  //         let openid = app.globalData.openid
-  //         let manages = res.result.data
-  //         manages.forEach(item => {
-  //           // console.log('manages',item.user_id,openid)
-  //           if(item.user_id == openid){
-  //             this.setData({
-  //               isManage:true
-  //             })
-  //           }
-  //         })
-  //       }
-  //     },
-  //     fail:(err)=>{
-  //       console.log('发生错误',err)
-  //     }
-  //   })
-  // },
-  // //获取当前超级管理员的openid
-  // getManageId:function(){
-  //   wx.cloud.callFunction({
-  //     name:'getManage',
-  //     data:{
-  //       type:1
-  //     },
-  //     success:(res)=>{
-  //       var user_id = res.result.data[0].user_id
-  //       if(user_id == app.globalData.openid){
-  //         this.setData({
-  //           isSupermanage:true
-  //         })
-  //       }
+    },
 
-  //     },
-  //     fail:(err)=>{
-  //       console.log('发生错误',err)
-  //     }
-  //   })
-  // },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  // onLoad: function (options) {
-    
-  //   if (!wx.cloud) {
-  //     wx.redirectTo({
-  //       url: '../chooseLib/chooseLib',
-  //     })
-  //     return
-  //   }
-    
-  //   let sb = 1
-  //   //调用
-  //   this.queryAuthByOpenid(sb)
-
-  // },
-  
-  //查询会员是否存在
-  selectMember:function(){
+   //查询会员是否存在
+   selectMember:function(){
     const db = wx.cloud.database()
     //表权限为默认权限，只有创建者openid可以读写
     db.collection('member').get({
@@ -286,18 +110,11 @@ Page({
         if(member.length === 0){
           //当会员不存在时，为用户创建会员信息
           this.creatMember()
-        }else if(member[0].nickname == ''){
-          //如果已经存在，传入会员id进行修改操作
-          let id = member[0]._id
-          this._updateMember(id)
         }else{
-          wx.hideLoading({
-            complete: (res) => {
-            },
-          })
-          //跳转到个人信息页面
-          wx.navigateTo({
-            url: '../person/personInfo/personInfo',
+          this.setData({
+            memberInfo:member[0],
+            newuser:1, 
+            initflag: false,      
           })
         }
       },
@@ -400,10 +217,10 @@ Page({
               memberId:re._id,
               buttonClicked: false 
             })
-            //跳转到个人信息页面
-            wx.navigateTo({
-              url: '../me/personInfo/personInfo',
-            })
+            // //跳转到个人信息页面
+            // wx.navigateTo({
+            //   url: '../me/personInfo/personInfo',
+            // })
             
             wx.hideLoading({
               complete: (res) => {
@@ -428,14 +245,7 @@ Page({
       }
     })
   },
-//   getcard(){
-// //跳转到充值页面
-//     wx.navigateTo({
-//       // url:'../vip/valueCard/valueCard',
-//        url:'../vip/valueCard/valueCard?balance=' + this.data.memberInfo.balance,
-// })
 
-//   },
 
   getpoint(){
     //跳转到积分页面
@@ -446,51 +256,13 @@ Page({
     
       },
 
-  selectbalance:function(){
-    const db = wx.cloud.database()
-    //表权限为默认权限，只有创建者openid可以读写
-    db.collection('member').get({
-      success:(res)=>{
-        var member = res.data       
-        console.log("huiyuan",member)
-        if(res.data.length !== 0){ 
-          this.setData({
-            newuser:1,          
-          })
-          // console.log('daol')
-          
-        }
-        this.setData({
-          memberInfo:member[0],
-          // sex2:member[0].balance
-        })
-      },fail:err=>{
-        wx.showToast({
-          icon:'none',
-          title: '登录失败，请稍后再试',
-          duration:2000
-        })
-      }
-      })
-
-    },
-
+  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
 
-    // if (!wx.cloud) {
-    //   wx.redirectTo({
-    //     url: '../chooseLib/chooseLib',
-    //   })
-    //   return
-    // }
-    
-    // let sb = 1
-    // //调用
-    // this.queryAuthByOpenid(sb)
-    console.log("查看结果",app.globalData.openid)
+    console.log("查看结果",app.globalData.openid)
     if(app.globalData.openid == ''){
       wx.cloud.callFunction({
         name: 'login',
@@ -501,7 +273,7 @@ Page({
       })
     }
         //调用遍历用户信息的方法
-    this.selectbalance()
+    this.selectMember()
      
   },
 
@@ -521,10 +293,7 @@ Page({
         openid:app.globalData.openid
       })
     }
-    // //获取当前管理员
-    // this.getUserid()
-    // //获取当前超级管理员
-    // this.getManageId()
+ 
     var that = this
     //获取用户的详情
     wx.cloud.callFunction({

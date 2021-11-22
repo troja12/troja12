@@ -45,11 +45,12 @@
    
     <view wx:if="{{list.length>0}}">
               <!-- 外层 -->
-              <view class='cont_count' wx:for="{{addtype}}" wx:key="key">
+              <view class='cont_count' wx:for="{{addtype}}" wx:key="key" 
+              data-address='{{item.address}}' data-address='{{item.address}}'>
                 <!-- 编号 -->
-                <view class='dingdanbianhao' data-address='{{item.address}}'>订单地址:{{item.address}} </view>
+                <view class='dingdanbianhao' >订单地址:{{item.address}} </view>
                 <view class='dingdanbianhao'>该地址订单数量:{{item.number}} </view>
-                <view class='dingdanbianhao' data-address='{{item.address}}' bindtap="sd">【 点击查看订单详情 】</view>
+                <view class='dingdanbianhao'  bindtap="sd">【 点击查看订单详情 】</view>
                 <view class="content">
                  
                   <!-- //-1订单取消,0新下单待上餐,1待用户评价,2订单已完成 -->
@@ -57,20 +58,17 @@
 
                     <label  class='dingdanbtn' data-address='{{item.address}}' 
                       >预计剩余到达时间
-                      <!-- <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
-                          <view class="picker">{{time}}分钟</view>
-                        </picker> -->
-                        <view>发送通知</view>
+                      <picker bindchange="bindPickerChange" value="{{timeindex}}" range="{{array}}">
+                      <view class="picker" >
+                       当前选择：{{array[timeindex]}}
+                       </view>
+                      </picker>
+                        <view data-address='{{item.address}}'  bindtap="test">发送通知</view>
                     </label>
-
-                      
-                        
-                      
-
                     <label  class='dingdanbtn' data-address='{{item.address}}' 
-                      bindtap='test'>迟到提醒(3分钟为单位)</label>
+                      bindtap='testlate'>迟到提醒(3分钟为单位)</label>
                     <label  class='dingdanbtn' data-address='{{item.address}}' 
-                      bindtap='test'>即将到达</label>
+                      bindtap='testok'>已到达</label>
                     <label  class='dingdanbtn' data-address='{{item.address}}' 
                       bindtap='onekeydone'>配送完成</label>
                   </view>

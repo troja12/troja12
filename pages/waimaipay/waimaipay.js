@@ -1,4 +1,7 @@
-let app = getApp();
+var app = getApp();
+var util = require('../../util/util.js');
+var socketOpen = false
+var socketMsgQueue = []
 const db = wx.cloud.database()
 Page({
   data: { //页面的初始数据   
@@ -99,6 +102,7 @@ Page({
   },
   //提交订单
   submitOrder: function (e) {
+    var outTradeNo = util.wxuuid(5, 10)
     let arr = wx.getStorageSync('cart') || [];
     let arrNew = []
     arr.forEach(item => {
@@ -111,19 +115,16 @@ Page({
       })
     });
 
-    // if (!this.data.diner_num) {
-    //   wx.showToast({
-    //     icon: 'none',
-    //     title: '请选择就餐人数',
-    //   })
-    //   return
-    // }
-
-
-
+    var date = new Date();
+    var createTime = util.formatTime1(date )
+    
+    var createTime1 =  createTime.replace(/-/g, '/')
+    console.log("支付成功", createTime1)
     db.collection("order").add({
       data: {
+        outTradeNo:outTradeNo,
         name: app.globalData.userInfo.nickName,
+        unionid:app.globalData.unionid,
         renshu: parseInt(this.data.diner_num), //用餐人数,
         beizhu: this.data.beizhu,
         address: this.data.address,
@@ -134,7 +135,7 @@ Page({
         isWaimai:1,
         //-1订单取消,0新下单待上餐,1待用户评价,2订单已完成
         // _createTime: db.serverDate() //创建的时间
-        _createTime: new Date().getTime() //创建的时间
+        _createTime: createTime1 //创建的时间
       }
     }).then(res => {
       console.log("支付成功", res)
@@ -157,6 +158,7 @@ Page({
         }
       }).then(res => {
         console.log('添加销量成功', res)
+        this.orderok(outTradeNo)
         wx.setStorageSync('cart', "")
         wx.switchTab({
           url: '../me/me',
@@ -176,6 +178,99 @@ Page({
       })
       console.log("支付失败", res)
     })
+  },
+
+  //发送通知
+  socket: function () {
+    var that = this
+    //创建一个 WebSocket 连接；
+    //一个微信小程序同时只能有一个 WebSocket 连接，如果当前已存在一个 WebSocket 连接，会自动关闭该连接，并重新创建一个 WebSocket 连接。
+    wx.connectSocket({
+      url: 'ws://43.132.246.14:1235'
+    })
+    //监听WebSocket错误
+    wx.onSocketError(function (res) {
+      socketOpen = false
+      console.log('WebSocket连接打开失败，请检查！')
+      wx.hideToast()
+    })
+    //监听WebSocket连接打开事件。
+    wx.onSocketOpen(function (res) {
+      console.log('WebSocket连接已打开！')
+      wx.hideToast()
+      socketOpen = true
+      for (var i = 0; i < socketMsgQueue.length; i++) {
+        that.sendSocketMessage(socketMsgQueue[i])
+      }
+      socketMsgQueue = []
+    })
+    //监听WebSocket接受到服务器的消息事件
+    wx.onSocketMessage(function (res) {
+      console.log('收到服务器内容：' + res.data)
+      wx.closeSocket()
+    })
+    //监听WebSocket关闭
+    wx.onSocketClose(function (res) {
+      socketOpen = false
+      console.log('WebSocket 已关闭！')
+      wx.hideToast()
+      that.setData({
+        socktBtnTitle: '连接socket'
+      })
+    })
+  },
+
+  
+  sendSocketMessage: function (msg) {
+    if (socketOpen) {
+      //通过 WebSocket 连接发送数据，需要先 wx.connectSocket，并在 wx.onSocketOpen 回调之后才能发送。
+      wx.sendSocketMessage({
+        data: msg
+      })
+    } else {
+      socketMsgQueue.push(msg)
+    }
+  },
+  bindPickerChange: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      timeindex: e.detail.value
+    })
+  },
+
+  orderok(outTradeNo){
+    var date = new Date();
+    var createTime = util.formatTime1(date )
+    var createTime1 =  createTime.replace(/-/g, '/')
+    console.log("支付成功", createTime1)
+   
+    var key = "root"
+   
+    var arr = {
+      outTradeNo:outTradeNo,
+      name: app.globalData.userInfo.nickName,
+      unionid:app.globalData.unionid,
+      beizhu: this.data.beizhu,
+      address: this.data.address,
+      totalPrice: this.data.totalPrice, //总价钱
+      _createTime: createTime1 , //创建的时间
+      
+        }
+        console.log("内容数组",arr)
+        var obj = {time:0, info_art:1}
+        var arr1= []
+        arr1.push(arr)
+        arr1.push(obj)
+
+        console.log("发送内容对象",arr1)
+        var jsonstr = JSON.stringify(arr1)
+        this.socket()
+        this.sendSocketMessage(key)
+        console.log("发送内容",jsonstr)
+        this.sendSocketMessage(jsonstr)
+      
+
+  
   },
 
 

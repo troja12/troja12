@@ -2,15 +2,14 @@
 App({
   //创建towxml对象，供小程序页面使用
   globalData: {
-    //1-src替换成你自己的
-    mp3Src: 'cloud://cloud1-7gjxramvde980c0c.636c-cloud1-7gjxramvde980c0c-1306456580/mp3/laidanle.wav',
+    
     //要设置的地方
     isNeedSaoMa: false, //是否需要扫码点餐： true需要，false不需要
     address: '', //isNeedSaoMa为true时是桌号，false时店内随意下单
     isNeedFenLei: true, //是否需要分类，true需要：适合菜品多的时候，false不需要：适合菜品少的时候
     userInfo: {},
     openid: null,
-    
+    unionid:'',
   },
   onLaunch: function () {
     //云开发初始化
@@ -19,6 +18,7 @@ App({
       traceUser: true,
     })
     this.getOpenid();
+    this.getunionid();
   },
   // 获取用户openid
   getOpenid: function () {
@@ -43,6 +43,17 @@ App({
         }
       })
     }
+  },
+
+  getunionid(){
+    var app = this;
+    wx.cloud.callFunction({
+      name: 'login',
+      success: res1 => {
+        console.log('唯一识别',res1.result.unionid)
+        app.globalData.unionid = res1.result.unionid
+      }  
+      })
   },
   //获取自己后台的user信息
   _getMyUserInfo() {

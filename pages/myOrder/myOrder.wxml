@@ -11,7 +11,7 @@
 	<!-- 外层 -->
 	<view class='cont_count' wx:for="{{list}}" wx:key="key">
 		<!-- 编号 -->
-		<view class='dingdanbianhao'>订单编号:{{item._id}} </view>
+		<view class='dingdanbianhao'>订单编号:{{item.outTradeNo}} </view>
 
 		<view class="content">
 			<!-- 列表 -->

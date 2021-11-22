@@ -1,5 +1,6 @@
 let app = getApp();
 const db = wx.cloud.database()
+var util = require('../../util/util.js');
 Page({
   data: { //页面的初始数据   
     address: app.globalData.address,
@@ -93,6 +94,7 @@ Page({
 
   //提交订单
   submitOrder: function (e) {
+    var outTradeNo = util.wxuuid(5, 10)
     let arr = wx.getStorageSync('cart') || [];
     let arrNew = []
     arr.forEach(item => {
@@ -112,9 +114,16 @@ Page({
       })
       return
     }
+    var date = new Date();
+    var createTime = util.formatTime1(date )
+    
+    var createTime1 =  createTime.replace(/-/g, '/')
+    console.log("支付成功", createTime1)
     db.collection("order").add({
       data: {
+        outTradeNo:outTradeNo,
         name: app.globalData.userInfo.nickName,
+        unionid:app.globalData.unionid,
         renshu: parseInt(this.data.diner_num), //用餐人数,
         beizhu: this.data.beizhu,
         address: app.globalData.address,
@@ -125,7 +134,7 @@ Page({
         isWaimai:0,
         //-1订单取消,0新下单待上餐,1待用户评价,2订单已完成
         // _createTime: db.serverDate() //创建的时间
-        _createTime: new Date().getTime() //创建的时间
+        _createTime: createTime1 //创建的时间
       }
     }).then(res => {
       console.log("支付成功", res)
@@ -167,6 +176,41 @@ Page({
       })
       console.log("支付失败", res)
     })
+  },
+
+  orderok(e){
+    console.log("点击结果",e.currentTarget.dataset.address)
+    orderStatus = 1;
+    isWaimai = 1;
+    status_2 = 1; 
+    var key = "root"
+    wx.cloud.database().collection("order")
+      .orderBy('_createTime', 'desc')
+      .where({
+        status: orderStatus,
+        isWaimai:isWaimai,
+        status_2:status_2,
+        address:e.currentTarget.dataset.address
+      }).get().then(res => {
+        console.log("外卖结果",res)
+        console.log("读取成功",res.data)
+        var arr = res.data
+        var obj = {time:0, info_art:1}
+        arr.push(obj)
+        console.log("发送内容对象",arr)
+        var jsonstr = JSON.stringify(arr)
+        this.setData({
+          liste: res.data
+        })
+        this.socket()
+        this.sendSocketMessage(key)
+        console.log("发送内容",jsonstr)
+        this.sendSocketMessage(jsonstr)
+      }).catch(res => {
+        console.log("失败")
+      })
+
+  
   },
 
 

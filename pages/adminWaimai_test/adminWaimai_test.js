@@ -7,20 +7,6 @@ let db = wx.cloud.database();
 var socketOpen = false
 var socketMsgQueue = []
 
-
-//监听用户新下单的watch
-let watcher = null
-
-//音频播放相关
-const innerAudioContext = wx.createInnerAudioContext()
-// innerAudioContext.autoplay = true //自动播放
-innerAudioContext.loop = true //循环播放
-innerAudioContext.src = app.globalData.mp3Src
-// innerAudioContext.src = "cloud://test-ec396a.7465-test-ec396a-1257654106/mp3/laidanle.wav"
-let isPlaying = false //是否在播放中
-
-
-
 Page({
   data: {
     // 顶部菜单切换
@@ -34,15 +20,10 @@ Page({
     _price:[],
     // 当前订单所有地址汇总
     addtype:[],
-    time: '12:00',
     // 发送通知
+    array: ['10', '15', '20', '25'],
     userInfo: {},
-    user: '',
-    dish: '',
-    pay: '',
-    detail: '',
-    address: '',
-    ps: '',
+    timeindex:0,
   },
   //顶部tab切换
   navbarTap: function (e) {
@@ -69,51 +50,8 @@ Page({
   onShow: function () {
     orderStatus = 1
     this.getMyOrderList();
-    this.initWatcher()
-    //防止问题，再做一次音频资源初始化
-    innerAudioContext.src = app.globalData.mp3Src
   },
-  //初始化watcher
-  initWatcher() {
-    let that = this
-    watcher = db.collection('order')
-      .watch({
-        onChange: function (res) {
-          console.log('更新监听到的数据', res)
-          if (!res.type && res.docChanges && res.docChanges.length > 0) {
-            let obj = res.docChanges[0].doc
-            if (obj && obj.status == 0 && !isPlaying) {
-              console.log('有用户新下单了')
-              //用户如果下单，会播放音频
-              innerAudioContext.play() //播放订单提示音频
-              innerAudioContext.onPlay(() => {
-                console.log('开始播放')
-                isPlaying = true
-              })
-              wx.showModal({
-                title: '有新订单！',
-                content: '新订单来啦，请及时制作',
-                showCancel: false,
-                success(res) {
-                  //停止音乐
-                  innerAudioContext.stop()
-                  isPlaying = false
-                  // 请求新下单数据
-                  that.setData({
-                    currentTab: 0
-                  })
-                  orderStatus = 0
-                  that.getMyOrderList()
-                }
-              })
-            }
-          }
-        },
-        onError: function (err) {
-          console.error('the watch closed because of error', err)
-        }
-      })
-  },
+  
 
   getMyOrderList() {
     let openid = app._checkOpenid();
@@ -163,13 +101,11 @@ Page({
           list: res.result.data,
           addtype: arrs
         })
+        console.log("外卖分类", this.data.addtype)
       }).catch(res => {
         console.log("用户订单列表失败", res)
       })
   },
-
-  // 定义一个数组
-
 
 
   //制作完成
@@ -207,12 +143,6 @@ Page({
  
   },
 
-  bindTimeChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      time: e.detail.value
-    })
-  },
 
 
   onekeydone(e) {
@@ -255,9 +185,7 @@ Page({
 
   //退出页面
   onUnload() {
-    console.log("onUnload")
-    innerAudioContext.destroy() //退出页面时销毁音频
-    watcher.close() //关闭监听
+
   },
 
   //发送通知
@@ -299,42 +227,8 @@ Page({
       })
     })
   },
-  //事件处理函数
-  // bindViewTap: function () {
-  //   wx.navigateTo({
-  //     url: '../logs/logs'
-  //   })
-  // },
-  // user: function (e) {
-  //   this.setData({
-  //     user: e.detail.value
-  //   })
-  // },
-  dish: function (e) {
-    this.setData({
-      dish: e.detail.value
-    })
-  },
-  pay: function (e) {
-    this.setData({
-      pay: e.detail.value
-    })
-  },
-  detail: function (e) {
-    this.setData({
-      detail: e.detail.value
-    })
-  },
-  address: function (e) {
-    this.setData({
-      address: e.detail.value
-    })
-  },
-  ps: function (e) {
-    this.setData({
-      ps: e.detail.value
-    })
-  },
+
+  
   sendSocketMessage: function (msg) {
     if (socketOpen) {
       //通过 WebSocket 连接发送数据，需要先 wx.connectSocket，并在 wx.onSocketOpen 回调之后才能发送。
@@ -345,67 +239,20 @@ Page({
       socketMsgQueue.push(msg)
     }
   },
-  sendMessageBtnTap: function () {
-    wx.login({ 
-   
-    }).then((res)=>{	
-      if (res.code) {
-          console.log('登录成功！'+res.code);
-          // this.setData({
-          //  tempcode : res.code
-          // })
-        
-        }else{
-        console.log('登录失败！'+res.errMsg);
-    }
-    var key = "root"
-    // 订单号
-    var order_number = 12345698
-    var time = 15
-    var order_time = '2021/10/27 01:54:03'
-    var user = this.data.user
-    var dish = this.data.dish
-    var pay = this.data.pay
-    var detail = this.data.detail
-    var address = this.data.address
-    var ps = this.data.ps    //  备注
-    var tempcode = res.code
-    var msg = `{'info_art': 5 ,'dish':'${dish}','pay':'${pay}','detail':'${detail}',
-               'address':'${address}','ps':'${ps}','tempcode':'${tempcode}',
-               'order_number':'${order_number}' , 'time':'${time}', 'order_time':'${order_time}',
-                                                                           }`
-    this.socket()
-    this.sendSocketMessage(key)
-    this.sendSocketMessage(msg)
-      })
-  }, 
-
-  getlist(e){
-    orderStatus = 1;
-    isWaimai = 1;
-    status_2 = 1; 
-    wx.cloud.database().collection("order")
-      .orderBy('_createTime', 'desc')
-      .where({
-        status: orderStatus,
-        isWaimai:isWaimai,
-        status_2:status_2,
-        address:e.address
-      }).get().then(res => {
-        console.log("读取成功",res.data)
-        this.setData({
-          liste: res.data
-        })
-      }).catch(res => {
-        console.log("失败")
-      })
+  bindPickerChange: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      timeindex: e.detail.value
+    })
   },
+
 
   test(e){
     console.log("点击结果",e.currentTarget.dataset.address)
     orderStatus = 1;
     isWaimai = 1;
     status_2 = 1; 
+    var key = "root"
     wx.cloud.database().collection("order")
       .orderBy('_createTime', 'desc')
       .where({
@@ -414,82 +261,95 @@ Page({
         status_2:status_2,
         address:e.currentTarget.dataset.address
       }).get().then(res => {
-        
-
-
-        wx.login({ 
-   
-        }).then((ress)=>{	
-          if (ress.code) {
-              console.log('登录成功！'+ress.code);
-              // this.setData({
-              //  tempcode : res.code
-              // })
-            
-            }else{
-            console.log('登录失败！'+ress.errMsg);
-        }
-
-
-
+        console.log("外卖结果",res)
         console.log("读取成功",res.data)
+        var timeindex = this.data.timeindex 
+        var time = this.data.array[timeindex]//选择还剩多久到
+        var arr = res.data
+        var obj = {time:time, info_art:3}
+
+        arr.push(obj)
+        console.log("发送内容对象",arr)
+        var jsonstr = JSON.stringify(arr)
         this.setData({
           liste: res.data
         })
-        for(var num = 0 ; num < res.data.length ; num++){
-          console.log(res.data[num])
-          
-          var key = "root"
-          // 订单号
-          var order_number = res.data[num]._id
-          var time = 15//选择还剩多久到
-          var order_time = res.data[num]._createTime
-          var dish = res.data[num].orderList
-          var pay = res.data[num].totalPrice
-          var detail = []
-          // var detail = this.data.detail
-          var address = res.data[num].address
-          var ps = res.data[num].totalPrice    //  备注
-          var tempcode = ress.code
-          console.log("temp为",tempcode)
-          var msg = `{'info_art': 3 ,'dish':'${dish}','pay':'${pay}','detail':'${detail}',
-                     'address':'${address}','ps':'${ps}','tempcode':'${tempcode}',
-                     'order_number':'${order_number}' , 'time':'${time}', 'order_time':'${order_time}',
-                                                                                 }`
         this.socket()
         this.sendSocketMessage(key)
-        this.sendSocketMessage(msg)
-        
-        }
-      })
+        console.log("发送内容",jsonstr)
+        this.sendSocketMessage(jsonstr)
       }).catch(res => {
         console.log("失败")
       })
 
-    // test
+  
+  },
+  testlate(e){
+    console.log("点击结果",e.currentTarget.dataset.address)
+    orderStatus = 1;
+    isWaimai = 1;
+    status_2 = 1; 
+    var key = "root"
+    wx.cloud.database().collection("order")
+      .orderBy('_createTime', 'desc')
+      .where({
+        status: orderStatus,
+        isWaimai:isWaimai,
+        status_2:status_2,
+        address:e.currentTarget.dataset.address
+      }).get().then(res => {
+        console.log("外卖结果",res)
+        console.log("读取成功",res.data)
+        var arr = res.data
+        var obj = {time:3, info_art:5}
+        arr.push(obj)
+        console.log("发送内容对象",arr)
+        var jsonstr = JSON.stringify(arr)
+        this.setData({
+          liste: res.data
+        })
+        this.socket()
+        this.sendSocketMessage(key)
+        console.log("发送内容",jsonstr)
+        this.sendSocketMessage(jsonstr)
+      }).catch(res => {
+        console.log("失败")
+      })
 
-  //   var arrs = [];
-  //   for(var num = 0 ; num < res.result.data.length ; num++){
-  //     if(res.result.data[num].isWaimai == 1){
-  //         console.log(res.result.data[num].address);//1,2,3,4,5,6,7,8,9
-  //         // if(res.result.data[i].address in  ){
-  //         // }
-  //         var option = {address:res.result.data[num].address,number:1}
-  //         if (arrs.findIndex(function(item) { return item.address === res.result.data[num].address; }) == -1) {
-  //           arrs.push(option)
-  //         }
-  //         else{
-  //           // arrs[0]['number'] += 1
-  //           var index = arrs.findIndex(function(item) { return item.address === res.result.data[num].address; })
-  //           arrs[index]['number'] += 1
-  //         }
-  //       }
-  //   }
-  //   // option = {address: "江苏省启东 ", number: 1}
-  //   // console.log("新增结果", arrs.findIndex(option))
-  //   console.log("新增结果", arrs)
-  //   // arrs.indexOf(option)
+  
+  },
+  testok(e){
+    console.log("点击结果",e.currentTarget.dataset.address)
+    orderStatus = 1;
+    isWaimai = 1;
+    status_2 = 1; 
+    var key = "root"
+    wx.cloud.database().collection("order")
+      .orderBy('_createTime', 'desc')
+      .where({
+        status: orderStatus,
+        isWaimai:isWaimai,
+        status_2:status_2,
+        address:e.currentTarget.dataset.address
+      }).get().then(res => {
+        console.log("外卖结果",res)
+        console.log("读取成功",res.data)
+        var arr = res.data
+        var obj = {time:0, info_art:4}
+        arr.push(obj)
+        console.log("发送内容对象",arr)
+        var jsonstr = JSON.stringify(arr)
+        this.setData({
+          liste: res.data
+        })
+        this.socket()
+        this.sendSocketMessage(key)
+        console.log("发送内容",jsonstr)
+        this.sendSocketMessage(jsonstr)
+      }).catch(res => {
+        console.log("失败")
+      })
 
-  // // test
-  }
+  
+  },
 })

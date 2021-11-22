@@ -1,15 +1,43 @@
 <!--pages/me/me.wxml-->
-<view class="header" wx:if="{{logged}}">
+<!-- <view class="header" wx:if="{{logged}}">
 	<image class="userinfo-avatar" bindtap="queryAuthByOpenid1" src="{{userInfo.avatarUrl}}"></image>
 	<text class="userinfo-nickname" bindtap="queryAuthByOpenid1">{{userInfo.realname?userInfo.realname:userInfo.nickName}}</text>
 		<text class="tuichu" catchtap="tuichu">退出登录</text>
 	
-</view>
-<view wx:if="{{!logged}}" class="btn-login">
+</view> -->
+<!-- <view wx:if="{{!logged}}" class="btn-login">
 	<image class="userinfo-avatar_0" src="https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E9%A6%96%E9%A1%B5/%E5%9B%BE%E5%B1%82%203%20%E6%8B%B7%E8%B4%9D.png?sign=a9b813ad61b3bfdd86b02d39449a9647&t=1633645682" ></image>
 		<text class="userinfo-nickname_0" bindtap="queryAuthByOpenid" >授权登陆</text>
 			
-</view>
+</view> -->
+<button 
+      class="userinfo-avatar"
+      style="background-image:url({{memberInfo.avatarUrl}})"
+      size="default"
+      bindtap="{{!buttonClicked ? 'queryAuthByOpenid' : ''}}"
+    ></button>
+<view class="member-info">
+      <view class="nickname">
+        <view class="nick">{{memberInfo.nickname}}</view>   
+      </view>
+      <view wx:if="{{initflag}}">
+        <view wx:if="{{newuser == ''}}" class="tel">
+          <button class='class="userinfo-nickname_0' 
+          bindtap="{{!buttonClicked ? 'queryAuthByOpenid' : ''}}">
+          授权登录 
+          </button>
+          
+        </view>
+      </view>
+      <view wx:else>
+        <view wx:if="{{memberInfo.tel == ''&& newuser == 1 }}" class="tel">
+         
+          <view class="ziti2">您为游客，点击头像注册有惊喜</view>
+        </view>
+      <view class="ziti3">{{memberInfo.tel}}</view>
+      </view>
+
+    </view>
 	<!-- 三个logo -->
 	<view class="menu">
 		<image class="menu_img" bindtap="gomyorder" src="https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E4%B8%AA%E4%BA%BA/%E7%BB%84%2010.png?sign=aad08567f90ee2ade3d9eecf532a6b7c&t=1633640205" mode="aspectFit"></image>
@@ -26,11 +54,6 @@
 			<text>修改个人信息</text>
 			<view class='right_arrow' />
 		</view> -->
-
-
-
-
-
 
 		<!-- 我的订单 -->
 		<view class='my_item1' bindtap="goToMyOrder">

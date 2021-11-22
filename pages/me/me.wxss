@@ -32,13 +32,12 @@
   color: rgb(255, 255, 255);
 }
 
-.userinfo-avatar {
-  
-  border-radius: 158rpx;
-  width: 120rpx;
-  height: 120rpx;
-  margin-block-start: 65px;
-
+.userinfo-avatar{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background-size: cover;
+  background-color: white;
 }
 
 .userinfo-avatar_0 {
@@ -66,6 +65,31 @@
   margin-top: 150rpx;
   margin-left: 25rpx;
   font-size: 42rpx;
+}
+.member-info{
+  flex: 0.8;
+  margin-left:20rpx;
+  height: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  position: relative;
+  z-index: 20;
+}
+.member-info .nickname{
+  display: flex;
+  color: #1d1c1b;
+}
+.member-info .nickname .nick{
+  width: 200rpx;
+  color: rgb(8, 8, 8);
+  display:-webkit-box;
+  -webkit-line-clamp:1;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  -webkit-box-orient:vertical;
+  font-weight: bold;
+  word-break:break-all;
 }
 
 .runner_desc {

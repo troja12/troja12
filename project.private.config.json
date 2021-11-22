@@ -1,4 +1,5 @@
 {
+  "setting": {},
   "condition": {
     "plugin": {
       "list": []
@@ -99,6 +100,24 @@
         {
           "name": "pages/pay2/pay2",
           "pathName": "pages/pay2/pay2",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/adminWaimai_test/adminWaimai_test",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/adminWaimai_test/adminWaimai_test",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/me/me",
           "query": "",
           "scene": null
         }
