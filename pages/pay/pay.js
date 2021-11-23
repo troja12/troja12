@@ -1,5 +1,7 @@
 let app = getApp();
 const db = wx.cloud.database()
+var socketOpen = false
+var socketMsgQueue = []
 var util = require('../../util/util.js');
 Page({
   data: { //页面的初始数据   
@@ -158,6 +160,7 @@ Page({
       }).then(res => {
         console.log('添加销量成功', res)
         wx.setStorageSync('cart', "")
+        this.orderok(outTradeNo)
         wx.switchTab({
           url: '../me/me',
         })
@@ -178,37 +181,89 @@ Page({
     })
   },
 
-  orderok(e){
-    console.log("点击结果",e.currentTarget.dataset.address)
-    orderStatus = 1;
-    isWaimai = 1;
-    status_2 = 1; 
+   //发送通知
+   socket: function () {
+    var that = this
+    //创建一个 WebSocket 连接；
+    //一个微信小程序同时只能有一个 WebSocket 连接，如果当前已存在一个 WebSocket 连接，会自动关闭该连接，并重新创建一个 WebSocket 连接。
+    wx.connectSocket({
+      url: 'ws://43.132.246.14:1235'
+    })
+    //监听WebSocket错误
+    wx.onSocketError(function (res) {
+      socketOpen = false
+      console.log('WebSocket连接打开失败，请检查！')
+      wx.hideToast()
+    })
+    //监听WebSocket连接打开事件。
+    wx.onSocketOpen(function (res) {
+      console.log('WebSocket连接已打开！')
+      wx.hideToast()
+      socketOpen = true
+      for (var i = 0; i < socketMsgQueue.length; i++) {
+        that.sendSocketMessage(socketMsgQueue[i])
+      }
+      socketMsgQueue = []
+    })
+    //监听WebSocket接受到服务器的消息事件
+    wx.onSocketMessage(function (res) {
+      console.log('收到服务器内容：' + res.data)
+      wx.closeSocket()
+    })
+    //监听WebSocket关闭
+    wx.onSocketClose(function (res) {
+      socketOpen = false
+      console.log('WebSocket 已关闭！')
+      wx.hideToast()
+      that.setData({
+        socktBtnTitle: '连接socket'
+      })
+    })
+  },
+
+  
+  sendSocketMessage: function (msg) {
+    if (socketOpen) {
+      //通过 WebSocket 连接发送数据，需要先 wx.connectSocket，并在 wx.onSocketOpen 回调之后才能发送。
+      wx.sendSocketMessage({
+        data: msg
+      })
+    } else {
+      socketMsgQueue.push(msg)
+    }
+  },
+
+  orderok(outTradeNo){
+    var date = new Date();
+    var createTime = util.formatTime1(date )
+    var createTime1 =  createTime.replace(/-/g, '/')
+    console.log("支付成功", createTime1)
+   
     var key = "root"
-    wx.cloud.database().collection("order")
-      .orderBy('_createTime', 'desc')
-      .where({
-        status: orderStatus,
-        isWaimai:isWaimai,
-        status_2:status_2,
-        address:e.currentTarget.dataset.address
-      }).get().then(res => {
-        console.log("外卖结果",res)
-        console.log("读取成功",res.data)
-        var arr = res.data
+   
+    var arr = {
+      outTradeNo:outTradeNo,
+      name: app.globalData.userInfo.nickName,
+      unionid:app.globalData.unionid,
+      beizhu: this.data.beizhu,
+      address: app.globalData.address,
+      totalPrice: this.data.totalPrice, //总价钱
+      _createTime: createTime1 , //创建的时间
+      
+        }
+        console.log("内容数组",arr)
         var obj = {time:0, info_art:1}
-        arr.push(obj)
-        console.log("发送内容对象",arr)
-        var jsonstr = JSON.stringify(arr)
-        this.setData({
-          liste: res.data
-        })
+        var arr1= []
+        arr1.push(arr)
+        arr1.push(obj)
+
+        console.log("发送内容对象",arr1)
+        var jsonstr = JSON.stringify(arr1)
         this.socket()
         this.sendSocketMessage(key)
         console.log("发送内容",jsonstr)
         this.sendSocketMessage(jsonstr)
-      }).catch(res => {
-        console.log("失败")
-      })
+      
 
   
   },

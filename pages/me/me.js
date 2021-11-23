@@ -48,6 +48,7 @@ Page({
                 title: '登陆中...',
               })
               let userInfo = res.userInfo;
+              console.log("信息渲染",userInfo)
               that.setData({
                 userInfo:userInfo,               
                 newuser:1
@@ -97,9 +98,7 @@ Page({
         })
       }
       })
-
     },
-
    //查询会员是否存在
    selectMember:function(){
     const db = wx.cloud.database()
@@ -109,7 +108,10 @@ Page({
         var member = res.data
         if(member.length === 0){
           //当会员不存在时，为用户创建会员信息
-          this.creatMember()
+          //this.creatMember()
+          this.setData({
+            initflag: true,      
+          })
         }else{
           this.setData({
             memberInfo:member[0],
@@ -217,6 +219,7 @@ Page({
               memberId:re._id,
               buttonClicked: false 
             })
+            that.checklogin()
             // //跳转到个人信息页面
             // wx.navigateTo({
             //   url: '../me/personInfo/personInfo',
@@ -306,6 +309,7 @@ Page({
             let nickname=data[0].nickName
             let avatarUrl = data[0].avatarUrl
             that.setData({
+              initflag:false,
               memberInfo:data[0],
               nickName:nickname,
               avatarUrl:avatarUrl

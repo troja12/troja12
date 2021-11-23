@@ -71,7 +71,7 @@ Page({
       .then(res => {
         console.log("用户订单列表", res.result.data.length)
         console.log("用户订单列表具体信息", res.result.data)
-        console.log("用户订单列表", res.result.data[0].address)
+        //console.log("用户订单列表", res.result.data[0].address)
         // test
 
           var arrs = [];
@@ -248,59 +248,60 @@ Page({
 
 
   test(e){
-    console.log("点击结果",e.currentTarget.dataset.address)
-    orderStatus = 1;
-    isWaimai = 1;
-    status_2 = 1; 
+  console.log("点击结果",e.currentTarget.dataset.address)
+   var orderStatus = 1;
+   var isWaimai = 1;
+   var status_2 = 1; 
     var key = "root"
-    wx.cloud.database().collection("order")
-      .orderBy('_createTime', 'desc')
-      .where({
-        status: orderStatus,
+    var address = e.currentTarget.dataset.address
+    wx.cloud.callFunction({
+      name: 'getwaimai',
+      data: {
+        orderStatus: orderStatus,
         isWaimai:isWaimai,
         status_2:status_2,
-        address:e.currentTarget.dataset.address
-      }).get().then(res => {
+        address: address,
+      }
+    }).then(res => {
         console.log("外卖结果",res)
-        console.log("读取成功",res.data)
+        console.log("读取成功",res.result.data)
         var timeindex = this.data.timeindex 
         var time = this.data.array[timeindex]//选择还剩多久到
-        var arr = res.data
+        var arr = res.result.data
         var obj = {time:time, info_art:3}
 
         arr.push(obj)
         console.log("发送内容对象",arr)
         var jsonstr = JSON.stringify(arr)
-        this.setData({
-          liste: res.data
-        })
         this.socket()
         this.sendSocketMessage(key)
         console.log("发送内容",jsonstr)
         this.sendSocketMessage(jsonstr)
       }).catch(res => {
-        console.log("失败")
+        console.log("失败",res)
       })
 
   
   },
   testlate(e){
     console.log("点击结果",e.currentTarget.dataset.address)
-    orderStatus = 1;
-    isWaimai = 1;
-    status_2 = 1; 
-    var key = "root"
-    wx.cloud.database().collection("order")
-      .orderBy('_createTime', 'desc')
-      .where({
-        status: orderStatus,
-        isWaimai:isWaimai,
-        status_2:status_2,
-        address:e.currentTarget.dataset.address
-      }).get().then(res => {
+    var orderStatus = 1;
+    var isWaimai = 1;
+    var status_2 = 1; 
+     var key = "root"
+     var address = e.currentTarget.dataset.address
+     wx.cloud.callFunction({
+       name: 'getwaimai',
+       data: {
+         orderStatus: orderStatus,
+         isWaimai:isWaimai,
+         status_2:status_2,
+         address: address,
+       }
+     }).then(res => {
         console.log("外卖结果",res)
-        console.log("读取成功",res.data)
-        var arr = res.data
+        console.log("读取成功",res.result.data)
+        var arr = res.result.data
         var obj = {time:3, info_art:5}
         arr.push(obj)
         console.log("发送内容对象",arr)
@@ -320,21 +321,23 @@ Page({
   },
   testok(e){
     console.log("点击结果",e.currentTarget.dataset.address)
-    orderStatus = 1;
-    isWaimai = 1;
-    status_2 = 1; 
-    var key = "root"
-    wx.cloud.database().collection("order")
-      .orderBy('_createTime', 'desc')
-      .where({
-        status: orderStatus,
-        isWaimai:isWaimai,
-        status_2:status_2,
-        address:e.currentTarget.dataset.address
-      }).get().then(res => {
+    var orderStatus = 1;
+    var isWaimai = 1;
+    var status_2 = 1; 
+     var key = "root"
+     var address = e.currentTarget.dataset.address
+     wx.cloud.callFunction({
+       name: 'getwaimai',
+       data: {
+         orderStatus: orderStatus,
+         isWaimai:isWaimai,
+         status_2:status_2,
+         address: address,
+       }
+     }).then(res => {
         console.log("外卖结果",res)
-        console.log("读取成功",res.data)
-        var arr = res.data
+        console.log("读取成功",res.result.data)
+        var arr = res.result.data
         var obj = {time:0, info_art:4}
         arr.push(obj)
         console.log("发送内容对象",arr)

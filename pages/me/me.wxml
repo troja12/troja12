@@ -22,11 +22,10 @@
       </view>
       <view wx:if="{{initflag}}">
         <view wx:if="{{newuser == ''}}" class="tel">
-          <button class='class="userinfo-nickname_0' 
+          <button class='userinfo-nickname' 
           bindtap="{{!buttonClicked ? 'queryAuthByOpenid' : ''}}">
           授权登录 
-          </button>
-          
+          </button>  
         </view>
       </view>
       <view wx:else>
