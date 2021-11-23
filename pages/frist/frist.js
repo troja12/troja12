@@ -3,6 +3,7 @@ const app = getApp()
 let db = wx.cloud.database();
 Page({
 
+ 
   /**
    * 页面的初始数据
    */
@@ -53,6 +54,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 0
+
+      })
+
+    }    //自定义tabbar的onshow
+
+
     this.getTopBanner() //请求顶部轮播图
     if(this.data.openid=''){
       this.setData({
@@ -127,8 +138,9 @@ Page({
 
   },
   goFood() {
-    wx.switchTab({
-      url: "/pages/food2/food2"
+    // 跳转到酒店堂食
+    wx.navigateTo({
+      url: "/pages/food2/food2",
     })
   },
   getpoint(){
@@ -140,26 +152,12 @@ Page({
     
       },
 
-  gotest() {
-    wx.switchTab({
-    
-      url: "/pages/test/test"
-    })
-  },
   gowaimaifood2(){
+    // 跳转到外卖点单
     wx.navigateTo({
       url: "/pages/waimaifood2/waimaifood2",
     })
   },
-  // checkFoodPage() {
-  //   if (app.globalData.isNeedFenLei) {
-  //     return '/pages/food2/food2'
-  //   } else {
-  //     return '/pages/food/food'
-  //   }
-  // },
-  
-
 
   getMemberid:function(){
     wx.cloud.callFunction({
@@ -190,13 +188,11 @@ Page({
     })
   },
 
-
-
   getTopBanner() {
     wx.cloud.database().collection("banner")
       .get()
       .then(res => {
-        console.log("首页banner成功", res)
+        console.log("首页banner成功", res.data)
         if (res.data && res.data.length > 0) {
           //如果后台配置轮播图就用后台的，没有的话就用默认的
           this.setData({
@@ -211,18 +207,7 @@ Page({
 
 
 
-// Component({
-//   pageLifetimes: {
-//     show() {
-//       if (typeof this.getTabBar === 'function' &&
-//         this.getTabBar()) {
-//         this.getTabBar().setData({
-//           selected: 0
-//         })
-//       }
-//     }
-//   }
-// })
+
 
 
 

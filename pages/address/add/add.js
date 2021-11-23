@@ -50,9 +50,10 @@ Page({
       this.setData({
         'addressList.telephone':value
       })
-      console.log(this.data.addressList.telephone)
+      console.log("电话是",this.data.addressList.telephone)
+      console.log("电话是1",this.mobile)
       //正则验证电话是否合格
-      var mobile = /^[1][0-9][0-9]{9}$/
+      var mobile = /^[0-1][0-9]{9}[0-9]*$/
       var isMobile = mobile.exec(this.data.addressList.telephone)
 
       setTimeout(()=>{
@@ -85,6 +86,8 @@ Page({
     let username = e.detail.value.username
     let telephone = e.detail.value.telephone
     let address = e.detail.value.address
+    var mobile = /^[0-1][0-9]{9}[0-9]*$/
+    var isMobile = mobile.exec(this.data.addressList.telephone)
     console.log(e.detail.value)
     setTimeout(()=>{
       if(username==''||telephone==''||address==''){
@@ -94,6 +97,14 @@ Page({
         this.ohShitfadeOut(); 
         return;  
       }
+      if(!isMobile){
+        this.setData(
+          { popErrorMsg: "请输入正确格式的电话号码" }
+        ); 
+        this,this.ohShitfadeOut();
+        return;
+      }
+      
       let addresses = e.detail.value
       //获取数据库引用
       const db = wx.cloud.database()

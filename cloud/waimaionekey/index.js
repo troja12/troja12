@@ -8,7 +8,10 @@ cloud.init({
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  return await cloud.database().collection('order').where({address:event.address})
+  return await cloud.database().collection('order').where({
+    address:event.address,
+    status:1,
+  })
     .update({
       data: {
         isWaimai: 0, //制作完成

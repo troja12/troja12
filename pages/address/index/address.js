@@ -15,15 +15,16 @@ Page({
 
   _selectAddress:function(evt){
     console.log("当前地址为",evt.currentTarget.dataset.address)
+    
     let _id = evt.currentTarget.dataset.id
     const db = wx.cloud.database()
-    if(getCurrentPages().length == 4){
+ 
       db.collection('address').doc(_id).update({
         data:{
           isSelect:true
         },
         success:res=>{
-          wx.navigateTo({
+          wx.redirectTo({
             url: '/pages/waimaipay/waimaipay?address='+evt.currentTarget.dataset.address,
           })
         },
@@ -35,25 +36,23 @@ Page({
           })
         }
       })
-    }
-  else{
-    console.log("当前页面无法跳转")
-  }
+
 
   },
 
   _selectAddress1:function(evt){
     console.log("当前地址为",evt.currentTarget.dataset.address)
+    console.log("当前page",getCurrentPages().length)
     let _id = evt.currentTarget.dataset.id
     const db = wx.cloud.database()
 
-    if(getCurrentPages().length == 4){
+  
             db.collection('init-address').doc(_id).update({
               data:{
                 isSelect:true
               },
               success:res=>{
-                wx.navigateTo({
+                wx.redirectTo({
                   url: '/pages/waimaipay/waimaipay?address='+evt.currentTarget.dataset.address,
                 })
               },
@@ -65,10 +64,7 @@ Page({
                 })
               }
             })
-          }
-          else{
-            console.log("当前页面无法跳转")
-          }
+      
   },
 
   _toAdd:function(evt){

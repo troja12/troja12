@@ -10,13 +10,13 @@ Page({
     beizhu: "", // 备注信息
     payWayList: [{ //模拟支付方式列表
       "id": 1,
-      "package": "会员卡支付"
+      "package": "柜台处欧元现金支付"
     }, {
       "id": 2,
       "package": "微信支付"
     }, {
       "id": 3,
-      "package": "银行卡支付"
+      "package": "柜台处刷卡支付"
     }],
     cartList: [], // 购物车数据
     totalPrice: 0, //总价

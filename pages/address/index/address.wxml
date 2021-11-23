@@ -1,8 +1,6 @@
 <view   class="add-btn">
 	<view class="btn"  bindtap="_toAdd">
-			<image class="icon" 
-			src="cloud://cloud1-1ggq2djlc96d5e23.636c-cloud1-1ggq2djlc96d5e23-1307798933/system-icon/addAddress.png">
-			</image>
+
 			<view class="name">添加地址</view>
 	</view>
 </view>
@@ -30,7 +28,7 @@
 					
 					<view class="right" bindtap="_toEdit" id="{{item._id}}">
 						<image 
-						src="cloud://cloud1-1ggq2djlc96d5e23.636c-cloud1-1ggq2djlc96d5e23-1307798933/system-icon/edit.png"></image>
+						src="cloud://cloud1-3gpl3dnv29eed7ff.636c-cloud1-3gpl3dnv29eed7ff-1308423562/system-icon/edit.png"></image>
 					</view>
 				</view>
 				

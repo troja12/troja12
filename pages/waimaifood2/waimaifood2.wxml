@@ -1,10 +1,10 @@
 <!-- 菜单区域  -->
 <view class="main">
-  <!-- <scroll-view scroll-y="true" scroll-with-animation="true" bindscroll="rightScrollFn" class="left">
+  <scroll-view scroll-y="true" scroll-with-animation="true" bindscroll="rightScrollFn" class="left">
     <view wx:for="{{menuArr}}" data-myid="{{item.id}}" wx:key="index"
       class="scroll-view-item left-tab {{leftActiveNum==item.id ? 'active' : ''}}" bindtap="leftClickFn">{{item.title}}
     </view>
-  </scroll-view> -->
+  </scroll-view>
 
   <scroll-view scroll-y="true" scroll-with-animation="true" bindscroll="rightScrollFn" class="right"
     scroll-into-view="top{{Tab}}">
@@ -46,24 +46,24 @@
 
 <!--页面底部区域  -->
 <view class="bottom_box">
-  <view class="shop_cartBox" bindtap="cascadeToggle">
+  <view class="shop_cart_1Box" bindtap="cascadeToggle">
     <image class="shopCart_img" src="/image/shopCart.png"></image>
   </view>
-  <view class="all_money">总计:{{totalPrice}}元，{{totalNum}}件</view>
+  <view class="all_money">总计:{{totalPrice_1}}元，{{totalNum_1}}件</view>
   <view class="choose_ok" bindtap="gotoOrder">选好了</view>
 </view>
 
 
 <!--购物车弹窗  -->
 <view hidden="{{maskFlag}}" class="modal-mask" bindtap="cascadeToggle"></view>
-<view animation="{{animationData}}" class="cart_popup">
-  <view class="shopcart_title">
-    <span class="shopcart_close" bindtap="cascadeToggle">返回</span>购物车
-    <span class="shopcart_deleteAll" bindtap="cleanList">清空购物车</span>
+<view animation="{{animationData}}" class="cart_1_popup">
+  <view class="shopcart_1_title">
+    <span class="shopcart_1_close" bindtap="cascadeToggle">返回</span>购物车
+    <span class="shopcart_1_deleteAll" bindtap="cleanList">清空购物车</span>
   </view>
-  <scroll-view scroll-y style="height:250px;margin-top:35px">
-    <block wx:for="{{cartList}}" wx:key="index">
-      <view class="cart_cells" wx:if="{{item.quantity > 0}}">
+  <scroll-view scroll-y style="max-height: 250rpx;margin-top:35px">
+    <block wx:for="{{cartList_1}}" wx:key="index">
+      <view class="cart_1_cells" wx:if="{{item.quantity > 0}}">
         <view class="cells_name" data-index="{{index}}">{{item.name}}</view>
         <view class="cells_price" data-index="{{index}}">{{item.price}}</view>
         <view class="price-box">
@@ -79,7 +79,7 @@
             <image class="jiajian" src="/image/jia.png" />
           </view>
         </view>
-        <icon class="shopcart_delete" type="clear" size="18" data-index="{{index}}" data-id="{{item._id}}"
+        <icon class="shopcart_1_delete" type="clear" size="18" data-index="{{index}}" data-id="{{item._id}}"
           bindtap="deleteOne" />
       </view>
     </block>

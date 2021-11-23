@@ -5,7 +5,7 @@ var socketMsgQueue = []
 const db = wx.cloud.database()
 Page({
   data: { //页面的初始数据   
-    address:"店内订单",
+    address:"点击选择配送地址",
     diner_num: '', // 输入框中的用餐人数 
     beizhu: "", // 备注信息
     payWayList: [{ //模拟支付方式列表
@@ -18,9 +18,9 @@ Page({
       "id": 3,
       "package": "银行卡支付"
     }],
-    cartList: [], // 购物车数据
-    totalPrice: 0, //总价
-    totalNum: 0, //总数量
+    cartlist_1: [], // 购物车数据
+    totalPrice_1: 0, //总价
+    totalNum_1: 0, //总数量
     maskFlag: true, // 遮罩
     status_2:0,
     isWaimai:0,
@@ -32,15 +32,15 @@ Page({
       address: opt.address
     })
     //购物车的数据
-    var arr = wx.getStorageSync('cart') || [];
+    var arr = wx.getStorageSync('cart_1') || [];
     for (var i in arr) {
-      this.data.totalPrice += arr[i].quantity * arr[i].price;
-      this.data.totalNum += arr[i].quantity
+      this.data.totalPrice_1 += arr[i].quantity * arr[i].price;
+      this.data.totalNum_1 += arr[i].quantity
     }
     this.setData({
-      cartList: arr,
-      totalPrice: this.data.totalPrice.toFixed(2),
-      totalNum: this.data.totalNum
+      cartlist_1: arr,
+      totalPrice_1: this.data.totalPrice_1.toFixed(2),
+      totalNum_1: this.data.totalNum_1
     })
   },
   // 点击数字，输入框出现对应数字
@@ -63,24 +63,34 @@ Page({
   },
   //打开支付方式弹窗
   choosePayWay() {
-    var that = this;
-    var rd_session = wx.getStorageSync('rd_session') || [];
+    console.log("当前地址为",this.__data__.address)
+    if(this.__data__.address!= undefined){
+      var that = this;
+      var rd_session = wx.getStorageSync('rd_session') || [];
 
-    // 支付方式打开动画
-    var animation = wx.createAnimation({
-      duration: 200,
-      timingFunction: 'ease-in-out',
-      delay: 0
-    });
-    that.animation = animation;
-    animation.translate(0, -285).step();
-    that.setData({
-      animationData: that.animation.export(),
-    });
-    that.setData({
-      maskFlag: false,
-    });
-  },
+      // 支付方式打开动画
+      var animation = wx.createAnimation({
+        duration: 200,
+        timingFunction: 'ease-in-out',
+        delay: 0
+      });
+      that.animation = animation;
+      animation.translate(0, -285).step();
+      that.setData({
+        animationData: that.animation.export(),
+      });
+      that.setData({
+        maskFlag: false,
+      });
+    }
+    else{
+      wx.showToast({
+        title: '请选择配送地址',
+        icon: 'none',
+        duration: 2000//持续的时间
+      })
+    }
+    },
   // 支付方式关闭方法
   closePayWay() {
     var that = this
@@ -128,7 +138,7 @@ Page({
         renshu: parseInt(this.data.diner_num), //用餐人数,
         beizhu: this.data.beizhu,
         address: this.data.address,
-        totalPrice: this.data.totalPrice, //总价钱
+        totalPrice_1: this.data.totalPrice_1, //总价钱
         orderList: arrNew, //存json字符串
         status: 0, 
         status_2:1,

@@ -71,6 +71,13 @@ Page({
       .then(res => {
         console.log("用户订单列表", res.result.data.length)
         console.log("用户订单列表具体信息", res.result.data)
+        console.log("全部信息", res)
+        if(res.result.data.length == 0){
+          wx.showToast({
+            title: '当前暂无订单',
+            icon:'none',
+          })
+        }
         //console.log("用户订单列表", res.result.data[0].address)
         // test
 
@@ -103,7 +110,14 @@ Page({
         })
         console.log("外卖分类", this.data.addtype)
       }).catch(res => {
-        console.log("用户订单列表失败", res)
+        
+        console.log("用户订单列表失败")
+        
+        this.setData({
+          list: [],
+          addtype: []
+        })
+
       })
   },
 

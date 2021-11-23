@@ -1,10 +1,10 @@
 <!-- 菜单区域  -->
 <view class="main">
-  <!-- <scroll-view scroll-y="true" scroll-with-animation="true" bindscroll="rightScrollFn" class="left">
+  <scroll-view scroll-x="true" scroll-with-animation="true" bindscroll="rightScrollFn" class="left">
     <view wx:for="{{menuArr}}" data-myid="{{item.id}}" wx:key="index"
       class="scroll-view-item left-tab {{leftActiveNum==item.id ? 'active' : ''}}" bindtap="leftClickFn">{{item.title}}
     </view>
-  </scroll-view> -->
+  </scroll-view>
 
   <scroll-view scroll-y="true" scroll-with-animation="true" bindscroll="rightScrollFn" class="right"
     scroll-into-view="top{{Tab}}">
@@ -61,8 +61,8 @@
     <span class="shopcart_close" bindtap="cascadeToggle">返回</span>购物车
     <span class="shopcart_deleteAll" bindtap="cleanList">清空购物车</span>
   </view>
-  <scroll-view scroll-y style="height:250px;margin-top:35px">
-    <block wx:for="{{cartList}}" wx:key="index">
+  <scroll-view scroll-y style="max-height:250px;margin-top:35px">
+    <view wx:for="{{cartList}}" wx:key="index">
       <view class="cart_cells" wx:if="{{item.quantity > 0}}">
         <view class="cells_name" data-index="{{index}}">{{item.name}}</view>
         <view class="cells_price" data-index="{{index}}">{{item.price}}</view>
@@ -82,6 +82,6 @@
         <icon class="shopcart_delete" type="clear" size="18" data-index="{{index}}" data-id="{{item._id}}"
           bindtap="deleteOne" />
       </view>
-    </block>
+    </view>
   </scroll-view>
 </view>

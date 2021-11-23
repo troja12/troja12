@@ -40,7 +40,8 @@ input {
 
 /*选用餐人数按钮盒子  */
 .xuanzekuang {
-  padding: 20rpx 40rpx;
+  padding: 10rpx 20rpx 70rpx 20rpx;
+
 }
 
 .xuanzekuang1 {
@@ -143,7 +144,7 @@ input {
   left: 0;
   bottom: 0rpx;
   z-index: 100;
-  background-color: #fff;
+  background-color:#e6b887;
 }
 
 /*总计金额、件数  */
@@ -153,7 +154,7 @@ input {
   height: 84rpx;
   line-height: 84rpx;
   text-align: center;
-  color: #fff;
+  color:#ffffff;
   font-size: 32rpx;
   background-color: #09ba07;
   border-radius: 20rpx;

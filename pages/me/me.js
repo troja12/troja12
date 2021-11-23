@@ -291,6 +291,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+
+
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 1
+
+      })
+
+    } //自定义tabbar的onshow
+
+
     if(this.data.openid=''){
       this.setData({
         openid:app.globalData.openid
@@ -374,9 +385,8 @@ Page({
   },
 
   goumzug() {
-    wx.switchTab({
+    　wx.navigateTo({
       url: '../test/test',
-   
     })
   },
   gomyorder:function(){

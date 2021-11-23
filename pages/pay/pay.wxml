@@ -34,11 +34,13 @@
 </view>
 
 <!--备注  -->
-<input bindinput="getRemark" placeholder="请输入备注" value="{{remarks}}" />
+<input focus placeholder="请输入用餐备注" bindinput="getRemark" placeholder="请输入备注" value="{{remarks}}" />
+
+<view class="mingxi_title">地址：{{address}}</view>
 
 <view class="footer_box">
-	<button class="all_money" type="primary" size="{{primarySize}}" disabled="{{disabled}}" bindtap="choosePayWay">
-		总计：{{totalPrice}}元，{{totalNum}}件</button>
+	<view class="all_money" type="primary" size="{{primarySize}}" disabled="{{disabled}}" bindtap="choosePayWay">
+		总计：{{totalPrice}}元，{{totalNum}}件</view>
 </view>
 <!--选择支付方式弹窗  -->
 <view hidden="{{maskFlag}}" class="modal-mask" bindtap="closePayWay"></view>
