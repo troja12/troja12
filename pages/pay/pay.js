@@ -124,7 +124,7 @@ Page({
     db.collection("order").add({
       data: {
         outTradeNo:outTradeNo,
-        name: app.globalData.userInfo.nickName,
+        name: app.globalData.userInfo.nickname,
         unionid:app.globalData.unionid,
         renshu: parseInt(this.data.diner_num), //用餐人数,
         beizhu: this.data.beizhu,
@@ -243,7 +243,7 @@ Page({
    
     var arr = {
       outTradeNo:outTradeNo,
-      name: app.globalData.userInfo.nickName,
+      name: app.globalData.userInfo.nickname,
       unionid:app.globalData.unionid,
       beizhu: this.data.beizhu,
       address: app.globalData.address,

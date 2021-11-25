@@ -19,6 +19,7 @@ App({
     })
     this.getOpenid();
     this.getunionid();
+    this.selectMember();
   },
   // 获取用户openid
   getOpenid: function () {
@@ -53,7 +54,55 @@ App({
       }  
       })
   },
-  
+
+      //查询会员是否存在
+  selectMember:function(){
+        const db = wx.cloud.database()
+        //表权限为默认权限，只有创建者openid可以读写
+        db.collection('member').get({
+          success:(res)=>{
+            var member = res.data
+            if(member.length === 0){
+              //当会员不存在时，为用户创建会员信息
+              wx.showModal({
+                title: '请登录',
+                content: '请到个人中心登录',
+                showCancel: false, //去掉取消按钮
+                success: function (res) {
+                  if (res.confirm) {
+                    wx.switchTab({
+                      url: '../me/me',
+                    })
+                  }
+                }
+              })
+            }else{
+              this.globalData.userInfo = member[0];
+              console.log('用户信息',this.globalData.userInfo)
+            }
+          },
+          fail:err=>{
+            wx.showToast({
+              icon:'none',
+              title: '调用会员失败，请稍后再试',
+              duration:2000
+            })
+          }
+    })
+  },
+  _checkOpenid() {
+    let app = this
+    let openid = this.globalData.openid;
+    if (!openid) {
+      app.getOpenid();
+      wx.showLoading({
+        title: 'openid不能为空，请重新登录',
+      })
+      return null;
+    } else {
+      return openid;
+    }
+  },
 
   // 保存userinfo
   _saveUserInfo: function (user) {
