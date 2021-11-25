@@ -324,30 +324,12 @@ Page({
   },
   // 跳转确认订单页面
   gotoOrder: function () {
+    this.selectMember()
     var arr = wx.getStorageSync('cart') || [];
     if (!arr || arr.length == 0) {
       wx.showModal({
         title: '提示',
         content: '请选择菜品'
-      })
-      return;
-    }
-
-    let userInfo = app.globalData.userInfo;
-    console.log("userInfo植为",userInfo)
-    console.log("userInfo.nickName植为",userInfo.nickName)
-    if (!userInfo || !userInfo.nickName) {
-      wx.showModal({
-        title: '请登录',
-        content: '请到个人中心登录',
-        showCancel: false, //去掉取消按钮
-        success: function (res) {
-          if (res.confirm) {
-            wx.switchTab({
-              url: '../me/me',
-            })
-          }
-        }
       })
       return;
     }
@@ -361,13 +343,43 @@ Page({
     if (!app.globalData.isNeedSaoMa) {
       app.globalData.address = '店内下单'
     }
-
-
     wx.navigateTo({
       url: '/pages/pay/pay'
     })
 
 
+  },
+ //检查会员存在
+  selectMember:function(){
+    const db = wx.cloud.database()
+    //表权限为默认权限，只有创建者openid可以读写
+    db.collection('member').get({
+      success:(res)=>{
+        var member = res.data
+        if(member.length === 0){
+          //当会员不存在时，为用户创建会员信息
+          wx.showModal({
+            title: '请登录',
+            content: '请到个人中心登录',
+            showCancel: false, //去掉取消按钮
+            success: function (res) {
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '../me/me',
+                })
+              }
+            }
+          })
+        }
+      },
+      fail:err=>{
+        wx.showToast({
+          icon:'none',
+          title: '调用会员失败，请稍后再试',
+          duration:2000
+        })
+      }
+    })
   },
   /**
    * 分类相关

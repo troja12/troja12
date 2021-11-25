@@ -27,7 +27,6 @@ App({
     if (openidStor) {
       console.log('本地获取openid:' + openidStor);
       app.globalData.openid = openidStor;
-      app._getMyUserInfo();
     } else {
       wx.cloud.callFunction({
         name: 'getOpenid',
@@ -36,7 +35,6 @@ App({
           var openid = res.result.openid;
           wx.setStorageSync('openid', openid)
           app.globalData.openid = openid;
-          app._getMyUserInfo();
         },
         fail(res) {
           console.log('云函数获取失败', res)
@@ -55,46 +53,8 @@ App({
       }  
       })
   },
-  //获取自己后台的user信息
-  _getMyUserInfo() {
-    let app = this
-    var userStor = wx.getStorageSync('user');
-    if (userStor) {
-      console.log('本地获取user', userStor)
-      app.globalData.userInfo = userStor;
-    }
-    wx.request({
-      url: app.globalData.baseUrl + '/user/getUserInfo',
-      data: {
-        openid: app.globalData.openid
-      },
-      success: function (res) {
-        console.log("Java后台返回的用户信息", res.data)
-        if (res && res.data && res.data.data) {
-          app.globalData.userInfo.nickName = res.data.data.username;
-          app.globalData.userInfo.realphone = res.data.data.phone;
-          app.globalData.userInfo.realzhuohao = res.data.data.zhuohao;
-          app.globalData.userInfo.realrenshu = res.data.data.renshu;
-          console.log("===app.globalData===", app.globalData.userInfo)
-          //缓存到sd卡里
-          app._saveUserInfo(app.globalData.userInfo);
-        }
-      }
-    })
-  },
-  _checkOpenid() {
-    let app = this
-    let openid = this.globalData.openid;
-    if (!openid) {
-      app.getOpenid();
-      wx.showLoading({
-        title: 'openid不能为空，请重新登录',
-      })
-      return null;
-    } else {
-      return openid;
-    }
-  },
+  
+
   // 保存userinfo
   _saveUserInfo: function (user) {
     this.globalData.userInfo = user;
