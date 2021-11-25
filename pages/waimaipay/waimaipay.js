@@ -113,7 +113,7 @@ Page({
   //提交订单
   submitOrder: function (e) {
     var outTradeNo = util.wxuuid(5, 10)
-    let arr = wx.getStorageSync('cart') || [];
+    let arr = wx.getStorageSync('cart_1') || [];
     let arrNew = []
     arr.forEach(item => {
       arrNew.push({
@@ -126,7 +126,7 @@ Page({
     });
 
     var date = new Date();
-    var createTime = util.formatTime1(date )
+    var createTime = util.formatTime1(date)
     
     var createTime1 =  createTime.replace(/-/g, '/')
     console.log("支付成功", createTime1)
@@ -169,7 +169,7 @@ Page({
       }).then(res => {
         console.log('添加销量成功', res)
         this.orderok(outTradeNo)
-        wx.setStorageSync('cart', "")
+        wx.setStorageSync('cart_1', "")
         wx.switchTab({
           url: '../me/me',
         })
@@ -262,7 +262,7 @@ Page({
       unionid:app.globalData.unionid,
       beizhu: this.data.beizhu,
       address: this.data.address,
-      totalPrice: this.data.totalPrice, //总价钱
+      totalPrice: this.data.totalPrice_1, //总价钱
       _createTime: createTime1 , //创建的时间
       
         }
