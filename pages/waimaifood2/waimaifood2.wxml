@@ -49,7 +49,7 @@
   <view class="shop_cart_1Box" bindtap="cascadeToggle">
     <image class="shopCart_img" src="/image/shopCart.png"></image>
   </view>
-  <view class="all_money">总计:{{totalPrice_1}}元，{{totalNum_1}}件</view>
+  <view class="all_money">总计:{{totalPrice}}元，{{totalNum}}件</view>
   <view class="choose_ok" bindtap="gotoOrder">选好了</view>
 </view>
 
@@ -61,8 +61,8 @@
     <span class="shopcart_1_close" bindtap="cascadeToggle">返回</span>购物车
     <span class="shopcart_1_deleteAll" bindtap="cleanList">清空购物车</span>
   </view>
-  <scroll-view scroll-y style="max-height: 250rpx;margin-top:35px">
-    <block wx:for="{{cartList_1}}" wx:key="index">
+  <scroll-view scroll-y style="max-height:500rpx;margin-top:35px">
+    <block wx:for="{{cartList}}" wx:key="index">
       <view class="cart_1_cells" wx:if="{{item.quantity > 0}}">
         <view class="cells_name" data-index="{{index}}">{{item.name}}</view>
         <view class="cells_price" data-index="{{index}}">{{item.price}}</view>

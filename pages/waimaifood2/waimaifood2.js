@@ -4,9 +4,9 @@ const db = wx.cloud.database({});
 let windowHeight = 0
 Page({
   data: {
-    cartList_1: [], // 购物车
-    totalPrice_1: 0, // 总价，初始为0
-    totalNum_1_1: 0, //总数，初始为0
+    cartList: [], // 购物车
+    totalPrice: 0, // 总价，初始为0
+    totalNum: 0, //总数，初始为0
     // 购物车动画
     animationData: {},
     animationMask: {},
@@ -38,7 +38,7 @@ Page({
   },
   getFoodList(action, searchKey) {
     //获取购物车菜品
-    let cartList_1 = wx.getStorageSync('cart_1') || [];
+    let cartList = wx.getStorageSync('cart_1') || [];
     wx.cloud.callFunction({
       name: "getFoodList",
       data: {
@@ -51,7 +51,7 @@ Page({
       //遍历1,并把购物车购买数量填充进来
       dataList.forEach(food => {
         food.quantity = 0;
-        cartList_1.forEach(cart_1 => {
+        cartList.forEach(cart_1 => {
           if (cart_1._id == food._id) {
             food.quantity = cart_1.quantity ? cart_1.quantity : 0;
           }
@@ -83,7 +83,7 @@ Page({
       })
       console.log('过滤后', endData)
       this.setData({
-        cartList_1: cartList_1,
+        cartList: cartList,
         menuArr: endData,
       })
       this.getTotalPrice()
@@ -96,7 +96,7 @@ Page({
   //购物车减少数量
   minusCount(e) {
     let item = e.currentTarget.dataset.item;
-    let cartList_1 = wx.getStorageSync('cart_1') || [];
+    let cartList = wx.getStorageSync('cart_1') || [];
     let menuArr = this.data.menuArr
     menuArr.forEach(v => {
       v.list.forEach(v2 => {
@@ -106,24 +106,24 @@ Page({
           } else {
             v2.quantity = 0;
           }
-          if (cartList_1.length > 0) {
-            for (let j in cartList_1) {
-              if (cartList_1[j]._id == item._id) {
-                cartList_1[j].quantity ? cartList_1[j].quantity -= 1 : 0
-                if (cartList_1[j].quantity <= 0) {
+          if (cartList.length > 0) {
+            for (let j in cartList) {
+              if (cartList[j]._id == item._id) {
+                cartList[j].quantity ? cartList[j].quantity -= 1 : 0
+                if (cartList[j].quantity <= 0) {
                   //购买数里为0就从购物车里删除
-                  this.removeByValue(cartList_1, item._id)
+                  this.removeByValue(cartList, item._id)
                 }
-                if (cartList_1.length <= 0) {
+                if (cartList.length <= 0) {
                   this.setData({
-                    cartList_1: [],
-                    totalNum_1: 0,
-                    totalPrice_1: 0,
+                    cartList: [],
+                    totalNum: 0,
+                    totalPrice: 0,
                   })
                   // this.cascadeDismiss()
                 }
                 try {
-                  wx.setStorageSync('cart_1', cartList_1)
+                  wx.setStorageSync('cart_1', cartList)
                 } catch (e) {
                   console.log(e)
                 }
@@ -134,7 +134,7 @@ Page({
       })
     })
     this.setData({
-      cartList_1: cartList_1,
+      cartList: cartList,
       menuArr: menuArr
     })
     this.getTotalPrice();
@@ -190,7 +190,7 @@ Page({
     })
 
     this.setData({
-      cartList_1: arr,
+      cartList: arr,
       menuArr: menuArr
     })
     this.getTotalPrice();
@@ -199,17 +199,17 @@ Page({
 
   // 获取购物车总价、总数
   getTotalPrice() {
-    var cartList_1 = this.data.cartList_1; // 获取购物车列表
+    var cartList = this.data.cartList; // 获取购物车列表
     var totalP = 0;
     var totalN = 0
-    for (var i in cartList_1) { // 循环列表得到每个数据
-      totalP += cartList_1[i].quantity * cartList_1[i].price; // 所有价格加起来     
-      totalN += cartList_1[i].quantity
+    for (var i in cartList) { // 循环列表得到每个数据
+      totalP += cartList[i].quantity * cartList[i].price; // 所有价格加起来     
+      totalN += cartList[i].quantity
     }
     this.setData({ // 最后赋值到data中渲染到页面
-      cartList_1: cartList_1,
-      totalNum_1: totalN,
-      totalPrice_1: totalP.toFixed(2)
+      cartList: cartList,
+      totalNum: totalN,
+      totalPrice: totalP.toFixed(2)
     });
   },
   // 清空购物车
@@ -227,9 +227,9 @@ Page({
     }
     this.setData({
       menuArr: menuArr,
-      cartList_1: [],
-      totalNum_1: 0,
-      totalPrice_1: 0,
+      cartList: [],
+      totalNum: 0,
+      totalPrice: 0,
     })
     this.cascadeDismiss()
   },
@@ -251,9 +251,9 @@ Page({
     if (arr.length <= 0) {
       this.setData({
         menuArr: menuArr,
-        cartList_1: [],
-        totalNum_1: 0,
-        totalPrice_1: 0,
+        cartList: [],
+        totalNum: 0,
+        totalPrice: 0,
       })
       this.cascadeDismiss()
     }
@@ -263,7 +263,7 @@ Page({
       console.log(e)
     }
     this.setData({
-      cartList_1: arr,
+      cartList: arr,
       menuArr: menuArr
     })
     this.getTotalPrice()
@@ -271,7 +271,7 @@ Page({
   //切换购物车开与关
   cascadeToggle: function () {
     var that = this;
-    var arr = this.data.cartList_1
+    var arr = this.data.cartList
     if (arr.length > 0) {
       if (that.data.maskVisual == "hidden") {
         that.cascadePopup()
@@ -309,9 +309,11 @@ Page({
       maskFlag: false,
     });
   },
-  // 关闭购物车方法
   cascadeDismiss: function () {
     var that = this
+    var arr = this.data.cartList
+    //判断购物车是否为空
+    if(arr.length > 0){
     // 购物车关闭动画
     that.animation.translate(0, 285).step();
     that.setData({
@@ -327,7 +329,15 @@ Page({
       maskVisual: "hidden",
       maskFlag: true
     });
-  },
+  }
+  else{
+    wx.showToast({
+      title: '当前购物车未选商品',
+      icon:"none",
+      duration:2000,
+    })
+  }
+},
   // 跳转确认订单页面
   gotoOrder: function () {
     this.selectMember()

@@ -18,9 +18,9 @@ Page({
       "id": 3,
       "package": "银行卡支付"
     }],
-    cartlist_1: [], // 购物车数据
-    totalPrice_1: 0, //总价
-    totalNum_1: 0, //总数量
+    cartlist: [], // 购物车数据
+    totalPrice: 0, //总价
+    totalNum: 0, //总数量
     maskFlag: true, // 遮罩
     status_2:0,
     isWaimai:0,
@@ -34,13 +34,13 @@ Page({
     //购物车的数据
     var arr = wx.getStorageSync('cart_1') || [];
     for (var i in arr) {
-      this.data.totalPrice_1 += arr[i].quantity * arr[i].price;
-      this.data.totalNum_1 += arr[i].quantity
+      this.data.totalPrice += arr[i].quantity * arr[i].price;
+      this.data.totalNum += arr[i].quantity
     }
     this.setData({
-      cartlist_1: arr,
-      totalPrice_1: this.data.totalPrice_1.toFixed(2),
-      totalNum_1: this.data.totalNum_1
+      cartlist: arr,
+      totalPrice: this.data.totalPrice.toFixed(2),
+      totalNum: this.data.totalNum
     })
   },
   // 点击数字，输入框出现对应数字
@@ -138,7 +138,7 @@ Page({
         renshu: parseInt(this.data.diner_num), //用餐人数,
         beizhu: this.data.beizhu,
         address: this.data.address,
-        totalPrice_1: this.data.totalPrice_1, //总价钱
+        totalPrice: this.data.totalPrice, //总价钱
         orderList: arrNew, //存json字符串
         status: 0, 
         status_2:1,
@@ -262,7 +262,7 @@ Page({
       unionid:app.globalData.unionid,
       beizhu: this.data.beizhu,
       address: this.data.address,
-      totalPrice: this.data.totalPrice_1, //总价钱
+      totalPrice: this.data.totalPrice, //总价钱
       _createTime: createTime1 , //创建的时间
       
         }
