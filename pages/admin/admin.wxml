@@ -1,6 +1,6 @@
 
 
-<view wx:if="{{flag}}">
+<!-- <view wx:if="{{flag}}"> -->
 	<!--登录成功的状态-->
 	<view wx:if="{{isAdmin}}">
 		<view class="tab">
@@ -37,4 +37,4 @@
 		<!-- 提交按钮 -->
 		<button class='btn_fabu' bindtap='formSubmit' type='primary'>管理员登陆</button>
 	</view>
-</view>
+<!-- </view> -->
