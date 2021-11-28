@@ -5,6 +5,7 @@ const db = wx.cloud.database()
 Page({
   data: {
     isAdmin: false,
+    flag: false
   },
   //去后厨管理页
   goHouchu() {
@@ -75,7 +76,8 @@ Page({
         console.log("结果为",res.data)
         if (res.data && res.data.length > 0) {
           this.setData({
-            isAdmin: true
+            isAdmin: true,
+            flag: true
           })
           let admin = {
             name: name,
