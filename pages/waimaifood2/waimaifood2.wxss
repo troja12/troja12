@@ -32,7 +32,7 @@
 
 /* 右侧栏目 */
 .right {
-  /* height: 100vh; */
+  height: 100vh;
   width: 100%;
   float: right;
   
@@ -42,6 +42,7 @@
   box-sizing: border-box;
   padding-bottom: 200rpx;
 }
+
 
 .right .title {
   font-size: 30rpx;
