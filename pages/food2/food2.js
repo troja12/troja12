@@ -306,6 +306,9 @@ Page({
   // 关闭购物车方法
   cascadeDismiss: function () {
     var that = this
+    var arr = this.data.cartList
+    //判断购物车是否为空
+    if(arr.length > 0){
     // 购物车关闭动画
     that.animation.translate(0, 285).step();
     that.setData({
@@ -321,7 +324,16 @@ Page({
       maskVisual: "hidden",
       maskFlag: true
     });
-  },
+  }
+  else{
+    wx.showToast({
+      title: '当前购物车未选商品',
+      icon:"none",
+      duration:2000,
+    })
+  }
+},
+
   // 跳转确认订单页面
   gotoOrder: function () {
     this.selectMember()

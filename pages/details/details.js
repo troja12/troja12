@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    temp_img:'cloud://cloud1-3gpl3dnv29eed7ff.636c-cloud1-3gpl3dnv29eed7ff-1308423562/system-icon/图片添加.png',
     addressList:{},
     popErrorMsg:''
   },
@@ -96,6 +97,8 @@ Page({
     let arrive = e.detail.value.arrive
     let date = e.detail.value.date
     console.log(e.detail.value)
+    console.log('当前图片',this.data.temp_img)
+    console.log('当前shijian',Date.parse(new Date()))
     setTimeout(()=>{
       if(username==''||telephone==''||address==''){
         this.setData(
@@ -108,6 +111,7 @@ Page({
       //获取数据库引用
       const db = wx.cloud.database()
       let id = e.detail.value.id
+      console.log('当前图片',this.data.temp_img)
       //数据库新增操作
       if(id == ''){
        db.collection('umzugorder').add({
@@ -121,7 +125,8 @@ Page({
            date:addresses.date,
            isDefault:false,
            isOpen:false,
-           isSelect:false
+           isSelect:false,
+           img:this.data.temp_img
          },
          success:res => {
            wx.showToast({
@@ -249,11 +254,68 @@ Page({
   onReachBottom: function () {
 
   },
+  
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
 
+  },
+  
+// 上传照片
+  insertImage() {
+    var _this = this;
+    var that = this;
+    wx.showActionSheet({
+      itemList: ['从相册中选择', '拍照'],
+      itemColor: "#00000",
+      success: function (res) {
+        if (!res.cancel) {
+          if (res.tapIndex == 0) {
+            that.chooseWxImage_editor('album')
+          } else if (res.tapIndex == 1) {
+            that.chooseWxImage_editor('camera')
+          }
+        }
+      }
+    })
+  },
+  // 选择图片本地路径
+  chooseWxImage_editor: function (type) {
+    var that = this;
+    var imgsPaths = that.data.imgs;
+    wx.chooseImage({
+      sizeType: ['original', 'compressed'],
+      sourceType: [type],
+      success: function (res) {
+        console.log(res.tempFilePaths[0]);
+        that.upload_picture(res.tempFilePaths[0]) //调用上传方法
+      }
+    })
+  },
+  /**编辑器图片上传至服务器**/
+  upload_picture: function(name) {
+    console.log('传参',name)
+    console.log('this',this)
+    var that = this
+    const cloudPath = 'umzug_img/' + Date.parse(new Date()) 
+        //选择完成会先返回一个临时地址保存备用
+        //将照片上传至云端需要刚才存储的临时地址
+        wx.cloud.uploadFile({
+          cloudPath,
+          filePath: name,
+          success(res) {
+          //上传成功后会返回永久地址
+             console.log(res.fileID) 
+             console.log('that',that) 
+             that.setData({
+              temp_img:res.fileID
+             })
+             
+          }
+        })
+    
   }
+
 })

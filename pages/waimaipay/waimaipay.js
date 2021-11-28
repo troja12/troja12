@@ -26,20 +26,27 @@ Page({
     isWaimai:0,
   },
   onLoad(opt) {
-    console.log('app地址', app.globalData.address)
-    console.log("页面携带数据",opt.address)
-    this.setData({
-      address: opt.address
-    })
+    console.log('当前缓存地址', wx.getStorageSync('current_addr'))
+    if(wx.getStorageSync('current_addr')){
+      this.setData({
+        address: wx.getStorageSync('current_addr')
+      })
+    }
+    else{
+      this.setData({
+        address: "请选择或添加自提地址"
+      })
+    }
     //购物车的数据
     var arr = wx.getStorageSync('cart_1') || [];
+    console.log('当前this',this.data.totalPrice)
     for (var i in arr) {
       this.data.totalPrice += arr[i].quantity * arr[i].price;
       this.data.totalNum += arr[i].quantity
     }
     this.setData({
       cartlist: arr,
-      totalPrice: this.data.totalPrice.toFixed(2),
+      totalPrice: this.data.totalPrice,
       totalNum: this.data.totalNum
     })
   },

@@ -24,9 +24,17 @@ Page({
           isSelect:true
         },
         success:res=>{
-          wx.redirectTo({
-            url: '/pages/waimaipay/waimaipay?address='+evt.currentTarget.dataset.address,
-          })
+
+          wx.navigateBack({
+            delta: 1,
+            success: function (e) {
+              wx.setStorageSync('current_addr',evt.currentTarget.dataset.address);
+              console.log('当前缓存地址',wx.getStorageSync('current_addr'));
+              var page = getCurrentPages().pop();
+              if (page == undefined || page == null) return;
+                  page.onLoad();
+              }
+        })
         },
         fail:err =>{
           wx.showToast({
@@ -45,16 +53,22 @@ Page({
     console.log("当前page",getCurrentPages().length)
     let _id = evt.currentTarget.dataset.id
     const db = wx.cloud.database()
-
-  
             db.collection('init-address').doc(_id).update({
               data:{
                 isSelect:true
               },
               success:res=>{
-                wx.redirectTo({
-                  url: '/pages/waimaipay/waimaipay?address='+evt.currentTarget.dataset.address,
-                })
+
+                wx.navigateBack({
+                  delta: 1,
+                  success: function (e) {
+                    wx.setStorageSync('current_addr',evt.currentTarget.dataset.address);
+                    console.log('当前缓存地址',wx.getStorageSync('current_addr'));
+                    var page = getCurrentPages().pop();
+                    if (page == undefined || page == null) return;
+                        page.onLoad();
+                    }
+              })
               },
               fail:err =>{
                 wx.showToast({
