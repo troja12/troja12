@@ -7,6 +7,8 @@
 
 .left {
   width: 100%;
+  background-color: #cc543a;
+  color:#fff
 }
 
 
@@ -23,60 +25,70 @@
 
 /* 被选中 */
 .active {
-  color: #f55003;
+  color: #EFDEB0;
   /* background-color: white; */
 }
 
 
 /* 右侧栏目 */
 .right {
-  height: 100vh;
+  /* height: 100vh; */
   width: 100%;
   float: right;
+  
   /* padding: 0 2%; */
   overflow: auto;
+  
   box-sizing: border-box;
-  padding-bottom: 150rpx;
+  padding-bottom: 200rpx;
 }
 
 .right .title {
   font-size: 30rpx;
   height: 60rpx;
   line-height: 60rpx;
-  color: #cc543a;
+  color: #bb3a29;
   /* background-color: wheat; */
-  background-color: #ffffff00;
+  background-color: rgba(255, 255, 255, 0);
 }
 
 .flexcaipin{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  border-collapse: separate;
   margin-bottom: 10rpx;
 }
 
 /*菜品列表  */
 .caipin_item {
   width: 360rpx;
-  height: 500rpx;
-  border-radius: 5%;
+  border-radius: 10%;
+  height: 450rpx;
+  border-collapse: separate;
   /* display: flex; */
   margin: 5rpx 5rpx 0rpx 5rpx;
   align-items: center;
-  padding: 10rpx 10rpx 0rpx 0rpx;
- background-color: rgb(255, 145, 1);
+  margin: 5rpx 5rpx 0rpx 5rpx;
 
+
+ 
+ 
+
+  background-image: url(https://636c-cloud1-3gpl3dnv29eed7ff-1308423562.tcb.qcloud.la/%E4%BC%9A%E5%91%98%E5%8D%A1%20%E6%8B%B7%E8%B4%9D.png?sign=06872bd2dae9733500f6e69946598aee&t=1638134254);
   
 }
 
 .cai_img {
-  position: absolute;
-  width: 350rpx;
+  width: 290rpx;
   height: 210rpx;
   line-height: 140rpx;
+  border-radius: 20rpx;
   text-align: center;
-  margin-left: 10rpx;
+  margin-left: 50rpx;
   margin-right: 30rpx;
+  margin-top: 75rpx;
+
 }
 
 .cai_root2 {
@@ -85,9 +97,9 @@
 }
 
 .cai_title {
-  margin-top: 200rpx;
+  /* margin-top: 100rpx; */
   font-weight: 400;
-  font-size: 40rpx;
+  font-size: 30rpx;
   width: auto;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -95,11 +107,14 @@
   word-wrap: normal;
   word-wrap: break-word;
   word-break: break-all;
+  color: #ffff;
+  padding: 28rpx 0rpx 0rpx 48rpx
 }
 
 .cai_sell {
   font-size: 33rpx;
   color: gray;
+  padding: 0rpx 0rpx 0rpx 48rpx
 }
 
 /*加减器*/
@@ -128,6 +143,7 @@
   font-weight: bold;
   font-size: 32rpx;
   color: #ffc400;
+  padding: 0rpx 0rpx 0rpx 48rpx
 }
 
 /*人民币符号*/
@@ -164,12 +180,13 @@
   height: 80rpx;
   position: fixed;
   left: 0;
-  bottom: 10rpx;
+  bottom: 8rpx;
   z-index: 100;
-  background-color: #fef4d1;
+  /* background-color: #EFDEB0; */
+  background-image: url(https://636c-cloud1-3gpl3dnv29eed7ff-1308423562.tcb.qcloud.la/%E7%BB%84%209.png?sign=7a534efcb27dd88ee81e2b697028cf99&t=1638130303);
 }
 
-.shop_cart_1Box {
+.shop_cartBox {
   width: 110rpx;
   height: 110rpx;
   background-color: #ff9600;
@@ -180,11 +197,11 @@
 }
 
 .shopCart_img {
-  width: 60rpx;
-  height: 60rpx;
+  width: 100rpx;
+  height: 100rpx;
   position: absolute;
-  top: 24rpx;
-  left: 24rpx;
+  top: 5rpx;
+  left: 5rpx;
 }
 
 .all_money {
@@ -196,6 +213,7 @@
   line-height: 80rpx;
   text-align: center;
   font-size: 32rpx;
+  /* color:#BB3A29 */
 }
 
 .choose_ok {
@@ -208,7 +226,7 @@
   text-align: center;
   color: #fff;
   font-size: 40rpx;
-  background-color: #f4c903;
+  background-color: #bb3a29;
 }
 
 .fontP {
@@ -231,7 +249,7 @@
 
 /*购物车弹窗  */
 
-.cart_1_popup {
+.cart_popup {
   width: 100%;
   /* height: 285px; */
   background: #fff;
@@ -242,7 +260,7 @@
   overflow: auto;
 }
 
-.shopcart_1_title {
+.shopcart_title {
   width: 100%;
   height: 70rpx;
   line-height: 80rpx;
@@ -255,7 +273,7 @@
 
 /*关闭按钮  */
 
-.shopcart_1_close {
+.shopcart_close {
   position: absolute;
   left: 30rpx;
   font-size: 28rpx;
@@ -263,7 +281,7 @@
 
 /*清空购物车  */
 
-.shopcart_1_deleteAll {
+.shopcart_deleteAll {
   position: absolute;
   right: 30rpx;
   font-size: 28rpx;
@@ -275,7 +293,7 @@
 
 /*购物车列表  */
 
-.cart_1_cells {
+.cart_cells {
   width: 100%;
   height: 98rpx;
   position: relative;
@@ -318,7 +336,7 @@
 
 /*删除购物车某项  */
 
-.shopcart_1_delete {
+.shopcart_delete {
   position: absolute;
   right: 40rpx;
   top: 32rpx;

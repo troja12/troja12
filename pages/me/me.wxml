@@ -40,7 +40,7 @@
 	<!-- 三个logo -->
 	<view class="menu">
 		<image class="menu_img" bindtap="gomyorder" src="https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E4%B8%AA%E4%BA%BA/%E7%BB%84%2010.png?sign=aad08567f90ee2ade3d9eecf532a6b7c&t=1633640205" mode="aspectFit"></image>
-		<image class="menu_img" bindtap="getpoint" src="https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E4%B8%AA%E4%BA%BA/%E7%BB%84%208.png?sign=68d3bc7175bc2358870f3aa8c5dc36ba&t=1633640471" mode="aspectFit"></image>
+		<image class="menu_img" bindtap="getpoint" src="https://636c-cloud1-3gpl3dnv29eed7ff-1308423562.tcb.qcloud.la/%E7%BB%84%208.png?sign=a1401727cdee132f0dc9e3741e762762&t=1638117339" mode="aspectFit"></image>
 		<image class="menu_img" bindtap="goaddress" src="https://7875-xuzhihui-test-1gkq2fi3f9c13aa6-1306456580.tcb.qcloud.la/image/%E4%B8%AA%E4%BA%BA/%E7%BB%84%209.png?sign=7f6e9e84e8b54f2d5319602b2e71c492&t=1633640495" mode="aspectFit"></image>
 	</view>
 

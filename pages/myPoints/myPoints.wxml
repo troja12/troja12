@@ -1,16 +1,27 @@
 <!--miniprogram/pages/member/myPoints/myPoints.wxml-->
+<wxs module="filters" src="../../utils/addmul.wxs"></wxs>
 <view class="my-points">
   
-  <view class="item">
-    <view class="points">{{consum_points}}</view>
+  <!-- <view class="item">
+    <view class="points" src="https://636c-cloud1-3gpl3dnv29eed7ff-1308423562.tcb.qcloud.la/%E4%BC%9A%E5%91%98%E5%8D%A1%20%E6%8B%B7%E8%B4%9D.png?sign=3108b9b89cdf3a117a81aad3f23a5695&t=1638117767">{{filters.toFix2(consum_points)}}</view>
     <view class="describle">此积分为会员消费所得积分</view>
     <!-- <navigator class="to-mall" url="../pointsMall/pointsMall">
         积分商城
     </navigator> -->
+  <!-- </view> --> 
+  <view class='image-parent'>
+    <image  class='image' src="https://636c-cloud1-3gpl3dnv29eed7ff-1308423562.tcb.qcloud.la/%E4%BC%9A%E5%91%98%E5%8D%A1%20%E6%8B%B7%E8%B4%9D.png?sign=3108b9b89cdf3a117a81aad3f23a5695&t=1638117767" mode="widthFix"></image>
+    <view class='child'>{{filters.toFix2(consum_points)}}</view>
+  
+
   </view>
-  <view class="describle2">积分规则如下:</view>
-  <view class="describle2">当会员在店内完成订单，将获得的实际支付金额的10%做为积分奖励  积分可以用来抵扣消费金额（0门槛优惠券）</view>
-  <view class="describle2">最终解释权归本店所有</view>
+
+  <view class="describle2">积分规则:</view>
+  <view class="describle">当会员在店内完成订单，将获得的实际支付金额的10%做为积分奖励  积分可以用来抵扣消费金额（0门槛优惠券）</view>
+  <view class="describle">最终解释权归本店所有</view>
+  <image class="tubiao" src='https://636c-cloud1-3gpl3dnv29eed7ff-1308423562.tcb.qcloud.la/%E5%9B%BE%E5%B1%82%203%20%E6%8B%B7%E8%B4%9D%203.png?sign=2d4a55e49453903b83a351b6e6432571&t=1638120475'></image>
+  <image class="tubiao2" src='https://636c-cloud1-3gpl3dnv29eed7ff-1308423562.tcb.qcloud.la/-%20China%20Restaurant%20Sonne%20-%20%E6%8B%B7%E8%B4%9D%202.png?sign=e636fd9f57728f2c9937e8da88a6ac51&t=1638120719'></image>
+
   <view class="points-log" wx:if="{{havePoints}}">
     <view class="title">积分记录</view>
     <view>
