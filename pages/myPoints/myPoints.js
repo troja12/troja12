@@ -9,7 +9,7 @@ Page({
     consum_points:'',
     openid:'',
     manageid:'',
-
+    
   },
 
 
@@ -70,17 +70,17 @@ Page({
    */
   onLoad: function (options) {
     console.log('跳转数据获取', options)
-
+    
     // //获取当前超级管理员
     // this.getUserid()
     // //检查是否登录
     // this.selectMember()
-    let point     =  options.point
-
-    console.log('积分', Math.trunc(point))
+    let point     =  options.point;
+   
+    console.log('积分', point)
     this.setData({
-      consum_points:Math.trunc(point),
-      // balance: options.balance,
+      consum_points: point,
+     
       
     })
 

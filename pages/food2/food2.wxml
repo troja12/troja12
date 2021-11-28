@@ -47,7 +47,7 @@
 <!--页面底部区域  -->
 <view class="bottom_box">
   <view class="shop_cartBox" bindtap="cascadeToggle">
-    <image class="shopCart_img" src="/image/shopCart.png"></image>
+    <image class="shopCart_img" src="https://636c-cloud1-3gpl3dnv29eed7ff-1308423562.tcb.qcloud.la/%E7%BB%84%208.png?sign=ece90e0edb100e732ed9d79e5bdc4e3a&t=1638130334"></image>
   </view>
   <view class="all_money">总计:{{totalPrice}}元，{{totalNum}}件</view>
   <view class="choose_ok" bindtap="gotoOrder">选好了</view>

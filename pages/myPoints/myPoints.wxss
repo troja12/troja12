@@ -22,6 +22,30 @@ page{
   flex-direction: column;
 }
 
+
+.child {
+  padding: 250rpx 5rpx 10rpx 100rpx;
+  font-size: 140rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  text-align: center;
+  color: #EFDEB0
+}  
+.image {
+  width: 746rpx;
+}
+
+.image-parent {
+  height: 746rpx; 
+  position: relative;
+  
+}
+
+
 .item  .points{
   color: rgb(245, 242, 242);
   font-size: 80rpx;
@@ -57,9 +81,37 @@ page{
 }
 
 .describle2{
-  font-size: 25rpx;
-  color: #f92055;
+  font-size: 50rpx;
+  color: #BB3A29;
+  text-align: center;
   font-weight: bold;
   letter-spacing: 2rpx;
-  margin-top: 100rpx;
+  margin-top: 30rpx;
 }
+.describle{
+  font-size: 25rpx;
+  color: #CC543A;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 2rpx;
+  margin-top: 30rpx;
+}
+
+.tubiao{
+  top: 1250rpx;
+  left: 350rpx;
+  width: 50rpx;
+  height: 50rpx;
+  position:absolute;
+  z-index: 999;
+}
+
+.tubiao2{
+  top: 1300rpx;
+  left: 182rpx;
+  width: 50%;
+  height: 50rpx;
+  position:absolute;
+  z-index: 999;
+}
+

@@ -37,7 +37,7 @@
 <input bindinput="getRemark" placeholder="请输入备注" value="{{remarks}}" />
 
 <view class="footer_box">
-	<button class="all_money" type="primary" size="{{primarySize}}" disabled="{{disabled}}" bindtap="choosePayWay">
+	<button class="all_money"  size="{{primarySize}}" disabled="{{disabled}}" bindtap="choosePayWay">
 		总计：{{totalPrice}}元，{{totalNum}}件</button>
 </view>
 <!--选择支付方式弹窗  -->

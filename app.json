@@ -24,7 +24,9 @@
     "pages/paihao/paihao",
     "pages/admin/admin",
     "pages/adminHouchu/adminHouchu",
-    "pages/adminPaihao/adminPaihao"
+    "pages/adminPaihao/adminPaihao",
+    "pages/myPoints/new.wxss",
+    "utils/addmul.wxs"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -45,7 +47,6 @@
         "selectedIconPath": "image/目前全部页面png 1/首页/首页.png",
         "text": "首页"
       },
-      
       {
         "pagePath": "pages/me/me",
         "iconPath": "image/目前全部页面png 1/首页/我的2.png",
@@ -58,10 +59,8 @@
         "selectedIconPath": "image/目前全部页面png 1/首页/首页.png",
         "text": "首页"
       }
-
     ]
   },
-
   "permission": {
     "scope.userLocation": {
       "desc": "导航需要"
