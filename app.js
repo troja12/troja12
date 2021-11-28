@@ -20,6 +20,32 @@ App({
     this.getOpenid();
     this.getunionid();
     this.selectMember();
+          // 版本自动更新代码
+          const updateManager = wx.getUpdateManager()
+          updateManager.onCheckForUpdate(function (res) {
+            console.log(res.hasUpdate)
+          })
+          updateManager.onUpdateReady(function () {
+            wx.showModal({
+              title: '更新检测',
+              content: '检测到新版本，是否重启小程序？',
+              success: function (res) {
+                if (res.confirm) {
+                  // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+                  updateManager.applyUpdate()
+                }
+              }
+            })
+          })
+          updateManager.onUpdateFailed(function () {
+            // 新的版本下载失败
+            wx.showModal({
+              title: '已有新版本咯',
+              content: '请您长按当前小程序删除，然后重新扫码打开',
+              showCancel: false
+            })
+          })
+         
   },
   // 获取用户openid
   getOpenid: function () {

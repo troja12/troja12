@@ -64,4 +64,8 @@
   width: 90%;
   align-self: center;
 }
+.picker2{
+  margin-right: 20rpx;
+
+}
 

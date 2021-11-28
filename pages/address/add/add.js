@@ -6,37 +6,38 @@ Page({
    */
   data: {
     addressList:{},
-    popErrorMsg:''
+    popErrorMsg:'',
+    area:['德国   +49','中国   +86'],
+    area_select:'+49',
   },
-  _toAuth:function(){
-    //获取用户授权
-    wx.authorize({
-      scope: 'scope.userLocation',
-    })
-    var that = this
-    //打开地图选择位置
-    wx.chooseLocation({
-      complete: (res) => {
-        let address = res.address
-        let add = "addressList.address"
-        that.setData({
-          [add]:address
-        })
-      },
-    })
-  },
+    //区号
+    bindPickerChange(e){
+      let number = e.detail.value
+      let area = ''
+      if(number==0){
+        area='+49'
+      }
+      else{
+        area='+86'   
+      }
+      this.setData({
+        area_select:area
+      })
+    },
+  
+
   _focus:function(evt){
     if(evt.currentTarget.dataset.id == 1){
       this.setData({
-        'addressList.username': ''
+        'addressList.username': this.data.addressList.username
       })
     }else if(evt.currentTarget.dataset.id == 2){
       this.setData({
-        'addressList.telephone':''
+        'addressList.telephone':this.data.addressList.telephone
       })
     }else if(evt.currentTarget.dataset.id == 3){
       this.setData({
-        'addressList.address':''
+        'addressList.address':this.data.addressList.address
       })
     }
   },
@@ -53,20 +54,20 @@ Page({
       console.log("电话是",this.data.addressList.telephone)
       console.log("电话是1",this.mobile)
       //正则验证电话是否合格
-      var mobile = /^[0-1][0-9]{9}[0-9]*$/
-      var isMobile = mobile.exec(this.data.addressList.telephone)
+      // var mobile = /^[0-1][0-9]{9}[0-9]*$/
+      // var isMobile = mobile.exec(this.data.addressList.telephone)
 
-      setTimeout(()=>{
+      // setTimeout(()=>{
         
-        if(!isMobile){
-          this.setData(
-            { popErrorMsg: "请输入正确格式的电话号码" }
-          ); 
-          this.ohShitfadeOut(); 
-          return;  
-        }
+      //   if(!isMobile){
+      //     this.setData(
+      //       { popErrorMsg: "请输入正确格式的电话号码" }
+      //     ); 
+      //     this.ohShitfadeOut(); 
+      //     return;  
+      //   }
 
-      },100)
+      // },100)
 
     }else if(evt.currentTarget.dataset.id == 3){
       this.setData({
@@ -118,6 +119,7 @@ Page({
            telephone:addresses.telephone,
            tag:'',
            address:addresses.address,
+           area_code: this.data.area_select,
            isDefault:false,
            isOpen:false,
            isSelect:false
@@ -141,13 +143,14 @@ Page({
       }else{
         //数据库修改操作
         const _ = db.command
-        db.collection('address').doc(id).set({
+        db.collection('address').doc(id).update({
           data:{
            username:addresses.username,
            sex:addresses.sex,
            telephone:addresses.telephone,
            tag:'',
            address:addresses.address,
+           area_code: this.data.area_select,
            isDefault:false,
            isOpen:false,
            isSelect:false
@@ -191,9 +194,10 @@ Page({
       .get({
         success(res){
           that.setData({
-            addressList:res.data
+            addressList:res.data,
+            area_select:res.data.area_code,
           })
-          console.log("2")
+          console.log("2",res.data)
         }
       })
     }else{

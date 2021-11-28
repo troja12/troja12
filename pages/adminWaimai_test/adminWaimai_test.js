@@ -208,7 +208,7 @@ Page({
     //创建一个 WebSocket 连接；
     //一个微信小程序同时只能有一个 WebSocket 连接，如果当前已存在一个 WebSocket 连接，会自动关闭该连接，并重新创建一个 WebSocket 连接。
     wx.connectSocket({
-      url: 'ws://43.132.246.14:1235'
+      url: 'wss://www.dexiangit.com/wss'
     })
     //监听WebSocket错误
     wx.onSocketError(function (res) {

@@ -58,6 +58,10 @@ page{
   font-weight: bold;
   color: #f8f7f7;
 }
+.picker2{
+  margin-right: 20rpx;
+
+}
 
 .tv_eee {
   color: rgb(245, 245, 245);

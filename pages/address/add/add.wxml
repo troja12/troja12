@@ -32,7 +32,12 @@
         <view class="top">
           <view class="left">手机号</view>
           <view class="right">
-            <input bindfocus="_focus" bindblur="_blur" data-id='2' 
+             <picker bindchange="bindPickerChange" value="{{index}}" range="{{area}}">
+              <view class="picker2">
+              {{area_select}}
+              </view>
+              </picker>
+            <input  maxlength="11" bindfocus="_focus" bindblur="_blur" data-id='2' 
             placeholder="请输入电话号码"
             type="number" name="telephone" value="{{addressList.telephone}}"/>
           </view>

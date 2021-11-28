@@ -136,43 +136,7 @@ Page({
     })
   },
 
-  _updateMember:function(id){
-    var myDate = new Date()
-    var currentTime = time.formatTime(myDate,'Y/M/D h:m:s')
-    var userInfo = this.data.userInfo
-    //调用云函数修改会员表
-    wx.cloud.callFunction({
-      name:'updatemember',
-      data:{
-        _id:id,
-        avatarUrl:userInfo.avatarUrl,
-        nickname:userInfo.nickName,
-        sex:userInfo.gender,
-        language:userInfo.language,
-        city:userInfo.city,
-        province:userInfo.province,
-        country:userInfo.country,
-        updatetime:currentTime
-      },
-      success:res =>{
-        wx.hideLoading({
-          complete: (res) => {
-          },
-        })
-        //跳转到个人信息页面
-        wx.navigateTo({
-          url: '../me/personInfo/personInfo',
-        })
-      },
-      fail:err =>{
-        wx.showToast({
-          icon:'none',
-          title: '创建会员失败，请稍后再试',
-          duration:2000
-        })
-      }
-    })
-  },
+
   //创建会员积分表方法
   creatMember:function(evt){
     var userInfo = this.data.userInfo
@@ -193,6 +157,7 @@ Page({
         db.collection('member').add({
           data:{
             nickname:userInfo.nickName,
+            unionid:app.globalData.unionid,
             avatarUrl:userInfo.avatarUrl,
             sex:userInfo.gender,
             tel:'',

@@ -41,17 +41,11 @@
     <view wx:if="{{member.sex==0}}" class="t2">女</view> -->
   </view>
 
-  <!-- <view class="line">
-    <view class="t1">手机号</view>
-    <view class="t2">{{phone}}</view>
-    <button style="padding: 0px 0px;background-color:#ffffff;min-height:0px" 
-    open-type="getPhoneNumber"   class="t3">更新手机号</button>
-  </view> -->
 
   <view class="line">
     <view class="t1">生日</view>
     <view class="right">
-      <picker  mode="date" value="{{birthday}}" start="1900-09-01" end="2002-09-01"
+      <picker  mode="date" value="{{birthday}}" start="1900-09-01" end="2010-09-01"
         bindchange="bindDateChange">
        <!-- <view class="tv_eee">日期</view> -->
         <view class="picker" >
@@ -66,7 +60,12 @@
   <view class="line">
     <view class="t1">手机号</view>
     <view class="right">
-            <input bindfocus="_focus" bindblur="_blur" data-id='2' 
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{area}}">
+    <view class="picker2">
+      {{area_select}}
+    </view>
+    </picker>
+            <input maxlength="11" bindfocus="_focus" bindblur="_blur" data-id='2' 
             placeholder="请输入电话号码"
             type="number" name="telephone" value="{{memberList.tel}}"/>
     </view>

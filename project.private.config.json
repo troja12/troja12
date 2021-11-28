@@ -120,6 +120,18 @@
           "pathName": "pages/me/me",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/me/personInfo/personInfo",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/address/add/add",
+          "query": "",
+          "scene": null
         }
       ]
     }

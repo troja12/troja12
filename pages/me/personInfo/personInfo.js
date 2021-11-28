@@ -18,6 +18,8 @@ Page({
     popErrorMsg: '',
     phone: '',
     buttonClicked: false,
+    area:['德国   +49','中国   +86'],
+    area_select:'+49',
   },
   //检测
   _focus: function (evt) {
@@ -35,6 +37,20 @@ Page({
       })
     }
   },
+  //区号
+  bindPickerChange(e){
+    let number = e.detail.value
+    let area = ''
+    if(number==0){
+      area='+49'
+    }
+    else{
+      area='+86'   
+    }
+    this.setData({
+      area_select:area
+    })
+  },
 
   //输入
   _blur: function (evt) {
@@ -49,20 +65,20 @@ Page({
       })
       console.log(this.data.memberList.telephone)
       //正则验证电话是否合格
-      var mobile = /^[0-1][0-9]{9}[0-9]*$/
-      var isMobile = mobile.exec(this.data.memberList.telephone)
+      // var mobile = /^[0-1][0-9]{9}[0-9]*$/
+      // var isMobile = mobile.exec(this.data.memberList.telephone)
 
-      setTimeout(() => {
+      // setTimeout(() => {
 
-        if (!isMobile) {
-          this.setData({
-            popErrorMsg: "请输入正确格式的电话号码"
-          });
-          this.ohShitfadeOut();
-          return;
-        }
+      //   if (!isMobile) {
+      //     this.setData({
+      //       popErrorMsg: "请输入正确格式的电话号码"
+      //     });
+      //     this.ohShitfadeOut();
+      //     return;
+      //   }
 
-      }, 100)
+      // }, 100)
 
     } else if (evt.currentTarget.dataset.id == 3) {
       this.setData({
@@ -141,25 +157,23 @@ Page({
       console.log("判断是否有推荐人", app.globalData.refereeId)
       console.log("是否推荐人openid已经存入", this.data.member.refereeId) //防止反复推送
       if (telmember == '') {
-        var balancemember = this.data.member.balance // 获取当前余额
-        var points = this.data.member.consum_points // 获取当前余额
-        console.log(balancemember)
-        var balancemember1 = 5 //奖励金额
-        var balancemember2 = balancemember + balancemember1
+        //var balancemember = this.data.member.balance // 获取当前余额
+        var points = this.data.member.consum_points // 获取当前积分
+        // console.log(balancemember)
+        // var balancemember1 = 5 //奖励金额
+        // var balancemember2 = balancemember + balancemember1
         db.collection('member').doc(id).update({
           data: {
-            consum_points: points ,
-            balance: balancemember2,
+            consum_points: points + 10 ,
+            //balance: balancemember2,
             // refid: app.globalData.refereeId, //有推荐人就录入推荐人id
           },
           success: res => {
             wx.showToast({
               title: '新用户奖励成功',
             })
-            console.log("新用户余额奖励成功")
-            //  wx.navigateBack({
-            //    delta: 1,
-            //  })
+            console.log("新用户积分奖励成功")
+           
           },
           fail: err => {
             wx.showToast({
@@ -170,71 +184,16 @@ Page({
         })
 
       }
-      //有推荐人,双方奖励
-      console.log("是否有推荐人", this.data.member.refid)
-      if (this.data.member.refid && telmember == '') {
-        //var myopenid = this.data.member._openid //本人的openid
-        console.log("本人openid值", this.data.member._openid)
-        const db = wx.cloud.database()
-        //var id2 = app.globalData.refereeId //推荐人的openid
-        console.log("推荐人openid", app.globalData.refereeId)
-        //调用云函数查看会员表
-        wx.cloud.callFunction({
-          name: 'genewmember',
-          data: {
-            _openid: app.globalData.refereeId,
-          },
-          success: (res) => {
-            console.log("推荐次数", res.result.data[0].ref_number)
-            if(res.result.data[0].ref_number < 3){
-            wx.cloud.callFunction({
-              name: 'updatabalance',
-              data: {
-                _id: res.result.data[0]._id, //推荐人的系统id传入
-                ref_number:res.result.data[0].ref_number + 1,
-                balance: res.result.data[0].balance + 3,
-                consum_points: res.result.data[0].consum_points
-                // updatetime:currentTime
-              },
-              success: (res) => {
-                wx.showToast({
-                  title: '推荐人奖励成功',
-                })
-                console.log("推荐人收到奖励", balance)
-              },
-              fail: err => {
-                wx.showToast({
-                  icon: 'none',
-                  title: '奖励失败，请稍后再试',
-                  duration: 2000
-                })
-              }
-            })
-          }
-
-
-          },
-          fail: (err) => {
-            wx.showToast({
-              icon: 'none',
-              title: '查看失败',
-              duration: 2000
-            })
-          }
-        })
-
-
-      }
-
+     
       // 数据库修改操作
       const _ = db.command
-      // db.collection('member').doc(id).set({  set直接改了数据库格式 条目 不行
       db.collection('member').doc(id).update({
         data: {
           birthday: birthday,
           nickname: addresses.username,
           sex: addresses.sex,
           tel: addresses.telephone,
+          area_code: this.data.area_select,
           update_time: currentTime
         },
         success: res => {
@@ -259,62 +218,6 @@ Page({
     }, 100)
   },
 
-
-  getPhoneNumber: function (e) {
-    wx.showLoading({
-      title: '加载中...',
-    })
-    if (e.detail.errMsg == 'getPhoneNumber:fail user deny') { //用户点击拒绝
-      wx.hideLoading({
-        complete: (res) => {},
-      })
-      return
-    }
-    const that = this
-    wx.cloud.callFunction({
-      name: 'getPhone',
-      data: {
-        weRunData: wx.cloud.CloudID(e.detail.cloudID)
-      }
-    }).then(res => {
-      that.setData({
-        phone: res.result.phone
-      })
-
-      var id = this.data.member._id
-      var phone = res.result.phone
-      var myDate = new Date()
-      var currentTime = time.formatTime(myDate, 'Y/M/D h:m:s')
-      console.log(id, currentTime)
-      //调用云函数修改会员表
-      wx.cloud.callFunction({
-        name: 'updatemember',
-        data: {
-          _id: id,
-          tel: phone,
-          updatetime: currentTime
-        },
-        success: res => {
-          wx.hideLoading({
-            complete: (res) => {},
-          })
-        },
-        fail: err => {
-          wx.showToast({
-            icon: 'none',
-            title: '更新电话失败，请稍后再试',
-            duration: 2000
-          })
-        }
-      })
-
-
-    }).catch(err => {
-      console.error(err)
-    })
-  },
-
-
   //查询会员是否存在
   selectMember: function () {
     const db = wx.cloud.database()
@@ -330,6 +233,7 @@ Page({
           birthday: member[0].birthday,
           phone: member[0].tel,
           sex2: member[0].sex,
+          area_select:member[0].area_code,
         })
         console.log("sex2", this.data.sex2)
         if (this.data.sex2 == 1) {
@@ -423,7 +327,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {
 
-  }
+  // }
 })
