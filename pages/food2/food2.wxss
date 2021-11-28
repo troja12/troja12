@@ -80,13 +80,14 @@
 }
 
 .cai_img {
-  width: 350rpx;
+  width: 290rpx;
   height: 210rpx;
   line-height: 140rpx;
-  position: absolute;
+  border-radius: 20rpx;
   text-align: center;
-  margin-left: 10rpx;
+  margin-left: 50rpx;
   margin-right: 30rpx;
+  margin-top: 75rpx;
 
 }
 
@@ -107,7 +108,7 @@
   word-wrap: break-word;
   word-break: break-all;
   color: #ffff;
-  padding: 0rpx 0rpx 0rpx 48rpx
+  padding: 28rpx 0rpx 0rpx 48rpx
 }
 
 .cai_sell {

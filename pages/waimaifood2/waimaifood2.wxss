@@ -80,12 +80,15 @@
 }
 
 .cai_img {
-  width: 140rpx;
-  height: 140rpx;
+  width: 290rpx;
+  height: 210rpx;
   line-height: 140rpx;
+  border-radius: 20rpx;
   text-align: center;
-  margin-left: 10rpx;
+  margin-left: 50rpx;
   margin-right: 30rpx;
+  margin-top: 75rpx;
+
 }
 
 .cai_root2 {
@@ -94,7 +97,7 @@
 }
 
 .cai_title {
-  margin-top: 160rpx;
+  /* margin-top: 100rpx; */
   font-weight: 400;
   font-size: 30rpx;
   width: auto;
@@ -105,7 +108,7 @@
   word-wrap: break-word;
   word-break: break-all;
   color: #ffff;
-  padding: 0rpx 0rpx 0rpx 48rpx
+  padding: 28rpx 0rpx 0rpx 48rpx
 }
 
 .cai_sell {
