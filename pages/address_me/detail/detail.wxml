@@ -10,7 +10,7 @@
           <view class="right">
           <input type="text" data-id='1'
           name="username" value="{{addressList.username}}"
-          placeholder="请输入姓名"
+          placeholder="请输入自提点名称"
           bindfocus="_focus" bindblur="_blur" />
           </view>
         </view>
@@ -21,7 +21,7 @@
           <view class="left">自提点地址</view>
           <view class="right">
             <input bindfocus="_focus" bindblur="_blur" data-id='3'
-            placeholder="请输入收货地址" maxlength="30"
+            placeholder="请输入自提点地址" maxlength="30"
             type="text" name="address" value="{{addressList.address}}"/>
             <image  class="image" bindtap="_toAuth"
             src="cloud://cloud1-1ggq2djlc96d5e23.636c-cloud1-1ggq2djlc96d5e23-1307798933/system-icon/right.png"></image>

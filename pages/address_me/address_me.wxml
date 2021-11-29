@@ -1,5 +1,5 @@
 <view   class="add-btn">
-	<view wx:if="{{isManage==false}}" class="btn"  bindtap="_toAdd">
+	<view class="btn"  bindtap="_toAdd">
 			<view class="name">添加地址</view>
 	</view>
 	<view wx:if="{{isManage==true}}" class="btn"  bindtap="_toAdd_Zitidian">
@@ -7,7 +7,7 @@
 	</view>
 </view>
 
-<scroll-view scroll-y="true" style="height:calc(100vh - 120rpx)">
+<scroll-view scroll-y="true" style="height:calc(90vh - 120rpx)">
 	<view style="margin-top:16rpx">
 	<view class="item" wx:for="{{addressList}}" wx:key="index" >	
 		<movable-area class = "area"> 
@@ -69,7 +69,7 @@
 				
 			</movable-view>
 		</movable-area>
-		<view  class="del-btn"  bindtap="_del_zitidian" id="{{item._id}}">
+		<view wx:if="{{isManage==true}}" class="del-btn"  bindtap="_del_zitidian" id="{{item._id}}">
 			删除
 		</view>
 	</view>
