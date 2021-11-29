@@ -1,6 +1,4 @@
-page {
-  background: #f4c903;
-}
+
 
 .container {
   width: 80%;
@@ -52,9 +50,27 @@ page {
 }
 
 .tabNum {
-  background: rgb(120, 42, 221);
+  background: #bb3a29;
   color: white;
   padding: 40rpx;
   font-size: 1.4rem;
   border-radius: 40rpx;
+}
+
+.tubiao{
+  top: 1250rpx;
+  left: 350rpx;
+  width: 50rpx;
+  height: 50rpx;
+  position:absolute;
+  z-index: 999;
+}
+
+.tubiao2{
+  top: 1300rpx;
+  left: 182rpx;
+  width: 50%;
+  height: 50rpx;
+  position:absolute;
+  z-index: 999;
 }

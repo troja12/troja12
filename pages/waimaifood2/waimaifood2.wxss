@@ -114,7 +114,7 @@
 
 .cai_sell {
   font-size: 33rpx;
-  color: gray;
+  color: #EFDEB0;
   padding: 0rpx 0rpx 0rpx 48rpx
 }
 

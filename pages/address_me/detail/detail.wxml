@@ -1,0 +1,42 @@
+
+<view class="ad_popError" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
+<form catchsubmit="formSubmit">
+  <view class="add-page">
+    <view class="menu">
+      <input style="display:none" name="id" value="{{addressList._id}}"></input>
+      <view class="item">
+        <view class="top">
+          <view class="left">自提点名称</view>
+          <view class="right">
+          <input type="text" data-id='1'
+          name="username" value="{{addressList.username}}"
+          placeholder="请输入自提点名称"
+          bindfocus="_focus" bindblur="_blur" />
+          </view>
+        </view>
+        <view class="bottom"/>
+      </view>
+      <view class="item">
+        <view class="top">
+          <view class="left">自提点地址</view>
+          <view class="right">
+            <input bindfocus="_focus" bindblur="_blur" data-id='3'
+            placeholder="请输入自提点地址" maxlength="30"
+            type="text" name="address" value="{{addressList.address}}"/>
+            <image  class="image" bindtap="_toAuth"
+            src="cloud://cloud1-1ggq2djlc96d5e23.636c-cloud1-1ggq2djlc96d5e23-1307798933/system-icon/right.png"></image>
+          </view>
+        </view>
+        <view class="bottom"/>
+      </view>
+    </view>
+  </view>
+
+  <view class="page__bd">
+    <view  class="button-sp-area">
+      <button style="width:90%;margin-top:50rpx;height:100rpx;line-height:100rpx"  
+      class="weui-btn weui-btn_primary" form-type="submit">保存
+      </button>
+    </view>
+  </view>
+</form>

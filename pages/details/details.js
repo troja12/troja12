@@ -1,4 +1,5 @@
 // miniprogram/pages/address/add/add.js
+var util = require('../../util/util.js');
 Page({
 
   /**
@@ -112,6 +113,9 @@ Page({
       const db = wx.cloud.database()
       let id = e.detail.value.id
       console.log('当前图片',this.data.temp_img)
+      var date = new Date();
+      var createTime = util.formatTime1(date)
+      var createTime1 =  createTime.replace(/-/g, '/')
       //数据库新增操作
       if(id == ''){
        db.collection('umzugorder').add({
@@ -126,7 +130,9 @@ Page({
            isDefault:false,
            isOpen:false,
            isSelect:false,
-           img:this.data.temp_img
+           status:0,
+           img:this.data.temp_img,
+           _createTime: createTime1 //创建的时间
          },
          success:res => {
            wx.showToast({
@@ -147,6 +153,9 @@ Page({
       }else{
         //数据库修改操作
         const _ = db.command
+        var date = new Date();
+        var createTime = util.formatTime1(date)
+        var createTime1 =  createTime.replace(/-/g, '/')
         db.collection('umzugorder').doc(id).set({
           data:{
            username:addresses.username,
@@ -158,7 +167,8 @@ Page({
            date:addresses.date,
            isDefault:false,
            isOpen:false,
-           isSelect:false
+           isSelect:false,
+           _createTime: createTime1 //创建的时间
           },
            success:res => {
              wx.showToast({

@@ -120,7 +120,7 @@ Page({
                     totalNum: 0,
                     totalPrice: 0,
                   })
-                  // this.cascadeDismiss()
+                  this.cascadeDismiss()
                 }
                 try {
                   wx.setStorageSync('cart_1', cartList)
@@ -272,8 +272,14 @@ Page({
   cascadeToggle: function () {
     var that = this;
     var arr = this.data.cartList
-    if (arr.length > 0) {
-      if (that.data.maskVisual == "hidden") {
+    if (arr.length >= 0) {
+      if(arr.length==0){
+        wx.showModal({
+          title: '提示',
+          content: '请选择菜品'
+        })
+      }
+      else if (that.data.maskVisual == "hidden") {
         that.cascadePopup()
       } else {
         that.cascadeDismiss()
@@ -339,6 +345,13 @@ Page({
   gotoOrder: function () {
     this.selectMember()
     var arr = wx.getStorageSync('cart_1') || [];
+    
+    //设置只有当从菜单页进入购物车才计算总数和总价，选择地址则不进行此操作（将当前page长度写入缓存）
+    console.log(getCurrentPages().length)
+    wx.setStorageSync('pagenow',getCurrentPages().length)
+    console.log('pagenow',wx.getStorageSync('pagenow'))
+    //设置只有当从菜单页进入购物车才计算总数和总价，选择地址则不进行此操作（将当前page长度写入缓存）
+
     if (!arr || arr.length == 0) {
       wx.showModal({
         title: '提示',
