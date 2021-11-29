@@ -120,7 +120,7 @@ Page({
                     totalNum: 0,
                     totalPrice: 0,
                   })
-                  // this.cascadeDismiss()
+                  this.cascadeDismiss()
                 }
                 try {
                   wx.setStorageSync('cart_1', cartList)
@@ -272,8 +272,14 @@ Page({
   cascadeToggle: function () {
     var that = this;
     var arr = this.data.cartList
-    if (arr.length > 0) {
-      if (that.data.maskVisual == "hidden") {
+    if (arr.length >= 0) {
+      if(arr.length==0){
+        wx.showModal({
+          title: '提示',
+          content: '请选择菜品'
+        })
+      }
+      else if (that.data.maskVisual == "hidden") {
         that.cascadePopup()
       } else {
         that.cascadeDismiss()
