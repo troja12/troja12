@@ -339,6 +339,13 @@ Page({
   gotoOrder: function () {
     this.selectMember()
     var arr = wx.getStorageSync('cart_1') || [];
+    
+    //设置只有当从菜单页进入购物车才计算总数和总价，选择地址则不进行此操作（将当前page长度写入缓存）
+    console.log(getCurrentPages().length)
+    wx.setStorageSync('pagenow',getCurrentPages().length)
+    console.log('pagenow',wx.getStorageSync('pagenow'))
+    //设置只有当从菜单页进入购物车才计算总数和总价，选择地址则不进行此操作（将当前page长度写入缓存）
+
     if (!arr || arr.length == 0) {
       wx.showModal({
         title: '提示',

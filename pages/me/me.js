@@ -132,7 +132,7 @@ Page({
 
   goaddress:function(){
     wx.navigateTo({
-      url: '/pages/address/index/address',
+      url: '/pages/address_me/address_me?isManage='+app.globalData.userInfo.isManage,
     })
   },
 
@@ -230,7 +230,12 @@ Page({
    */
   onLoad: function (options) {
 
-    console.log("查看结果",app.globalData.openid)
+    // console.log("查看结果",app.globalData.openid)
+    console.log("是否为管理员",app.globalData.userInfo.isManage)
+    this.setData({
+      userInfo:app.globalData.userInfo
+    })
+    console.log('this',this.__data__.userInfo.isManage)
     if(app.globalData.openid == ''){
       wx.cloud.callFunction({
         name: 'login',
@@ -242,7 +247,6 @@ Page({
     }
         //调用遍历用户信息的方法
     this.selectMember()
-     
   },
 
   /**
@@ -368,7 +372,4 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
-  }
 })

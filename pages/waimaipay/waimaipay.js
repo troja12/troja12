@@ -40,10 +40,16 @@ Page({
     //购物车的数据
     var arr = wx.getStorageSync('cart_1') || [];
     console.log('当前this',this.data.totalPrice)
-    for (var i in arr) {
-      this.data.totalPrice += arr[i].quantity * arr[i].price;
-      this.data.totalNum += arr[i].quantity
+    //设置只有当从菜单页进入购物车才计算总数和总价，选择地址则不进行此操作
+    console.log('当前缓存页面',wx.getStorageSync("pagenow"))
+    if(wx.getStorageSync("pagenow")==2){
+      for (var i in arr) {
+        this.data.totalPrice += arr[i].quantity * arr[i].price;
+        this.data.totalNum += arr[i].quantity
+      }
     }
+    //设置只有当从菜单页进入购物车才计算总数和总价，选择地址则不进行此操作
+    
     this.setData({
       cartlist: arr,
       totalPrice: this.data.totalPrice,
@@ -203,12 +209,12 @@ Page({
     //创建一个 WebSocket 连接；
     //一个微信小程序同时只能有一个 WebSocket 连接，如果当前已存在一个 WebSocket 连接，会自动关闭该连接，并重新创建一个 WebSocket 连接。
     wx.connectSocket({
-      url: 'wss://www.dexiangit.com/wss'
+      url: 'ws://43.132.246.14:1235'
     })
     //监听WebSocket错误
     wx.onSocketError(function (res) {
       socketOpen = false
-      console.log('WebSocket连接打开失败，请检查',res)
+      console.log('WebSocket连接打开失败，请检查！')
       wx.hideToast()
     })
     //监听WebSocket连接打开事件。

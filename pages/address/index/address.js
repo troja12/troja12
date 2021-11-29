@@ -15,7 +15,10 @@ Page({
 
   _selectAddress:function(evt){
     console.log("当前地址为",evt.currentTarget.dataset.address)
-    
+    //设置只有当从菜单页进入购物车才计算总数和总价，选择地址则不进行此操作（将当前page长度写入缓存）
+    wx.setStorageSync('pagenow',getCurrentPages().length)
+    console.log('pagenow',wx.getStorageSync('pagenow'))
+    //设置只有当从菜单页进入购物车才计算总数和总价，选择地址则不进行此操作（将当前page长度写入缓存）
     let _id = evt.currentTarget.dataset.id
     const db = wx.cloud.database()
  
@@ -50,7 +53,10 @@ Page({
 
   _selectAddress1:function(evt){
     console.log("当前地址为",evt.currentTarget.dataset.address)
-    console.log("当前page",getCurrentPages().length)
+    //设置只有当从菜单页进入购物车才计算总数和总价，选择地址则不进行此操作（将当前page长度写入缓存）
+    wx.setStorageSync('pagenow',getCurrentPages().length)
+    console.log('pagenow',wx.getStorageSync('pagenow'))
+    //设置只有当从菜单页进入购物车才计算总数和总价，选择地址则不进行此操作（将当前page长度写入缓存）
     let _id = evt.currentTarget.dataset.id
     const db = wx.cloud.database()
             db.collection('init-address').doc(_id).update({
@@ -89,11 +95,13 @@ Page({
 
   
   _toEdit:function(evt){
-    let id = evt.currentTarget.id
-    console.log(id)
-    wx.navigateTo({
+    
+      let id = evt.currentTarget.id
+      console.log(id)
+      wx.navigateTo({
       url: '../add/add?id='+id,
     })
+    
   },
 
   _del:function(evt){

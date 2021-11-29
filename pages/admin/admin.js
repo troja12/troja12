@@ -13,12 +13,6 @@ Page({
       url: '/pages/adminHouchu/adminHouchu',
     })
   },
-  //去排号管理页
-  goPaihao() {
-    wx.navigateTo({
-      url: '/pages/adminPaihao/adminPaihao',
-    })
-  },
 
   goWaimai(){
     wx.navigateTo({
@@ -29,6 +23,18 @@ Page({
   goWaimai_test(){
     wx.navigateTo({
       url: '/pages/adminWaimai_test/adminWaimai_test',
+    })
+  },
+
+  goWuliu(){
+    wx.navigateTo({
+      url: '/pages/adminWaimai_test/adminWaimai_test',
+    })
+  },
+
+  goWuliu(){
+    wx.navigateTo({
+      url: '/pages/adminWuliu/adminWuliu',
     })
   },
 

@@ -2,7 +2,7 @@
 
 <!-- <view wx:if="{{flag}}"> -->
 	<!--登录成功的状态-->
-	<view wx:if="{{isAdmin}}">
+	
 		<view class="tab">
 			<text class="tabNum" bindtap="goHouchu">后厨人员管理订单</text>
 		</view>
@@ -14,27 +14,15 @@
 			<text class="tabNum" bindtap="goWaimai_test">外卖配送订单管理</text>
 		</view>
 
-	</view>
-
-
-
-
-
-<!-- 没有登录的状态 -->
-
-
- <view wx:if="{{!isAdmin}}" class="container">
-		<view class='line_1px' />
-		<view class='item_root'>
-			账号：
-			<input class="textarea25px" bindinput="getName" value="{{username}}" maxlength='10' />
+		<view class="tab">
+			<text class="tabNum" bindtap="goWuliu">搬家物流订单管理</text>
 		</view>
-		<view class='line_1px' />
-		<view class='item_root'>
-			密码：
-			<input class="textarea25px" bindinput="getPassWord" value="{{phone}}" maxlength='11' />
-		</view>
-		<!-- 提交按钮 -->
-		<button class='btn_fabu' bindtap='formSubmit' type='primary'>管理员登陆</button>
-	</view>
-<!-- </view> -->
+		<image class="tubiao" src='https://636c-cloud1-3gpl3dnv29eed7ff-1308423562.tcb.qcloud.la/%E5%9B%BE%E5%B1%82%203%20%E6%8B%B7%E8%B4%9D%203.png?sign=2d4a55e49453903b83a351b6e6432571&t=1638120475'></image>
+  	<image class="tubiao2" src='https://636c-cloud1-3gpl3dnv29eed7ff-1308423562.tcb.qcloud.la/-%20China%20Restaurant%20Sonne%20-%20%E6%8B%B7%E8%B4%9D%202.png?sign=e636fd9f57728f2c9937e8da88a6ac51&t=1638120719'></image>
+
+	
+
+
+
+
+
