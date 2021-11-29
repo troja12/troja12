@@ -15,6 +15,7 @@
     "pages/myPoints/myPoints",
     "pages/food/food",
     "pages/adminWaimai_test/adminWaimai_test",
+    "pages/adminWaimai/adminWaimai",
     "pages/adminWuliu/adminWuliu",
     "pages/address/add/add",
     "pages/address/index/address",

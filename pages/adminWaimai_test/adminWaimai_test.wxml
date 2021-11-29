@@ -50,7 +50,7 @@
                 <!-- 编号 -->
                 <view class='dingdanbianhao' >订单地址:{{item.address}} </view>
                 <view class='dingdanbianhao'>该地址订单数量:{{item.number}} </view>
-                <view class='dingdanbianhao'  bindtap="sd">【 点击查看订单详情 】</view>
+                <view class='dingdanbianhao' bindtap="sd" data-address="{{item.address}}">【 点击查看订单详情 】</view>
                 <view class="content">
                  
                   <!-- //-1订单取消,0新下单待上餐,1待用户评价,2订单已完成 -->
