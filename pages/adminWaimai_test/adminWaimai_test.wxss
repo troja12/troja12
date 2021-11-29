@@ -102,12 +102,75 @@ page {
 
 
 .dingdanbtn {
+  /* flex-direction: column; */
+  color: darkgoldenrod;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  width: 100%;
+  height: 100rpx;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border: 1rpx solid darkgoldenrod;
+  font-size: 30rpx;
+  display: flex;
+  /* line-height: 56rpx; */
+}
+.picker1{
+  margin-top: 0rpx;
+  margin-left: 100rpx;
+  
+  
+}
+.picker2{
+  margin-top: 5rpx;
+  margin-left: 36rpx;
+  width: 180rpx;
+  height: 45rpx;
+  border: 1rpx solid rgb(175, 36, 36);
+ 
+  
+}
+.dingdanbtn1 {
   flex-direction: column;
   color: darkgoldenrod;
   margin-top: 10rpx;
   margin-bottom: 10rpx;
   width: 100%;
+  height: 100rpx;
   text-align: center;
+  justify-content: center;
+  align-items: center;
+  border: 1rpx solid darkgoldenrod;
+  font-size: 30rpx;
+  display: flex;
+  /* line-height: 56rpx; */
+}
+.dingdanbtn2 {
+  flex-direction: column;
+  color: darkgoldenrod;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  width: 100%;
+  height: 100rpx;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border: 1rpx solid darkgoldenrod;
+  font-size: 30rpx;
+  display: flex;
+  /* line-height: 56rpx; */
+}
+.dingdanbtn3 {
+  flex-direction: column;
+  color: darkgoldenrod;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  width: 100%;
+  height: 100rpx;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
   border: 1rpx solid darkgoldenrod;
   font-size: 30rpx;
   display: flex;

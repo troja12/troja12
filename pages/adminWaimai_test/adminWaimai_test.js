@@ -277,6 +277,12 @@ Page({
         address: address,
       }
     }).then(res => {
+      wx.showLoading({
+        title: '发送中...'
+     })
+      setTimeout(function () {
+      wx.hideLoading()
+      }, 1000)
         console.log("外卖结果",res)
         console.log("读取成功",res.result.data)
         var timeindex = this.data.timeindex 
@@ -313,6 +319,12 @@ Page({
          address: address,
        }
      }).then(res => {
+      wx.showLoading({
+        title: '发送中...'
+     })
+      setTimeout(function () {
+      wx.hideLoading()
+      }, 1000)
         console.log("外卖结果",res)
         console.log("读取成功",res.result.data)
         var arr = res.result.data
@@ -349,6 +361,12 @@ Page({
          address: address,
        }
      }).then(res => {
+      wx.showLoading({
+        title: '发送中...'
+     })
+      setTimeout(function () {
+      wx.hideLoading()
+      }, 1000)
         console.log("外卖结果",res)
         console.log("读取成功",res.result.data)
         var arr = res.result.data

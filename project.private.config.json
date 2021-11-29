@@ -132,6 +132,12 @@
           "pathName": "pages/address/add/add",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/adminWaimai_test/adminWaimai_test",
+          "query": "",
+          "scene": null
         }
       ]
     }

@@ -57,19 +57,19 @@
                   <view  class='anniu'>
 
                     <label  class='dingdanbtn' data-address='{{item.address}}' 
-                      >预计剩余到达时间
+                      >
                       <picker bindchange="bindPickerChange" value="{{timeindex}}" range="{{array}}">
-                      <view class="picker" >
-                       当前选择：{{array[timeindex]}}
+                      <view class="picker1" >
+                        预计剩余到达时间：{{array[timeindex]}}
                        </view>
                       </picker>
-                        <view data-address='{{item.address}}'  bindtap="test">发送通知</view>
+                    <view class="picker2" data-address='{{item.address}}'  bindtap="test">发送通知</view>
                     </label>
-                    <label  class='dingdanbtn' data-address='{{item.address}}' 
+                    <label  class='dingdanbtn1' data-address='{{item.address}}' 
                       bindtap='testlate'>迟到提醒(3分钟为单位)</label>
-                    <label  class='dingdanbtn' data-address='{{item.address}}' 
+                    <label  class='dingdanbtn2' data-address='{{item.address}}' 
                       bindtap='testok'>已到达</label>
-                    <label  class='dingdanbtn' data-address='{{item.address}}' 
+                    <label  class='dingdanbtn3' data-address='{{item.address}}' 
                       bindtap='onekeydone'>配送完成</label>
                   </view>
                 </view>
