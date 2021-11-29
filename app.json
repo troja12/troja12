@@ -20,6 +20,7 @@
     "pages/address/index/address",
     "pages/address_me/address_me",
     "pages/address_me/detail/detail",
+    "pages/address_me/detail_cus/detail_cus",
     "pages/pay/pay",
     "pages/mycomment/mycomment",
     "pages/myOrder/myOrder",

@@ -1,8 +1,8 @@
 <view   class="add-btn">
-	<view class="btn"  bindtap="_toAdd">
+	<view wx:if="{{isManage==false}}" class="btn"  bindtap="_toAdd">
 			<view class="name">添加地址</view>
 	</view>
-	<view class="btn"  bindtap="_toAdd">
+	<view wx:if="{{isManage==true}}" class="btn"  bindtap="_toAdd_Zitidian">
 		<view class="name">添加自提点</view>
 	</view>
 </view>
@@ -51,7 +51,7 @@
 			direction="horizontal" x="{{item.isOpen?'-200rpx':0}}"
 			 id="{{index}}">
 				<view class="address" >
-					<view class="left" bindtap="go_details"  id="{{item._id}}" data-address="{{item.address}} ">
+					<view class="left" bindtap="go_details_cus"  id="{{item._id}}" data-address="{{item.address}} ">
 						<view class="left-1">
 							<view class="nickname">{{item.username}}</view>
 							<!-- <view class="telephone">{{item.telephone}}</view> -->
@@ -61,7 +61,7 @@
 						</view>
 						
 					</view>
-					<view class="right" bindtap="_toEditZitidian" id="{{item._id}}">
+					<view wx:if="{{isManage==true}}"  class="right" bindtap="_toEditZitidian" id="{{item._id}}">
 						<image 
 						src="cloud://cloud1-3gpl3dnv29eed7ff.636c-cloud1-3gpl3dnv29eed7ff-1308423562/system-icon/edit.png"></image>
 					</view>
@@ -69,7 +69,9 @@
 				
 			</movable-view>
 		</movable-area>
-
+		<view  class="del-btn"  bindtap="_del_zitidian" id="{{item._id}}">
+			删除
+		</view>
 	</view>
 
 

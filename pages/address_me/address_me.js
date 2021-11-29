@@ -1,5 +1,5 @@
 // pages/address/address.js
-
+const app = getApp()
 let startP = 0;
 Page({
 
@@ -15,16 +15,22 @@ Page({
   },
 
 
-  go_details:function(evt){
+  go_details_cus:function(evt){
     console.log('当前id',evt.currentTarget.id)
     let id = evt.currentTarget.id
     console.log(id)
     wx.navigateTo({
-    url: '/pages/address_me/detail/detail?id='+id,
+    url: '/pages/address_me/detail_cus/detail_cus?id='+id,
   })
   },
 
-  _toAdd:function(evt){
+  _toAdd:function(){
+    wx.navigateTo({
+      url:'/pages/address/add/add',
+    })
+  },
+
+  _toAdd_Zitidian:function(){
     wx.navigateTo({
       url: '/pages/address_me/detail/detail',
     })
@@ -60,6 +66,21 @@ Page({
     })
 
   },
+
+  _del_zitidian:function(evt){
+    var that = this
+    let id = evt.currentTarget.id
+    //获取数据库引用
+    const db = wx.cloud.database()
+    //数据库删除操作
+    db.collection('init-address').doc(id).remove({
+      success(res) {
+        that.onShow()
+      }
+    })
+
+  },
+
   _touchstart:function(evt){
     startP = evt.changedTouches[0].pageX
   },
@@ -90,7 +111,7 @@ Page({
   onLoad: function (options) {
     console.log("传参",options)
     this.setData({
-      isManage:options.isManage
+      isManage:app.globalData.userInfo.isManage
     })
     //遍历数据库渲染数据
     var that = this
