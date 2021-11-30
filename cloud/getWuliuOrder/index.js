@@ -6,12 +6,10 @@ cloud.init({
 })
 
 // 云函数入口函数
-exports.main = async (event, context) => {
-  const wxContext = cloud.getWXContext()
+exports.main = async (event) => {
         return await cloud.database().collection("umzugorder")
           .orderBy('_createTime', 'desc')
           .where({
-            _openid: wxContext.OPENID,
             status: event.orderStatus,
           }).get()
 }

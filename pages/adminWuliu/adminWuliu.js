@@ -3,17 +3,6 @@ var app = getApp()
 let orderStatus = 0; //0新下单,1管理员已接单
 let db = wx.cloud.database();
 
-//监听用户新下单的watch
-let watcher = null
-
-//音频播放相关
-const innerAudioContext = wx.createInnerAudioContext()
-// innerAudioContext.autoplay = true //自动播放
-innerAudioContext.loop = true //循环播放
-innerAudioContext.src = app.globalData.mp3Src
-// innerAudioContext.src = "cloud://test-ec396a.7465-test-ec396a-1257654106/mp3/laidanle.wav"
-let isPlaying = false //是否在播放中
-
 
 
 Page({
@@ -46,51 +35,8 @@ Page({
   onShow: function () {
     orderStatus = 0
     this.getMyOrderList();
-    this.initWatcher()
-    //防止问题，再做一次音频资源初始化
-    innerAudioContext.src = app.globalData.mp3Src
   },
-  //初始化watcher
-  initWatcher() {
-    let that = this
-    watcher = db.collection('order')
-      .watch({
-        onChange: function (res) {
-          console.log('更新监听到的数据', res)
-          if (!res.type && res.docChanges && res.docChanges.length > 0) {
-            let obj = res.docChanges[0].doc
-            if (obj && obj.status == 0 && !isPlaying) {
-              console.log('有用户新下单了')
-              //用户如果下单，会播放音频
-              innerAudioContext.play() //播放订单提示音频
-              innerAudioContext.onPlay(() => {
-                console.log('开始播放')
-                isPlaying = true
-              })
-              wx.showModal({
-                title: '有新订单！',
-                content: '新订单来啦，请及时制作',
-                showCancel: false,
-                success(res) {
-                  //停止音乐
-                  innerAudioContext.stop()
-                  isPlaying = false
-                  // 请求新下单数据
-                  that.setData({
-                    currentTab: 0
-                  })
-                  orderStatus = 0
-                  that.getMyOrderList()
-                }
-              })
-            }
-          }
-        },
-        onError: function (err) {
-          console.error('the watch closed because of error', err)
-        }
-      })
-  },
+
 
   getMyOrderList() {
     let openid = app._checkOpenid();
@@ -111,7 +57,10 @@ Page({
           list: res.result.data
         })
       }).catch(res => {
-        console.log("用户订单列表失败", res)
+        wx.showToast({
+          title: '当前暂无订单',
+          icon:'none'
+        })
       })
   },
   //制作完成
