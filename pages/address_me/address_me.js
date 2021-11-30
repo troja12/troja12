@@ -162,6 +162,13 @@ Page({
         })
       }
      })
+     db.collection('init-address').get({
+      success(res){
+        that.setData({
+          initaddressList:res.data
+        })
+      }
+     })
 
   },
 
