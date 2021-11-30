@@ -29,7 +29,14 @@ Page({
   navbarTap: function (e) {
     let index = e.currentTarget.dataset.idx;
     this.setData({
-      currentTab: index
+      currentTab: index,
+      list: [],
+      addtype: []
+    })
+    wx.showToast({
+      title: '数据加载中',
+      icon:'loading',
+      duration:500
     })
     if (index == 0) {
       orderStatus = 1;
@@ -40,10 +47,7 @@ Page({
       orderStatus = 1;
       isWaimai = 0;
       status_2 = 1; 
-
-    } else {
-      orderStatus = 0;
-    }
+    } 
     this.getMyOrderList();
   },
 
@@ -52,6 +56,9 @@ Page({
     this.getMyOrderList();
   },
   
+  onLoad: function () {
+    this.getMyOrderList()
+  },
 
   getMyOrderList() {
     let openid = app._checkOpenid();
@@ -193,7 +200,7 @@ Page({
   sd(e){
     console.log(e.currentTarget.dataset.address)
     wx.navigateTo({
-      url: '/pages/adminWaimai/adminWaimai?address=' + e.currentTarget.dataset.address,
+      url: '/pages/adminWaimai/adminWaimai?address='+ e.currentTarget.dataset.address,
     })
   },
 
