@@ -61,6 +61,9 @@ Page({
           title: '当前暂无订单',
           icon:'none'
         })
+        this.setData({
+          list: []
+        })
       })
   },
   //制作完成
@@ -97,12 +100,5 @@ Page({
     })
  
   },
-
-  //退出页面
-  onUnload() {
-    console.log("onUnload")
-    innerAudioContext.destroy() //退出页面时销毁音频
-    watcher.close() //关闭监听
-  }
 
 })

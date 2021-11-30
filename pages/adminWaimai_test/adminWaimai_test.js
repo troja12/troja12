@@ -1,9 +1,9 @@
 
 var app = getApp()
-let orderStatus = 1; //0新下单待制作,1待用户评价,2订单已完成
-let isWaimai = 1;
-let status_2 = 1;
-let db = wx.cloud.database();
+var orderStatus = 1; //0新下单待制作,1待用户评价,2订单已完成
+var isWaimai = 1;
+var status_2 = 1;
+var db = wx.cloud.database();
 var socketOpen = false
 var socketMsgQueue = []
 
@@ -52,16 +52,17 @@ Page({
   },
 
   onShow: function () {
-    orderStatus = 1
+    orderStatus = 1;
+    isWaimai = 1;
+    status_2 = 1; 
     this.getMyOrderList();
   },
   
-  onLoad: function () {
-    this.getMyOrderList()
-  },
 
   getMyOrderList() {
     let openid = app._checkOpenid();
+    console.log('初',isWaimai)
+    console.log('初',orderStatus)
     if (!openid) {
       return;
     }
